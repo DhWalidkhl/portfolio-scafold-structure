@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
-import { NavLink } from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import Login from "../Login.jsx";
 import './Navbar.css'
 import UserStore from "../../store/userStore.js";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+	const navigate = useNavigate();
 	let {isLogin, UserLogoutRequest, UserProfile, ProfileDetailsByID} = UserStore()
 
 	useEffect(() => {
@@ -20,7 +22,8 @@ const Navbar = () => {
 		await UserLogoutRequest()
 		sessionStorage.clear()
 		localStorage.clear()
-		window.location.reload()
+		navigate('/')
+		// window.location.reload()
 	}
 
 	return (
@@ -85,13 +88,13 @@ const Navbar = () => {
 												{
 													sessionStorage.getItem('role') === "admin" ?
 														(
-														<li ><a className="py-3">
+														<li ><Link to="/dashboard" className="py-3">
 														Admin Dashboard
-													</a></li>
+													</Link></li>
 													) : (
-															<li><a className="py-3">
+															<li><Link to="/dashboard" className="py-3">
 																Dashboard
-															</a></li>
+															</Link></li>
 														)
 
 												}

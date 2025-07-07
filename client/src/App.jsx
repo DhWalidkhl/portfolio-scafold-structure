@@ -12,6 +12,7 @@ import SignUpPage from "./pages/SignUpPage.jsx";
 import {useEffect, useState} from "react";
 import PreLoadingSpinner from "./components/PreLoaderSpinner/PreLoadingSpinner.jsx";
 import TermsAndConditionPage from "./pages/TermsAndConditionPage.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
 
 function App() {
 
@@ -44,6 +45,7 @@ function App() {
 								<Route path="/portfolio/courses" element={<CourseDetailsPage/>}></Route>
 								<Route path="/portfolio/projects" element={<ProjectsPage/>}></Route>
 								<Route path="/terms" element={<TermsAndConditionPage/>}></Route>
+								<Route path="/dashboard" element={<DashboardPage/>}></Route>
 							</Routes>
 						</BrowserRouter>
 					)
