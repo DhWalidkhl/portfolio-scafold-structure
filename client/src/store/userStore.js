@@ -4,11 +4,6 @@ import Cookies from 'js-cookie'
 
 const UserStore = create((set)=>({
 
-
-
-
-
-
 	isLogin: ()=>{
 		if (Cookies.get('token')){
 			return true
@@ -55,6 +50,25 @@ const UserStore = create((set)=>({
 			console.log(e)
 		}
 	},
+
+
+	UserList : [],
+	UserListRequest : async ()=>{
+		try {
+			let res = await axios.get("/api/v1/UserList");
+			if (res.data.status === 'success') {
+				set({ UserList: res.data.data });
+
+			}else {
+				set({ UserList: [] });
+			}
+			return res.data.data;
+		} catch (e) {
+			console.error("Failed to fetch user list", e);
+			return null;
+		}
+	},
+
 
 
 	UserLogoutRequest : async ()=>{

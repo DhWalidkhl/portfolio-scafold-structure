@@ -108,11 +108,13 @@ const Navbar = () => {
 												</li>
 											</ul>
 										</div>
-
-
 									</div>
 							) : (
-								<Login/>
+								<div className="flex gap-3 items-center">
+									<Login/>
+									<Link className="btn btn-dash btn-accent" to="/signup">Sign Up</Link>
+								</div>
+
 							)
 				}
 			</div>

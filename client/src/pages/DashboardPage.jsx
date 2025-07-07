@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from "../layout/Layout.jsx";
 import UserStore from "../store/userStore.js";
 import Login from "../components/Login.jsx";
+import {NavLink} from "react-router-dom";
 
 const DashboardPage = () => {
     let {UserProfile} = UserStore()
@@ -47,10 +48,10 @@ const DashboardPage = () => {
                                     </div>
                                     <label htmlFor="my-drawer-2" aria-label="close sidebar"
                                            className="drawer-overlay"></label>
-                                    <ul className="menu">
+                                    <ul className="menu text-lg">
                                         {/* Sidebar content here */}
-                                        <li><a>Sidebar Item 1</a></li>
-                                        <li><a>Sidebar Item 2</a></li>
+                                        <li><NavLink to="/dashboard/user-list">All Users</NavLink></li>
+                                        <li><NavLink>Sidebar Item 1</NavLink></li>
                                     </ul>
                                 </div>)
                             }

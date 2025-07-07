@@ -1,40 +1,73 @@
 import React from 'react';
 import SectionHeading from "../components/SectionHeading.jsx";
-import Login from "../components/Login.jsx";
+import Layout from "../layout/Layout.jsx";
 
 const SignUpPage = () => {
 	return (
-		<>
+		<Layout>
 			<SectionHeading headingBig="register now" headingSmall="Welcome to the comunity"/>
-			<h1 className="container mx-auto text-center text-sm md:text-3xl p-6 md:py-8">After Signing up you will able to write blog, comment on blog !! Enjoy it now!</h1>
-			<div className="container mx-auto">
-				<div className="w-full p-8 md:py-8 md:px-36 space-y-3 rounded-xl text-gray-900">
-					<form noValidate="" action="" className="space-y-6">
-						<div className="space-y-1 text-sm">
-							<label htmlFor="username" className="block text-gray-900">Username</label>
-							<input type="text" name="username" id="username" placeholder="Username"
-							       className="w-full px-4 py-3 rounded-md border-gray-700 bg-gray-200 text-gray-900 focus:border-violet-400"/>
+
+			<section className="p-6 text-xl text-gray-900">
+				<form noValidate="" action="" className="container text-xl flex flex-col mx-auto space-y-12">
+					<fieldset className="grid text-xl grid-cols-4 gap-6 p-6 rounded-md shadow-sm">
+						<div className="space-y-2 col-span-full lg:col-span-1">
+							<p className="text-2xl font-semibold">Hi,</p>
+							<p className="text-dm">After Signing up you will able
+								to write blog, comment on blog !! Enjoy it now!</p>
 						</div>
-						<div className="space-y-1 text-sm">
-							<label htmlFor="password" className="block text-gray-900">Password</label>
-							<input type="password" name="password" id="password" placeholder="Password"
-							       className="w-full px-4 py-3 rounded-md border-gray-700 bg-gray-200 text-gray-900 focus:border-violet-400"/>
-							<div className="flex justify-end text-xs text-gray-400">
-								<a rel="noopener noreferrer" href="#">Forgot Password?</a>
+						<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+							<div className="col-span-full sm:col-span-3">
+								<label htmlFor="firstname">First name</label>
+								<input id="firstname" type="text" placeholder="First name"
+								       className="w-full rounded-md input input-info"/>
+							</div>
+							<div className="col-span-full sm:col-span-3">
+								<label htmlFor="lastname">Last name</label>
+								<input id="lastname" type="text" placeholder="Last name"
+								       className="w-full input input-info"/>
+							</div>
+							<div className="col-span-full sm:col-span-3">
+								<label htmlFor="email">Email</label>
+								<input id="email" type="email" placeholder="Email"
+								       className="w-full rounded-md input input-info" data-temp-mail-org="0"/>
+							</div>
+							<div className="col-span-full sm:col-span-3">
+								<label htmlFor="password">Password</label>
+								<input id="email" type="password" placeholder="Password"
+								       className="w-full rounded-md input input-info" data-temp-mail-org="0"/>
+							</div>
+							<div className="w-full col-span-full">
+								<legend className="fieldset-legend text-sm">Pick a file</legend>
+								<input type="file" className="file-input w-full"/>
+								<label className="label text-sm">Max size 2MB</label>
+							</div>
+
+							<div className="col-span-full">
+								<label htmlFor="address">Address</label>
+								<input id="address" type="text" placeholder=""
+								       className="w-full rounded-md input input-info"/>
+							</div>
+							<div className="col-span-full sm:col-span-2">
+								<label htmlFor="city">City</label>
+								<input id="city" type="text" placeholder=""
+								       className="w-full rounded-md input input-info"/>
+							</div>
+							<div className="col-span-full sm:col-span-2">
+								<label htmlFor="state">State / Province</label>
+								<input id="state" type="text" placeholder=""
+								       className="w-full rounded-md input input-info"/>
+							</div>
+							<div className="col-span-full sm:col-span-2">
+								<label htmlFor="zip">ZIP / Postal</label>
+								<input id="zip" type="text" placeholder=""
+								       className="w-full rounded-md input input-info"/>
 							</div>
 						</div>
-						<button
-							className="block w-full p-3 text-center rounded-sm text-gray-900 bg-violet-400">Sign
-							Up
-						</button>
-					</form>
-					<div className="flex itmes-center justify-center">
-						<p className="text-center sm:px-6 text-gray-400">Already have an account?</p>
-						<Login></Login>
-					</div>
-				</div>
-			</div>
-		</>
+					</fieldset>
+
+				</form>
+			</section>
+		</Layout>
 	);
 };
 
