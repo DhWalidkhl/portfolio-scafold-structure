@@ -4,12 +4,12 @@ export const fileUploadController = async (req, res)=>{
 			return res.status(400).send({message: 'Please select a file'});
 		}
 		await res.status(200).json({
-			message: 'Successfully uploaded your file',
-			file: req.file
+			status: 'success',
+			data: req.file
 		});
 	}
 	catch (err) {
+		console.error("Error in controller:", err);
 		res.status(500).json({error: err.message});
-		console.log(err);
 	}
 }

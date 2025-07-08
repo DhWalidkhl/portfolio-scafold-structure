@@ -1,10 +1,12 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import UserStore from "../store/userStore.js";
+import {useNavigate} from "react-router-dom";
 
 
 const Login = () => {
 	let {LoginFormOnChange, LoginFormData, UserLoginRequest} = UserStore()
+	const navigate = useNavigate();
 	const handleLogin = async (e) => {
 		e.preventDefault()
 		try {
@@ -12,6 +14,8 @@ const Login = () => {
 			e.target.reset()
 			document.getElementById('my_modal_3').close()
 			window.location.reload()
+			navigate("/")
+
 		}catch (e) {
 			console.log(e)
 		}

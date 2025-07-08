@@ -66,7 +66,7 @@ router.patch('/UpdateUserProfile', AuthMiddleware, UserController.UpdateUserProf
 router.delete('/DeleteUser/:userID', AuthMiddleware, AdminMiddleware, UserController.DeleteUser)
 
 // File Upload API's
-router.post('/fileUpload', upload.single("img"), fileUploadController)
+router.post('/fileUpload', upload.single("file"), fileUploadController)
 
 
 

@@ -16,6 +16,7 @@ import DashboardPage from "./pages/DashboardPage.jsx";
 import UsersList from "./pages/UsersList.jsx";
 import AdminDashboardLayout from "./layout/AdminDashboardLayout.jsx";
 import BlogList from "./pages/BlogList.jsx";
+import OtpPage from "./pages/OtpPage.jsx";
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
 								<Route path="*" element={<ErrorPage/>}></Route>
 								<Route path="/" element={<HomePage/>}></Route>
 								<Route path="/signup" element={<SignUpPage/>}></Route>
+								<Route path="/otp" element={<OtpPage/>}></Route>
 								<Route path="/blogs" element={<BlogPage/>}></Route>
 								<Route path="/contact" element={<ContactPage/>}></Route>
 								<Route path="/portfolio" element={<PortfolioLayout/>}></Route>

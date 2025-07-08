@@ -25,10 +25,47 @@ const UserStore = create((set)=>({
 	},
 
 
+
+	// File upload data
+	ImageName: "",
+	FileUploadOnChange: async (event) => {
+		try {
+			const file = event.target.files[0];
+			if (!file) {
+				console.log("No file selected");
+				return false;
+			}
+			const formData = new FormData();
+			formData.append("file", file);
+
+			const res = await axios.post("/api/v1/fileUpload", formData, {
+				headers: { "Content-Type": "multipart/form-data" }
+			});
+
+			if (res.status === 200) {
+				set({ ImageName: res?.data?.data?.path });
+				return true;
+			} else {
+				return false;
+			}
+		} catch (error) {
+			console.log(error)
+			return false;
+		}
+
+	},
+
+
+
 	// Login by using API
 	UserLoginRequest: async (reqBody)=>{
 		let res = await axios.post(`/api/v1/UserLogin`, reqBody)
 		sessionStorage.setItem('role',res?.data?.role )
+		return res.data['status'] === "success";
+	},
+
+	UserSignUpRequest: async (reqBody)=>{
+		let res = await axios.post(`/api/v1/UserRegister`, reqBody)
 		return res.data['status'] === "success";
 	},
 
@@ -68,7 +105,6 @@ const UserStore = create((set)=>({
 			return null;
 		}
 	},
-
 
 
 	UserLogoutRequest : async ()=>{

@@ -9,7 +9,7 @@ const ObjectID = mongoose.Types.ObjectId;
 
 export const UserRegisterServices = async (req) => {
 	try {
-		const {firstName, lastName, address, email, password, mobile, img} = req.body
+		const {firstName, lastName, email, password, mobile, img} = req.body
 		const code = Math.floor(100000 + Math.random() * 900000)
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
@@ -30,7 +30,7 @@ export const UserRegisterServices = async (req) => {
 		if (!sentMail?.accepted?.includes(email)) {
 			return {status: 'fail', message: `Please try again!!`}
 		}
-		await UserModel.create({img: img, firstName: firstName,lastName:lastName, address:address , email: email, role: totalUser.length === 0 ? "admin" : "user", password: hashedPassword, mobile:mobile, otp: hashedOTP})
+		await UserModel.create({img: img, firstName: firstName,lastName:lastName, email: email, role: totalUser.length === 0 ? "admin" : "user", password: hashedPassword, mobile:mobile, otp: hashedOTP})
 		return {status: 'success', message: `Your 6 digit OTP has been sent to your ${email} email address`}
 
 	} catch (e) {
@@ -96,11 +96,11 @@ export const UpdateUserProfileServices = async (req) =>{
 	try {
 		const user_id = req.headers['user_id']
 		const userID = new ObjectID(user_id);
-		const {img, firstName, lastName, address, password, mobile, email} = req.body;
+		const {img, firstName, lastName, password, mobile, email} = req.body;
 		if(email){
 			return {status: "fail", message: "Email Cannot be Changed"}
 		}
-		let updatedData = {img: img, firstName: firstName, lastName: lastName, address: address, password: password, mobile: mobile}
+		let updatedData = {img: img, firstName: firstName, lastName: lastName, password: password, mobile: mobile}
 		if(password){
 			const salt = await bcrypt.genSalt(10);
 			let hashedPassword = await bcrypt.hash(password, salt);

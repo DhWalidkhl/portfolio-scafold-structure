@@ -52,6 +52,7 @@ mongoose.connect(MONGODB_CONNECTION, {autoIndex: true})
 // Set API Routes
 app.use("/api/v1", router);
 
+
 app.use(express.static('client/dist'));
 
 app.use('*', (req, res)=>{
@@ -61,4 +62,3 @@ app.use('*', (req, res)=>{
 
 
 export default app
-

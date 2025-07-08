@@ -23,6 +23,9 @@ const storage = new CloudinaryStorage({
 	}
 });
 
+console.log("Cloudinary config:", CLOUD_NAME, API_KEY ? "yes" : "no", API_SECRET ? "yes" : "no");
+
+
 
 const FILE_FILTER = (req, file, cb) => {
 if(!file) {
