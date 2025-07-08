@@ -3,7 +3,7 @@ import ProjectModel from "../models/ProjectModel.js";
 
 export const ProjectsListServices = async (req) => {
 	try {
-		const data = await ProjectModel.find()
+		const data = await ProjectModel.find().sort({createdAt: -1})
 		return {status: 'success', data: data}
 	} catch (e) {
 		return {status: 'fail', message: e.toString()}

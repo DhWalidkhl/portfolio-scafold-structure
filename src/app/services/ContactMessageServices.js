@@ -5,7 +5,7 @@ const ObjectID = mongoose.Types.ObjectId;
 
 export const ContactMassegeListService = async (req)=>{
 	try {
-		const data = await ContactMessageModel.find()
+		const data = await ContactMessageModel.find().sort({createdAt: -1})
 		return {status: 'success', data: data}
 	} catch (e) {
 		return {status: 'fail', message: e.toString()}

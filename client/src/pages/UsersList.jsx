@@ -2,19 +2,27 @@ import React, {useEffect} from 'react';
 import AdminDashboardLayout from "../layout/AdminDashboardLayout.jsx";
 import UserStore from "../store/userStore.js";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 const UsersList = () => {
 	const {isLogin, UserListRequest, UserList} = UserStore();
 
+	const handleUserDelete = async (id) => {
+		try {
+			await axios.delete(`/api/v1/DeleteUser/${id}`);
+			await UserListRequest();
+		} catch (error) {
+			console.error('Failed to delete user:', error);
+		}
+	};
+
 	useEffect(() => {
 		(async () => {
 			if(isLogin()){
-			let res = await UserListRequest();
-			console.log(res)
+			await UserListRequest();
 			}else {
 				Cookies.remove('token')
 				sessionStorage.clear()
-
 			}
 		})();
 
@@ -63,17 +71,40 @@ const UsersList = () => {
 														</div>
 														<div>
 															<div className="font-bold">{user['firstName']} {user['lastName']}</div>
-															<div className="text-sm opacity-50">{user['role']}</div>
+															{
+																user['role'] === "admin" ? (
+																	<div className="text-sm opacity-50 text-[red] font-semibold uppercase">{user['role']}</div>
+																) : (
+																	<div
+																		className="text-sm opacity-50">{user['role']}</div>
+																)
+															}
+
 														</div>
 													</div>
 												</td>
 												<td>
-													{user['email']}
+													<p>{user['email']}</p>
+													{
+														user?.verified === "yes" ? (
+															<p className="text-[blue] font-bold">Verified</p>
+														) : (
+															<p className="text-[red]">Not Verified</p>
+														)
+													}
 
 												</td>
 												<td>{user['mobile']}</td>
 												<th>
-													<button className="btn btn-ghost btn-xs">details</button>
+													<div className="flex gap-1">
+														<button className="btn btn-ghost btn-xs">details</button>
+														{
+															user['role'] === "admin" ? <></> :
+																<button onClick={() => handleUserDelete(user['_id'])}
+																        className="btn btn-error btn-xs text-white">delete</button>
+														}
+
+													</div>
 												</th>
 											</tr>
 										))

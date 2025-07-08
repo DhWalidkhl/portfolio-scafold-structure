@@ -3,7 +3,7 @@ import CourseModel from "../models/CourseModel.js";
 
 export const CourseListService = async ()=>{
 	try {
-		const data = await CourseModel.find()
+		const data = await CourseModel.find().sort({createdAt: -1})
 		return {status: 'success', data: data}
 	} catch (e) {
 		return {status: 'fail', message: "something went wrong"}

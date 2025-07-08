@@ -28,11 +28,14 @@ const UserStore = create((set)=>({
 
 	// File upload data
 	ImageName: "",
+	FileUploading: false,
 	FileUploadOnChange: async (event) => {
+		set({FileUploading: true})
 		try {
 			const file = event.target.files[0];
 			if (!file) {
 				console.log("No file selected");
+				set({ ImageName: "", FileUploading: false });
 				return false;
 			}
 			const formData = new FormData();
@@ -43,12 +46,14 @@ const UserStore = create((set)=>({
 			});
 
 			if (res.status === 200) {
-				set({ ImageName: res?.data?.data?.path });
+				set({ ImageName: res?.data?.data?.path, FileUploading: false });
 				return true;
 			} else {
+				set({ ImageName: "", FileUploading: false });
 				return false;
 			}
 		} catch (error) {
+			set({ ImageName: "", FileUploading: false });
 			console.log(error)
 			return false;
 		}

@@ -69,8 +69,8 @@ const Navbar = () => {
 											</h1>
 											<small>{sessionStorage.getItem('role') === "admin" ? "Hello Admin" : "Welcome to the application"}</small>
 										</div>
-										<div className="dropdown dropdown-end">
-											<div tabIndex={0} role="button">
+										<div style={{cursor: 'pointer'}} className="dropdown dropdown-end">
+											<div  tabIndex={0} role="button">
 												<div className="avatar">
 													<div
 														className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">

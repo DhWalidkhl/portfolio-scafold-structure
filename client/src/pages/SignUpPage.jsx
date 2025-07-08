@@ -5,18 +5,12 @@ import userStore from "../store/userStore.js";
 import {useNavigate} from "react-router-dom";
 
 const SignUpPage = () => {
-	let {LoginFormData, LoginFormOnChange, FileUploadOnChange, ImageName,UserSignUpRequest} = userStore()
+	let {FileUploading,LoginFormData, LoginFormOnChange, FileUploadOnChange, ImageName,UserSignUpRequest} = userStore()
 	const navigate = useNavigate();
 	const handleSignUp = async (e) => {
 		e.preventDefault();
 
-		if (!ImageName) {
-			window.alert("Please upload an image before signing up.");
-			return;
-		}
-
 		const signUpData = { ...LoginFormData, img: ImageName };
-		console.log("Signup data:", signUpData);
 
 		try {
 			await UserSignUpRequest(signUpData);
@@ -28,8 +22,6 @@ const SignUpPage = () => {
 			window.alert("Something went wrong during sign up. Please try again.");
 		}
 	};
-
-	console.log(ImageName, LoginFormData)
 	return (
 		<Layout>
 			<SectionHeading headingBig="register now" headingSmall="Welcome to the comunity"/>
@@ -73,7 +65,7 @@ const SignUpPage = () => {
 								<label className="label text-sm">Max size 2MB</label>
 							</div>
 							<div className="col-span-full">
-								<button className="btn btn-dash btn-primary text-lg w-full">Sign Up</button>
+								<button disabled={FileUploading} className="btn btn-dash btn-primary text-lg w-full">{ FileUploading ? "Loading" : "Sign Up"}</button>
 							</div>
 
 						</div>

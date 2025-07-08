@@ -30,7 +30,7 @@ export const UserRegisterServices = async (req) => {
 		if (!sentMail?.accepted?.includes(email)) {
 			return {status: 'fail', message: `Please try again!!`}
 		}
-		await UserModel.create({img: img, firstName: firstName,lastName:lastName, email: email, role: totalUser.length === 0 ? "admin" : "user", password: hashedPassword, mobile:mobile, otp: hashedOTP})
+		await UserModel.create({img: img, firstName: firstName,lastName:lastName, email: email, role: totalUser.length === 0 ? "admin" : "user", password: hashedPassword, mobile:mobile, otp: hashedOTP, verified: "no"})
 		return {status: 'success', message: `Your 6 digit OTP has been sent to your ${email} email address`}
 
 	} catch (e) {
@@ -53,7 +53,7 @@ export const VerifyOTPServices = async (req) => {
 			}
 			const user_id = findUser._id.toString()
 			const token = EncodeToken(email, user_id)
-			await UserModel.updateOne({email: email}, {$set: {otp: "0"}})
+			await UserModel.updateOne({email: email}, {$set: {otp: "0", verified: "yes"}})
 			return {status: 'success', message: "Valid OTP", token: token}
 		}
 	} catch (e) {

@@ -6,7 +6,7 @@ const ObjectID = mongoose.Types.ObjectId;
 
 export const TestimonialsListServices = async (req) => {
     try {
-        const data = await TestimonialsModel.find()
+        const data = await TestimonialsModel.find().sort({createdAt: -1})
         return {status: 'success', data: data}
     } catch (e) {
         return {status: 'fail', message: e.toString()}

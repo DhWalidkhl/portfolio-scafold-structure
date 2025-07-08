@@ -11,28 +11,16 @@ const OtpPage = () => {
     const handleOtpVerification = async (e) => {
         e.preventDefault();
         const email = sessionStorage.getItem("email");
-
         try {
-            const res = await axios.get(`/api/v1/UserList/${email}/${LoginFormData?.otp}`);
-            console.log(res);
-
-            // ✅ res.status is a *number* (like 200) not "success".
-            // You should check res.data.status or res.status === 200
+            const res = await axios.get(`/api/v1/VerifyOTP/${email}/${LoginFormData.otp}`);
             if (res.data.status === "success") {
                 window.alert("User Registered Successfully. Please login.");
                 navigate("/");
             } else {
-                window.alert("Invalid OTP");
+                window.alert(res?.data?.message);
             }
         } catch (error) {
-            console.error("OTP verification failed:", error);
-            if (error.response) {
-                console.log("Error response data:", error.response.data);
-                console.log("Error response status:", error.response.status);
-            } else {
-                console.log("Error without response:", error.message);
-            }
-            window.alert("Something went wrong. Please try again.");
+            window.alert("Something went wrong. Please try again.", error);
         }
     };
 

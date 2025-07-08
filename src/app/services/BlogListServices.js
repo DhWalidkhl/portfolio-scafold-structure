@@ -5,7 +5,7 @@ const ObjectID = mongoose.Types.ObjectId;
 
 export const BlogListServices = async (req) => {
 	try {
-		const data = await BlogModel.find()
+		const data = await BlogModel.find().sort({createdAt: -1})
 		return {status: 'success', data: data}
 	} catch (e) {
 		return {status: 'fail', message: e.toString()}
