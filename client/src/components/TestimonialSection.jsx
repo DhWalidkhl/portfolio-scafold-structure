@@ -15,7 +15,7 @@ const TestimonialSection = () => {
 		})()
 	}, []);
 	return (
-		<>
+		<div className="px-10">
 			<Swiper
 				spaceBetween={30}
 				centeredSlides={true}
@@ -42,7 +42,7 @@ const TestimonialSection = () => {
 
 				}
 			</Swiper>
-		</>
+		</div>
 	);
 };
 

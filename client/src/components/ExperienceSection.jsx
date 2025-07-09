@@ -2,7 +2,7 @@ import React from 'react';
 
 const ExperienceSection = () => {
 	return (
-		<div className="grid grid-cols-2 gap-6 py-10 justify-center items-center">
+		<div className="grid grid-cols-2 gap-6 p-10 justify-center items-center">
 			<div className="bg-sky-100 py-10 px-20 rounded-2xl shadow-xl space-y-6">
 				<div className="grid grid-cols-3 pb-3 items-center justify-center">
 					<h1 className="text-9xl font-semibold">25</h1>

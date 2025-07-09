@@ -17,6 +17,7 @@ import UsersList from "./pages/UsersList.jsx";
 import AdminDashboardLayout from "./layout/AdminDashboardLayout.jsx";
 import BlogList from "./pages/BlogList.jsx";
 import OtpPage from "./pages/OtpPage.jsx";
+import ContactMassegePage from "./pages/ContactMassegePage.jsx";
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
 								<Route path="/dashboard" element={<AdminDashboardLayout/>}></Route>
 								<Route path="/dashboard/user-list" element={<UsersList/>}></Route>
 								<Route path="/dashboard/blog-list" element={<BlogList/>}></Route>
+								<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>}></Route>
 							</Routes>
 						</BrowserRouter>
 					)
