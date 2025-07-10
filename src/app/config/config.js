@@ -12,6 +12,57 @@ export const API_SECRET = "InJQs52SbU7Lj4WMVYFgKt48i1I";
 
 
 
+// CSP Config for Image
+export const CSP_CONFIG = {
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+
+            imgSrc: [
+                "'self'",
+                "https://res.cloudinary.com",
+                "https://assets9.lottiefiles.com",
+                "https://lottie.host",
+                "https://lottiefiles.com/",
+                "data:"
+            ],
+
+            scriptSrc: [
+                "'self'",
+                "https://unpkg.com",
+                "https://cdnjs.cloudflare.com",
+                "'unsafe-inline'"
+            ],
+
+            styleSrc: [
+                "'self'",
+                "'unsafe-inline'"
+            ],
+
+            connectSrc: [
+                "'self'",
+                "https://assets9.lottiefiles.com",
+                "https://unpkg.com",
+                "https://lottie.host"
+            ],
+
+            fontSrc: ["'self'"],
+
+            objectSrc: ["'none'"],
+
+            mediaSrc: [
+                "'self'",
+                "https://assets9.lottiefiles.com",
+                "https://lottie.host"
+            ],
+
+            upgradeInsecureRequests: []
+        }
+    }
+}
+
+
+
 // email config
 export const EMAIL_HOST = "smtp.gmail.com";
 export const EMAIL_PORT = 587;

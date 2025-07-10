@@ -13,7 +13,7 @@ import {
 	URL_ENCODED,
 	WEB_CACHE,
 	REQUEST_LIMIT_NUMBER,
-	REQUEST_LIMIT_TIME,
+	REQUEST_LIMIT_TIME, CSP_CONFIG,
 } from "./src/app/config/config.js";
 
 const app = express();
@@ -25,64 +25,9 @@ app.use(express.urlencoded({ extended: URL_ENCODED }));
 app.use(hpp());
 
 // csp configuration for cloudinary
-app.use(
-	helmet({
-		contentSecurityPolicy: {
-			directives: {
-				defaultSrc: ["'self'"],
-
-				imgSrc: [
-					"'self'",
-					"https://res.cloudinary.com",
-					"https://assets9.lottiefiles.com",
-					"https://lottie.host",
-					"https://lottiefiles.com/",
-					"data:"
-				],
-
-				scriptSrc: [
-					"'self'",
-					"https://unpkg.com",
-					"https://cdnjs.cloudflare.com",
-					"'unsafe-inline'"
-				],
-
-				styleSrc: [
-					"'self'",
-					"'unsafe-inline'"
-				],
-
-				connectSrc: [
-					"'self'",
-					"https://assets9.lottiefiles.com",
-					"https://unpkg.com",
-					"https://lottie.host"
-				],
-
-				fontSrc: ["'self'"],
-
-				objectSrc: ["'none'"],
-
-				mediaSrc: [
-					"'self'",
-					"https://assets9.lottiefiles.com",
-					"https://lottie.host"
-				],
-
-				upgradeInsecureRequests: []
-			}
-		}
-	})
-);
-
-
-
-
-
-
+app.use(helmet(CSP_CONFIG));
 
 app.use(cookieParser());
-
 
 
 // Rate Limiter
@@ -116,13 +61,6 @@ app.use(express.static(path.join(__dirname, 'client', 'dist')));
 app.get('*', (req, res) =>
 	res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
 );
-
-// app.use(express.static('client/dist'));
-//
-// app.use('*', (req, res)=>{
-// 	res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-// })
-
 
 
 export default app
