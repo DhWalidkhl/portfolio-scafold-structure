@@ -4,6 +4,7 @@ import {blogList} from "../APIRequest/APIRequest.js";
 import BlogSkeleton from "../skeleton/BlogSkeleton.jsx";
 import SectionHeading from "../components/SectionHeading.jsx";
 import UserStore from "../store/userStore.js";
+import {Link} from "react-router-dom";
 
 const BlogPage = () => {
 	let {isLogin} = UserStore()
@@ -21,15 +22,16 @@ const BlogPage = () => {
 			<div className="container mx-auto">
 				{isLogin() ? (
 					<div className="flex gap-4">
-						<button className="btn btn-dash">Your Blogs</button>
+						<Link to="/dashboard/blog-list" className="btn btn-dash">Your Blogs</Link>
 						<button className="btn btn-outline btn-primary">Write a Blog</button>
 					</div>
 				) : (<></>)}
 			</div>
-			<div className="mt-6 gird gird-cols-3 container mx-auto">
+			<div className="mt-6 grid grid-cols-3 gap-6 container mx-auto">
+
 				{blogs.length === 0 ? <BlogSkeleton></BlogSkeleton> :
-					blogs.map((blog) => {
-						return (
+					blogs.map((blog) =>
+						 (
 							<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
 								<figure>
 									<img
@@ -45,7 +47,7 @@ const BlogPage = () => {
 								</div>
 							</div>
 						)
-					})
+					)
 				}
 			</div>
 

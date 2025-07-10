@@ -49,7 +49,6 @@ const UsersList = () => {
 										<th>Email</th>
 										<th>Mobile Number</th>
 										<th>Action</th>
-										<th></th>
 									</tr>
 									</thead>
 									<tbody>
@@ -88,7 +87,7 @@ const UsersList = () => {
 													<p>{user['email']}</p>
 													{
 														user?.verified === "yes" ? (
-															<p className="text-[blue] font-bold">Verified</p>
+															<p className="text-[green] font-bold">Verified</p>
 														) : (
 															<p className="text-[red]">Not Verified</p>
 														)
@@ -113,6 +112,7 @@ const UsersList = () => {
 
 									</tbody>
 								</table>
+
 							</div>
 						)
 						: (<h1>Please Login</h1>)}

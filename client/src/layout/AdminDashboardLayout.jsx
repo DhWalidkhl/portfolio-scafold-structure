@@ -21,6 +21,7 @@ const AdminDashboardLayout = ({children}) => {
 							<label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
 								Open drawer
 							</label>
+
 							<div className="w-full p-6 h-full">
 								{children}
 							</div>
