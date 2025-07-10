@@ -23,7 +23,64 @@ app.use(cors());
 app.use(express.json({ limit: MAX_JSON_SIZE }));
 app.use(express.urlencoded({ extended: URL_ENCODED }));
 app.use(hpp());
-app.use(helmet());
+
+// csp configuration for cloudinary
+app.use(
+	helmet({
+		contentSecurityPolicy: {
+			directives: {
+				defaultSrc: ["'self'"],
+
+				imgSrc: [
+					"'self'",
+					"https://res.cloudinary.com",
+					"https://assets9.lottiefiles.com",
+					"https://lottie.host",
+					"https://lottiefiles.com/",
+					"data:"
+				],
+
+				scriptSrc: [
+					"'self'",
+					"https://unpkg.com",
+					"https://cdnjs.cloudflare.com",
+					"'unsafe-inline'"
+				],
+
+				styleSrc: [
+					"'self'",
+					"'unsafe-inline'"
+				],
+
+				connectSrc: [
+					"'self'",
+					"https://assets9.lottiefiles.com",
+					"https://unpkg.com",
+					"https://lottie.host"
+				],
+
+				fontSrc: ["'self'"],
+
+				objectSrc: ["'none'"],
+
+				mediaSrc: [
+					"'self'",
+					"https://assets9.lottiefiles.com",
+					"https://lottie.host"
+				],
+
+				upgradeInsecureRequests: []
+			}
+		}
+	})
+);
+
+
+
+
+
+
+
 app.use(cookieParser());
 
 
@@ -53,11 +110,18 @@ mongoose.connect(MONGODB_CONNECTION, {autoIndex: true})
 app.use("/api/v1", router);
 
 
-app.use(express.static('client/dist'));
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
-app.use('*', (req, res)=>{
-	res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
-})
+app.get('*', (req, res) =>
+	res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
+);
+
+// app.use(express.static('client/dist'));
+//
+// app.use('*', (req, res)=>{
+// 	res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
+// })
 
 
 

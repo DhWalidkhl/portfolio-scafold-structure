@@ -20,6 +20,7 @@ const UsersList = () => {
 		(async () => {
 			if(isLogin()){
 			await UserListRequest();
+			console.log(UserList);
 			}else {
 				Cookies.remove('token')
 				sessionStorage.clear()

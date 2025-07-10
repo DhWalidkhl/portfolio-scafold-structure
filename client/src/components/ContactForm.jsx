@@ -1,11 +1,9 @@
 import React from 'react';
 import LottieFiles from "./LottieFiles.jsx";
-import Lottie from "lottie-react";
 import UserStore from "../store/userStore.js";
 
 const ContactForm = () => {
 	let {UserProfile} = UserStore()
-	// console.log(UserProfile['firstName']+ " " + UserProfile['lastName']);
 	return (
 		<div>
 			<div

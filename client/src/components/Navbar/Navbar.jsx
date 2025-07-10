@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
 	const navigate = useNavigate();
 	let {isLogin, UserLogoutRequest, UserProfile, ProfileDetailsByID} = UserStore()
-
+console.log("Profile Details:", ProfileDetailsByID);
 	useEffect(() => {
 		(async () => {
 			await ProfileDetailsByID();

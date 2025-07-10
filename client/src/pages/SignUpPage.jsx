@@ -75,6 +75,7 @@ const SignUpPage = () => {
 			</section>
 		</Layout>
 	);
+
 };
 
 export default SignUpPage;

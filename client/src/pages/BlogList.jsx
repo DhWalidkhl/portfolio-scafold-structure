@@ -3,6 +3,8 @@ import AdminDashboardLayout from "../layout/AdminDashboardLayout.jsx";
 import UserStore from "../store/userStore.js";
 import blogStore from "../store/blogStore.js";
 import Cookies from "js-cookie";
+import Layout from "../layout/Layout.jsx";
+import Login from "../components/Login.jsx";
 
 const BlogList = () => {
 	let {isLogin} = UserStore()
@@ -155,11 +157,17 @@ const BlogList = () => {
 				}
 			</AdminDashboardLayout>
 		) : (
-			<div className="flex items-center justify-center h-screen">
-				<h1 className="text-xl font-semibold">Please login first</h1>
-			</div>
-		)
-	);
+
+
+			<Layout>
+				<div className="flex flex-col gap-10 items-center justify-center h-screen">
+					<h1 className="text-4xl font-bold">Please Login to Access the Page</h1>
+					<Login></Login>
+				</div>
+			</Layout>
+)
+)
+	;
 };
 
 export default BlogList;
