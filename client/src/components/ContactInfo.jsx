@@ -6,14 +6,14 @@ const ContactInfo = () => {
     return (
         <div>
             <div className="container mx-auto">
-                <div className="grid grid-cols-2 gap-10 items-center px-36 justify-center">
+                <div className="lg:grid lg:grid-cols-2 gap-10 items-center px-36 justify-center">
                     <div className="space-y-4">
                         <h2 className="text-sky-500 font-semibold text-2xl">Get in Touch</h2>
                         <h1 className="text-5xl font-bold">Let's Elevate your business together.</h1>
                         <p>ished fact that a reader will be distrol acted bioiiy desig ished fact that a reader will acted ished fact that a reader will be distrol acted</p>
                         <Login/>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-2 lg:mt-0 mt-5">
                         <h1 className="text-4xl font-semibold mb-5">Welcome</h1>
                         <p>
                             If you want to contact via web application then please login to the web application. Otherwise you can contact via information below.
