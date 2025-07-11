@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const DataSchema = new mongoose.Schema(
 	{
 		title: {type: String, unique: true, required: true},
-		img: {type: String, unique: true, required: true},
+		img: {type: String, required: true},
 		des: {type: String, required: true},
 		liveLink: {type: String, required: true},
 		githubLink: {type: String, required: true},

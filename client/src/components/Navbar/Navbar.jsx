@@ -4,6 +4,7 @@ import Login from "../Login.jsx";
 import './Navbar.css'
 import UserStore from "../../store/userStore.js";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo.png"
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -40,14 +41,14 @@ console.log("Profile Details:", ProfileDetailsByID);
 								</svg>
 							</div>
 							<ul tabIndex={0}
-							    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+							    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 shadow">
 								<li><NavLink to="/">Home</NavLink></li>
 								<li><NavLink to="/blogs">Blogs</NavLink></li>
 								<li><NavLink to="/portfolio">Know me</NavLink></li>
 								<li><NavLink to="/contact">Contact</NavLink></li>
 							</ul>
 						</div>
-						<a className="btn btn-ghost text-xl">D H Walid</a>
+						<Link to="/" className="text-xl"><img className="w-40 ml-3" src={logo}/></Link>
 					</div>
 					<div className="navbar-center hidden lg:flex">
 						<ul className="menu menu-horizontal px-1 text-lg">

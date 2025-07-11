@@ -18,6 +18,8 @@ import BlogList from "./pages/BlogList.jsx";
 import OtpPage from "./pages/OtpPage.jsx";
 import ContactMassegePage from "./pages/ContactMassegePage.jsx";
 
+import "./App.css"
+
 function App() {
 
 	const [isLoading, setIsLoading] = useState(true);

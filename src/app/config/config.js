@@ -36,7 +36,13 @@ export const CSP_CONFIG = {
 
             styleSrc: [
                 "'self'",
-                "'unsafe-inline'"
+                "'unsafe-inline'",
+                "https://fonts.googleapis.com"
+            ],
+
+            fontSrc: [
+                "'self'",
+                "https://fonts.gstatic.com"
             ],
 
             connectSrc: [
@@ -45,8 +51,6 @@ export const CSP_CONFIG = {
                 "https://unpkg.com",
                 "https://lottie.host"
             ],
-
-            fontSrc: ["'self'"],
 
             objectSrc: ["'none'"],
 
@@ -60,6 +64,7 @@ export const CSP_CONFIG = {
         }
     }
 }
+
 
 
 
