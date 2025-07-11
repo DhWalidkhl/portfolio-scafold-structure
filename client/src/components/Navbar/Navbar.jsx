@@ -61,11 +61,9 @@ console.log("Profile Details:", ProfileDetailsByID);
 						{
 							isLogin() ? (
 									<div className="flex gap-6 items-center">
-										<div className="text-end">
-											<h1 className="text-xl">Hi <span
-												className="text-blue-600/100 font-semibold">{UserProfile?.firstName}</span>
-												<span
-													className="text-blue-600/100 font-semibold">{UserProfile?.lastName}</span>
+										<div className="text-end text-xs lg:text-lg">
+											<h1 className="lg:text-xl text-xs">Hi, <span
+												className="text-sky-600 font-semibold">{UserProfile?.lastName}</span>
 											</h1>
 											<small>{sessionStorage.getItem('role') === "admin" ? "Hello Admin" : "Welcome to the application"}</small>
 										</div>
@@ -88,11 +86,11 @@ console.log("Profile Details:", ProfileDetailsByID);
 												{
 													sessionStorage.getItem('role') === "admin" ?
 														(
-														<li ><Link to="/dashboard" className="py-3">
+														<li ><Link to="/dashboard/user-list" className="py-3">
 														Admin Dashboard
 													</Link></li>
 													) : (
-															<li><Link to="/dashboard" className="py-3">
+															<li><Link to="/dashboard/blog-list" className="py-3">
 																Dashboard
 															</Link></li>
 														)
@@ -112,7 +110,7 @@ console.log("Profile Details:", ProfileDetailsByID);
 							) : (
 								<div className="flex gap-3 items-center">
 									<Login/>
-									<Link className="btn btn-dash btn-accent" to="/signup">Sign Up</Link>
+									<Link className="btn btn-dash btn-info" to="/signup">Sign Up</Link>
 								</div>
 
 							)

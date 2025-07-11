@@ -1,3 +1,6 @@
 .menu li a.active{
-    color: rgb(4, 68, 239);
+    color: rgba(7, 68, 236, 0.85);
+    /*background: rgba(204, 241, 255, 0.81);*/
+    /*color: #043fdd;*/
+    font-weight: 700;
 }

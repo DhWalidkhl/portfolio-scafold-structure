@@ -12,7 +12,6 @@ import SignUpPage from "./pages/SignUpPage.jsx";
 import {useEffect, useState} from "react";
 import PreLoadingSpinner from "./components/PreLoaderSpinner/PreLoadingSpinner.jsx";
 import TermsAndConditionPage from "./pages/TermsAndConditionPage.jsx";
-import DashboardPage from "./pages/DashboardPage.jsx";
 import UsersList from "./pages/UsersList.jsx";
 import AdminDashboardLayout from "./layout/AdminDashboardLayout.jsx";
 import BlogList from "./pages/BlogList.jsx";
