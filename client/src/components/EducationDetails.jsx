@@ -5,9 +5,8 @@ import SectionHeading from "./SectionHeading.jsx";
 const EducationDetails = () => {
 	const [educations, setEducations] = useState(null)
 	useEffect(() => {
-		(() => {
-			let res = educationList()
-			console.log(res)
+		(async () => {
+			let res = await educationList()
 			setEducations(res.data)
 		})()
 	}, []);

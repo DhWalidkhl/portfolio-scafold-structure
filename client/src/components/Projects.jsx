@@ -9,8 +9,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const Projects = () => {
 	const [projects, setProjects] = useState(null)
 	useEffect(() => {
-		( () => {
-			let res =  projectList()
+		( async () => {
+			let res = await  projectList()
 			setProjects(res.data)
 		})()
 	}, []);

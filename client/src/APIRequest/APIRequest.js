@@ -14,7 +14,7 @@ export const blogList = async () =>{
 
 export const educationList = async () =>{
 	let res = await axios.get(`/api/v1/EducationList`)
-	console.log(res)
+	console.log(res.data.data)
 	if(res.data.status === "success"){
 		// console.log(res.data.data)
 		return res.data

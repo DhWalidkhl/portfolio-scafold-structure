@@ -17,8 +17,8 @@ const HomePage = () => {
 	let {isLogin} = UserStore()
 	return (
 		<Layout>
-			<div className="flex flex-col lg:flex-row gap-16 items-center py-5">
-				<div className="space-y-5 px-5">
+			<div className="flex container px-5 mx-auto flex-col lg:flex-row gap-16 items-center py-5">
+				<div className="space-y-5">
 					<h1 className="text-xl font-semibold uppercase">hello</h1>
 					<div><h1 className="text-4xl font-bold">I'm Delowar Hossain Walid</h1>
 						<h1 className="text-3xl font-bold">A <span

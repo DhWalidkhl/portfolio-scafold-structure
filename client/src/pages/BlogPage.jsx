@@ -9,9 +9,9 @@ import {Link} from "react-router-dom";
 const BlogPage = () => {
 	let {isLogin} = UserStore()
 	const [blogs, setBlogs] = useState([])
-	useEffect(() => {
-		( () => {
-			let res =  blogList()
+	useEffect( () => {
+		( async () => {
+			let res = await blogList()
 			setBlogs(res.data)
 		})()
 	}, []);
