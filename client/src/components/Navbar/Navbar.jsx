@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import Login from "../Login.jsx";
 import './Navbar.css'
@@ -8,14 +8,31 @@ import logo from "../../assets/logo.svg"
 
 const Navbar = () => {
 	const navigate = useNavigate();
+	const navRef = useRef()
 	let {isLogin, UserLogoutRequest, UserProfile, ProfileDetailsByID} = UserStore()
-console.log("Profile Details:", ProfileDetailsByID);
+	const [scrolled, setScrolled] = useState(false);
+
+
+
 	useEffect(() => {
 		(async () => {
 			await ProfileDetailsByID();
 
 		})()
 	}, [ProfileDetailsByID]);
+
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 65) {
+				setScrolled(true);
+			} else {
+				setScrolled(false);
+			}
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
 
 
 
@@ -28,8 +45,8 @@ console.log("Profile Details:", ProfileDetailsByID);
 	}
 
 	return (
-		<div className="fixed top-0 left-0 right-0 z-50">
-			<div className="bg-base-100 shadow-sm">
+		<div ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-base-100 shadow-md' : ''}`}>
+			<div>
 				<div className="navbar container mx-auto">
 					<div className="navbar-start">
 						<div className="dropdown">
@@ -111,7 +128,6 @@ console.log("Profile Details:", ProfileDetailsByID);
 							) : (
 								<div className="flex gap-3 items-center">
 									<Login/>
-									<Link className="btn btn-dash btn-info" to="/signup">Sign Up</Link>
 								</div>
 
 							)

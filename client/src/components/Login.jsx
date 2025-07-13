@@ -24,7 +24,7 @@ const Login = () => {
 	return (
 		<div>
 			{/* You can open the modal using document.getElementById('ID').showModal() method */}
-			<button className="btn text-lg" onClick={() => document.getElementById('my_modal_3').showModal()}>Login
+			<button className="btn btn-info text-orange-700 font-semibold rounded-full" onClick={() => document.getElementById('my_modal_3').showModal()}>Login/Register
 			</button>
 			<dialog id="my_modal_3" className="modal">
 				<div className="modal-box">
@@ -58,9 +58,8 @@ const Login = () => {
 									in
 								</button>
 							</form>
-							<p className="text-xs text-center sm:px-6 text-gray-400">Don't have an account?
-								<Link to={"/signup"} rel="noopener noreferrer" className="underline text-gray-900">Sign
-									up</Link>
+							<p className="text-md text-center sm:px-6 text-gray-400">Don't have an account?
+								<Link to={"/signup"} rel="noopener noreferrer" className="underline ml-2 text-sky-600">Register Now</Link>
 							</p>
 						</div>
 					</div>
