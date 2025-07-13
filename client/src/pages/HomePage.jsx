@@ -3,6 +3,7 @@ import Layout from "../layout/Layout.jsx";
 import GetintouchButton from "../components/GetintouchButton/GetintouchButton.jsx";
 import OwnerImg from "../assets/owner_img.svg"
 import bgImg from "../assets/backgroundImg.svg"
+import middleBanner from "../assets/middleBanner.svg"
 import WhatIdoSection from "../components/WhatIdoSection.jsx";
 import {Link} from "react-router-dom";
 import TestimonialSection from "../components/TestimonialSection.jsx";
@@ -71,7 +72,9 @@ const HomePage = () => {
 			<div>
 				<SkillProficiencySection></SkillProficiencySection>
 			</div>
-
+			<div className="my-10">
+				<img className="w-full" src={middleBanner}/>
+			</div>
 			<div>
 				<BlogSection></BlogSection>
 			</div>
