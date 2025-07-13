@@ -10,16 +10,16 @@ const UsersList = () => {
 	const handleUserDelete = async (id) => {
 		try {
 			await axios.delete(`/api/v1/DeleteUser/${id}`);
-			await UserListRequest();
+			UserListRequest();
 		} catch (error) {
 			console.error('Failed to delete user:', error);
 		}
 	};
 
 	useEffect(() => {
-		(async () => {
+		( () => {
 			if(isLogin()){
-			await UserListRequest();
+			UserListRequest();
 			console.log(UserList);
 			}else {
 				Cookies.remove('token')

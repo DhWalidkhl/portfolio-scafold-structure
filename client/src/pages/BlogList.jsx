@@ -12,11 +12,11 @@ const BlogList = () => {
 	let userRole = sessionStorage.getItem("role");
 
 	useEffect(() => {
-		(async () => {
+		( () => {
 			if(isLogin() && userRole === "admin"){
-				await BlogListRequest();
+				BlogListRequest();
 			}else if(isLogin() && userRole === "user") {
-				await BlogListRequestByUser()
+				BlogListRequestByUser()
 			}else {
 				Cookies.remove('token')
 				sessionStorage.clear()

@@ -10,8 +10,8 @@ const BlogPage = () => {
 	let {isLogin} = UserStore()
 	const [blogs, setBlogs] = useState([])
 	useEffect(() => {
-		(async () => {
-			let res = await blogList()
+		( () => {
+			let res =  blogList()
 			setBlogs(res.data)
 		})()
 	}, []);

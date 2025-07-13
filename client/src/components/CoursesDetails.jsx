@@ -7,8 +7,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 const CoursesDetails = () => {
 	const [courses, setCourses] = useState(null)
 	useEffect(() => {
-		(async () => {
-			let res = await courseList()
+		(() => {
+			let res = courseList()
 			setCourses(res.data)
 		})()
 	}, []);

@@ -9,8 +9,8 @@ import {testimonialList} from "../APIRequest/APIRequest.js";
 const TestimonialSection = () => {
 	const [testimonials, setTestimonials] = useState(null)
 	useEffect(() => {
-		(async () => {
-			let res = await testimonialList()
+		( () => {
+			let res = testimonialList()
 			setTestimonials(res.data)
 		})()
 	}, []);
