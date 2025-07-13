@@ -14,7 +14,6 @@ const ContactForm = () => {
 					<h1 className="text-5xl font-bold">Let's Elevate your business together.</h1>
 					<p>ished fact that a reader will be distrol acted bioiiy desig ished fact that a reader will acted
 						ished fact that a reader will be distrol acted</p>
-					<Login/>
 				</div>
 				<form noValidate="" className="space-y-6">
 					<div>
