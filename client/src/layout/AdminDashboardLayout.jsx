@@ -15,14 +15,14 @@ const AdminDashboardLayout = ({children}) => {
 						<Login></Login>
 					</div>
 				) : (
-					<div className="drawer lg:drawer-open">
+					<div className="drawer pt-16 lg:drawer-open">
 						<input id="my-drawer-2" type="checkbox" className="drawer-toggle"/>
 						<div className="drawer-content flex flex-col items-center justify-center">
 							<label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
 								Open drawer
 							</label>
 
-							<div className="w-full p-6 h-full">
+							<div className="w-full px-10 h-full">
 								{children}
 							</div>
 						</div>

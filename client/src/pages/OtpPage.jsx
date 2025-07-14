@@ -26,7 +26,7 @@ const OtpPage = () => {
 
     return (
         <Layout>
-            <div className="container mx-auto py-20 flex justify-center items-center">
+            <div className="container mx-auto pt-30 flex justify-center items-center">
                 <form onSubmit={handleOtpVerification} className="w-full px-96 space-y-6">
                     <legend className="fieldset-legend">OTP from your E-mail</legend>
                     <input onChange={(e)=>LoginFormOnChange("otp", e.target.value)} type="text" placeholder="Enter Your OTP" className="input input-primary w-full"/>

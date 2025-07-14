@@ -45,7 +45,7 @@ const Navbar = () => {
 	}
 
 	return (
-		<div ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-base-100 shadow-md' : ''}`}>
+		<div ref={navRef} className={`fixed container px-6 top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-base-100 shadow-md' : ''}`}>
 			<div>
 				<div className="navbar container mx-auto">
 					<div className="navbar-start">

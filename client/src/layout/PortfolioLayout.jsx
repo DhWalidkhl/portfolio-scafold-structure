@@ -21,7 +21,9 @@ const PortfolioLayout = ({children}) => {
 					</aside>
 				</div>
 				<div className="px-25 pb-8 container mx-auto ml-50">
-					{children}
+					<div className="pt-16">
+						{children}
+					</div>
 				</div>
 
 			</div>

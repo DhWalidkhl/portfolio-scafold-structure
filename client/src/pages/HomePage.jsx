@@ -51,10 +51,9 @@ const HomePage = () => {
 							quasi. In deleniti eaque aut repudiandae et a id nisi.
 						</p>
 						<div className="flex gap-4 items-center">
-							<Link to="/contact" className="btn btn-outline btn-primary text-lg p-7 rounded-full">Hire Me
+							<Link to="/contact" className="btn btn-primary text-lg p-7 rounded-full">Hire Me
 							</Link>
-							<Link to="/portfolio/education"><GetintouchButton
-								title={"Know me"}></GetintouchButton></Link>
+							<Link className="btn btn-outline btn-info text-lg p-7 rounded-full" to="/portfolio/education">Know me</Link>
 						</div>
 					</div>
 					<div className="min-h-screen">
