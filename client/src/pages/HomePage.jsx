@@ -19,7 +19,7 @@ const HomePage = () => {
 	let {isLogin} = UserStore()
 	return (
 		<Layout>
-			<div  style={{ backgroundImage: `url(${bgImg})` }} className="pt-15 bg-cover bg-center">
+			<div style={{ backgroundImage: `url(${bgImg})` }} className="pt-15 bg-cover bg-center">
 				<div className="flex container px-5 mx-auto flex-col lg:flex-row gap-16 items-center justify-center py-5 min-h-screen ">
 					<div className="space-y-5">
 						<h1 className="text-xl font-semibold uppercase">hello</h1>

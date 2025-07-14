@@ -55,11 +55,20 @@ mongoose.connect(MONGODB_CONNECTION, {autoIndex: true})
 app.use("/api/v1", router);
 
 
-const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
-app.get('*', (req, res) =>
-	res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
-);
+
+
+// Scaffold setting with disable web cache
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'client', 'dist'), {
+	maxAge: '1d',
+	immutable: true
+}));
+
+
+app.get('*', (req, res) => {
+		res.setHeader('Cache-Control', 'no-store');
+		res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+	})
 
 export default app
