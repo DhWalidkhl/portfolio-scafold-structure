@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from "../layout/Layout.jsx";
 import GetintouchButton from "../components/GetintouchButton/GetintouchButton.jsx";
 import OwnerImg from "../assets/owner_img.svg"
-import bgImg from "../assets/backgroundImg.svg"
+import bgImg from "../assets/owner_img.png"
 import middleBanner from "../assets/middleBanner.svg"
 import WhatIdoSection from "../components/WhatIdoSection.jsx";
 import {Link} from "react-router-dom";
