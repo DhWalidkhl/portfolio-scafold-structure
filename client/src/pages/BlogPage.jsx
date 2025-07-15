@@ -22,15 +22,27 @@ const BlogPage = () => {
 	<SectionHeading headingBig='read my blog' headingSmall='My Latest Blog'/>
 	<div className="container mx-auto">
 		{isLogin() ? (
-			<div className="flex gap-4">
+			<div className="flex gap-4 container px-10">
 				<Link to="/dashboard/blog-list" className="btn btn-dash">Your Blogs</Link>
 				<button className="btn btn-outline btn-primary">Write a Blog</button>
 			</div>
 		) : (<></>)}
 	</div>
-	<div className="mt-6 grid grid-cols-3 pb-10 px-10 gap-6 container mx-auto">
+	<div className="mt-6 grid grid-cols-1 lg:grid-cols-3 pb-10 px-10 gap-6 container mx-auto">
 
-		{blogs.length === 0 ? <BlogSkeleton></BlogSkeleton> :
+		{blogs.length === 0 ?
+			<>
+				<BlogSkeleton/>
+				<BlogSkeleton/>
+				<BlogSkeleton/>
+				<BlogSkeleton/>
+				<BlogSkeleton/>
+				<BlogSkeleton/>
+				<BlogSkeleton/>
+				<BlogSkeleton/>
+				<BlogSkeleton/>
+			</>
+			:
 			blogs.map((blog) =>
 				(
 					<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">

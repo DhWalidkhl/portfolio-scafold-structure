@@ -4,10 +4,14 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const BlogSkeleton = () => {
 	return (
-		<div>
-			<Skeleton height={160}/>
-			<Skeleton width={1000}/>
-			<Skeleton count={3}/>
+		<div className="grid gap-4 grid-cols-2">
+				<Skeleton height={180}/>
+			<div>
+				<Skeleton height={50}/>
+				<Skeleton height={50}/>
+				<Skeleton height={50}/>
+				<Skeleton/>
+			</div>
 		</div>
 	);
 };

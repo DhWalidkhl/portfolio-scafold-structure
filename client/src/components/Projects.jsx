@@ -16,7 +16,6 @@ const Projects = () => {
 	}, []);
 	return (
 		<div>
-			<SectionHeading headingBig="Portfolio" headingSmall="Projects"/>
 
 				{
 					projects === null ?

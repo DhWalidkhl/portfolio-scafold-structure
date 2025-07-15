@@ -54,7 +54,7 @@ const Login = () => {
 									</div>
 								</div>
 								<button
-									className="block w-full p-3 text-center rounded-sm text-gray-900 bg-violet-400">Sign
+									className="w-full p-3 text-white font-bold text-center rounded-sm btn btn-info text-lg">Login
 									in
 								</button>
 							</form>

@@ -14,7 +14,6 @@ const CoursesDetails = () => {
 	}, []);
 	return (
 		<div>
-			<SectionHeading headingBig="portfolio" headingSmall="Courses"/>
 			<section className="pt-3">
 				<ul className="timeline timeline-vertical pt-10">
 					{

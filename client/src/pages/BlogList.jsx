@@ -31,7 +31,7 @@ const BlogList = () => {
 	return (
 		isLogin() ? (
 			<AdminDashboardLayout>
-				<h1 className="text-xl font-semibold">Total Blogs</h1>
+				<h1 className="text-xl font-semibold">Total Blogs : {BlogList.length}</h1>
 				{
 					userRole === "admin" ? (
 						<div className="overflow-x-auto">

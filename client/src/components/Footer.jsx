@@ -3,15 +3,16 @@ import {Link} from "react-router-dom";
 
 const Footer = () => {
 	return (
-		<div className="bg-sky-50 text-base-content py-10">
+		<div className="bg-sky-50 text-base-content p-10">
 			<footer className="footer sm:footer-horizontal container mx-auto">
 				<div>
 					<h1>Logo</h1>
 				</div>
 				<nav>
+					<Link to="/" className="link link-hover">Home</Link>
+					<Link to="/blogs" className="link link-hover">Blogs</Link>
 					<Link to="/portfolio/education" className="link link-hover">Know me</Link>
 					<Link to="/terms" className="link link-hover">Terms & Condition</Link>
-					<Link to="/blogs" className="link link-hover">Blogs</Link>
 					<Link to="/contact" className="link link-hover">Contact</Link>
 				</nav>
 				<nav>
