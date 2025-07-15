@@ -18,9 +18,9 @@ const BlogSection = () => {
 		}
 	}, [BlogList])
 	return (
-		<div>
+		<div className="py-20">
 			<h1 className="text-sky-700 text-center font-semibold text-4xl">Blog and News</h1>
-			<div className="mt-10 grid grid-cols-1 lg:grid-cols-2 px-8 gap-6 container mx-auto">
+			<div className="mt-10 grid grid-cols-1 lg:grid-cols-2 px-10 gap-6 container mx-auto">
 
 				{blogs.length === 0 ? <BlogSkeleton></BlogSkeleton> :
 					blogs.map((blog) =>

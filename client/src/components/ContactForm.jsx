@@ -1,14 +1,12 @@
 import React from 'react';
-import LottieFiles from "./LottieFiles.jsx";
 import UserStore from "../store/userStore.js";
-import Login from "./Login.jsx";
 
 const ContactForm = () => {
 	let {UserProfile} = UserStore()
 	return (
 		<div>
 			<div
-				className="grid max-w-screen-xl grid-cols-1 gap-32 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-10 lg:px-10 xl:px-16 items-center ">
+				className="grid max-w-screen-xl grid-cols-1 gap-32 mx-auto rounded-lg md:grid-cols-2 p-10 items-center ">
 				<div className="space-y-4">
 					<h2 className="text-sky-500 font-semibold text-2xl">Get in Touch</h2>
 					<h1 className="text-5xl font-bold">Let's Elevate your business together.</h1>

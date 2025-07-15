@@ -41,7 +41,7 @@ const WhatIdoSection = () => {
 	}, []);
 
 	return (
-		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 place-items-center py-6">
+		<div className="grid pt-20 pb-10 container mx-auto px-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 place-items-center py-6">
 			{profession.map((p, i) => (
 				<div
 					className="border flex flex-col justify-center items-center border-sky-200 py-6 px-3 w-96 space-y-5 text-center rounded-3xl shadow"
