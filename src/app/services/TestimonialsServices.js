@@ -6,7 +6,13 @@ const ObjectID = mongoose.Types.ObjectId;
 
 export const TestimonialsListServices = async (req) => {
     try {
-        const data = await TestimonialsModel.find().sort({createdAt: -1})
+        const SortStage = { $sort: { createdAt: -1 } };
+        const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
+        const UnwindUser = {$unwind: "$user"};
+        const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.address': 0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}
+        const data = await TestimonialsModel.aggregate([
+            SortStage, JoinWithUserStage, UnwindUser, ProjectionStage
+        ])
         return {status: 'success', data: data}
     } catch (e) {
         return {status: 'fail', message: e.toString()}

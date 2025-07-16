@@ -39,35 +39,35 @@ const SignUpPage = () => {
 						<label htmlFor="firstname">First name</label>
 						<input onChange={(e) => LoginFormOnChange("firstName", e.target.value)} id="firstname"
 							   type="text" placeholder="First name"
-							   className="w-full rounded-md input input-info"/>
+							   className="w-full rounded-md input input-info" required/>
 					</div>
 					<div className="col-span-full sm:col-span-3">
 						<label htmlFor="lastname">Last name</label>
 						<input onChange={(e) => LoginFormOnChange("lastName", e.target.value)} id="lastname"
 							   type="text" placeholder="Last name"
-							   className="w-full input input-info"/>
+							   className="w-full input input-info" required/>
 					</div>
 					<div className="col-span-full sm:col-span-3">
 						<label htmlFor="email">Email</label>
 						<input onChange={(e) => LoginFormOnChange("email", e.target.value)} id="email"
 							   type="email" placeholder="Email"
-							   className="w-full rounded-md input input-info" data-temp-mail-org="0"/>
+							   className="w-full rounded-md input input-info" data-temp-mail-org="0" required/>
 					</div>
 					<div className="col-span-full sm:col-span-3">
 						<label htmlFor="password">Password</label>
 						<input onChange={(e) => LoginFormOnChange("password", e.target.value)} id="password"
 							   type="password" placeholder="Password"
-							   className="w-full rounded-md input input-info" data-temp-mail-org="0"/>
+							   className="w-full rounded-md input input-info" data-temp-mail-org="0" required/>
 					</div>
 					<div className="col-span-full sm:col-span-3">
 						<label htmlFor="mobile">Mobile Number</label>
 						<input onChange={(e) => LoginFormOnChange("mobile", e.target.value)} id="mobile"
 							   type="number" placeholder="Mobile Number"
-							   className="w-full rounded-md input input-info" data-temp-mail-org="0"/>
+							   className="w-full rounded-md input input-info" data-temp-mail-org="0" required/>
 					</div>
 					<div className="col-span-full sm:col-span-3">
 						<legend className="fieldset-legend text-sm">Profile Photo</legend>
-						<input onChange={FileUploadOnChange} type="file" className="file-input w-full"/>
+						<input onChange={FileUploadOnChange} type="file" className="file-input w-full" required/>
 						<label className="label text-sm">Max size 2MB</label>
 					</div>
 					<div className="col-span-full sm:col-span-3">

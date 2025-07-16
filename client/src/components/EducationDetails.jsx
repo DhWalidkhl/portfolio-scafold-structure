@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {educationList} from "../APIRequest/APIRequest.js";
 import SectionHeading from "./SectionHeading.jsx";
+import Skeleton from "react-loading-skeleton";
 
 const EducationDetails = () => {
 	const [educations, setEducations] = useState(null)
@@ -16,11 +17,22 @@ const EducationDetails = () => {
 				<div className="container max-w-5xl px-4 pt-6 mx-auto">
 					<div className="grid gap-4 mx-4 sm:grid-cols-12">
 						<div className="col-span-12 sm:col-span-3">
-							<div
-								className="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
-								<h3 className="text-3xl font-semibold">Education</h3>
-								<span className="text-sm font-bold tracking-wider uppercase text-gray-400">of Delowar Hossain Walid</span>
-							</div>
+							{
+								educations === null ? (
+									<>
+										<Skeleton width={80}/>
+										<Skeleton height={30}/>
+										<Skeleton/>
+									</>
+								) : (
+									<div
+										className="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
+										<h3 className="text-3xl font-semibold">Education</h3>
+										<span className="text-sm font-bold tracking-wider uppercase text-gray-400">of Delowar Hossain Walid</span>
+									</div>
+								)
+							}
+
 						</div>
 						<div className="relative col-span-12 px-4 space-y-6 sm:col-span-9">
 							<div
@@ -28,7 +40,7 @@ const EducationDetails = () => {
 								{
 									educations === null ?
 										<div>
-											<div className="flex w-52 flex-col gap-4">
+										<div className="flex w-52 flex-col gap-4">
 												<div className="skeleton h-4 w-28"></div>
 												<div className="skeleton h-4 w-full"></div>
 												<div className="skeleton h-4 w-full"></div>

@@ -35,16 +35,20 @@ const HeroSection = () => {
 								<p className="text-xs">MongoDB</p>
 							</div>
 						</div>
-						<p className="pb-3">
-							Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
-							exercitationem
-							quasi. In deleniti eaque aut repudiandae et a id nisi.
-						</p>
+						<div className="pb-3">
+							<p>
+								Building dynamic web experiences with MongoDB, Express, React, and Node — from concept
+								to code.
+							</p>
+							<p>
+								Let me know your ideas. I will build for you with my expertise.
+							</p>
+						</div>
 						<div className="flex gap-4 items-center">
 							<Link to="/contact" className="btn btn-primary text-lg p-7 rounded-full">Hire Me
 							</Link>
 							<Link className="btn btn-outline btn-info text-lg p-7 rounded-full"
-							      to="/portfolio/education">Know me</Link>
+								  to="/portfolio/education">Know me</Link>
 						</div>
 					</div>
 					<div className="min-h-screen">
