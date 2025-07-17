@@ -28,7 +28,7 @@ const BlogPage = () => {
 			</div>
 		) : (<></>)}
 	</div>
-	<div className="mt-6 grid grid-cols-1 lg:grid-cols-3 pb-10 px-10 gap-6 container mx-auto">
+	<div className="mt-6 grid grid-cols-1 lg:grid-cols-2 pb-10 px-10 gap-6 container mx-auto">
 
 		{blogs.length === 0 ?
 			<>
@@ -53,9 +53,9 @@ const BlogPage = () => {
 						</figure>
 						<div className="card-body">
 							<h2 className="card-title">{blog['title']}</h2>
-							<p>{blog['des']}</p>
+							<p>{blog['des'].slice(0,200)}</p>
 							<div className="card-actions justify-end">
-								<button className="btn btn-primary">See Details</button>
+								<button className="btn btn-outline btn-info">See Details</button>
 							</div>
 						</div>
 					</div>

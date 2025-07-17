@@ -24,7 +24,7 @@ const Navbar = () => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (window.scrollY > 65) {
+			if (window.scrollY > 50) {
 				setScrolled(true);
 			} else {
 				setScrolled(false);
@@ -41,7 +41,7 @@ const Navbar = () => {
 		sessionStorage.clear()
 		localStorage.clear()
 		navigate('/')
-		// window.location.reload()
+		window.location.reload()
 	}
 
 	return (
@@ -91,7 +91,7 @@ const Navbar = () => {
 													<div
 														className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
 														{
-															UserProfile === null ? <></> :
+															UserProfile.length === 0 ? <>{UserLogoutRequest}</> :
 																<img src={UserProfile['img']}/>
 														}
 													</div>

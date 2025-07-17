@@ -3,7 +3,7 @@ import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 
 const SkillProficiencySection = () => {
 	return (
-		<div className="px-5 py-16 container mx-auto">
+		<div className="px-10 py-16 container mx-auto">
 			<div className="lg:grid lg:grid-cols-2 gap-10 py-10">
 				<div className="space-y-3 mb-5">
 					<h1 className="text-2xl flex items-center text-sky-700 font-semibold">Frontend Skills <span className="ml-3"><LiaLongArrowAltRightSolid/></span></h1>

@@ -17,12 +17,12 @@ const ContactForm = () => {
 					<div>
 						<label htmlFor="name" className="text-sm">Full name</label>
 						<input
-							defaultValue={UserProfile === null ? ("") : `${UserProfile.firstName} ${UserProfile.lastName}`}
+							defaultValue={UserProfile.length === 0 ? ("") : `${UserProfile.firstName} ${UserProfile.lastName}`}
 							disabled id="name" type="text" className="w-full p-3 rounded bg-gray-200"/>
 					</div>
 					<div>
 						<label htmlFor="email" className="text-sm">Email</label>
-						<input defaultValue={UserProfile === null ? ("") : `${UserProfile.email}`} disabled id="email" type="email" className="w-full p-3 rounded bg-gray-200"
+						<input defaultValue={UserProfile.length === 0 ? ("") : `${UserProfile.email}`} disabled id="email" type="email" className="w-full p-3 rounded bg-gray-200"
 
 						       data-temp-mail-org="1"/>
 					</div>
@@ -31,7 +31,7 @@ const ContactForm = () => {
 						<textarea id="message" rows="7" className="w-full p-3 rounded bg-gray-200"></textarea>
 					</div>
 					<button type="submit"
-					        className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-violet-400 text-gray-900">Send
+					        className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded btn btn-info text-white">Send
 						Message
 					</button>
 				</form>

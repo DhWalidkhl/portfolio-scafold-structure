@@ -15,3 +15,9 @@ export const CreateBlog = async (req, res) => {
 	const result = await BlogListServices.CreateBlogService(req)
 	return res.status(200).send(result)
 }
+
+
+export const DeleteBlog = async (req, res) => {
+	const result = await BlogListServices.DeleteBlogService(req)
+	return res.status(200).send(result)
+}

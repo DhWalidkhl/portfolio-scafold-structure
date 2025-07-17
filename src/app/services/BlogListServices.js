@@ -71,3 +71,30 @@ export const CreateBlogService = async (req) => {
 
 
 
+
+
+export const DeleteBlogService = async (req) => {
+	try {
+		const { BlogID } = req.params;
+
+		if (!BlogID) {
+			return { status: 'fail', message: "BlogID is required" };
+		}
+
+		const result = await BlogModel.deleteOne({ _id: BlogID });
+
+		if (result.deletedCount === 0) {
+			return { status: 'fail', message: "No blog found with this ID" };
+		}
+
+		return { status: 'success', data: "Blog Deleted Successfully" };
+
+	} catch (error) {
+		console.error("DeleteBlogService Error:", error);
+		return { status: 'fail', message: "Something went wrong" };
+	}
+};
+
+
+
+

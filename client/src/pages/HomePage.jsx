@@ -23,7 +23,7 @@ const HomePage = () => {
 			<FAQSection></FAQSection>
 			<TestimonialSection></TestimonialSection>
 
-			<div className="my-10 lg:px-50 px-10">
+			<div className="my-10 lg:px-30 px-10">
 				<div className="bg-sky-50 rounded-2xl py-12">
 					{
 						isLogin() ? (<ContactForm></ContactForm>) : (

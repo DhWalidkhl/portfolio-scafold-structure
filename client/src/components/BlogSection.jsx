@@ -3,20 +3,19 @@ import BlogSkeleton from "../skeleton/BlogSkeleton.jsx";
 import {Link} from "react-router-dom";
 import BlogStore from "../store/blogStore.js";
 import {LiaLongArrowAltRightSolid} from "react-icons/lia";
+import {blogList} from "../APIRequest/APIRequest.js";
 
 const BlogSection = () => {
-	const [blogs, setBlogs] = useState([])
-	const {BlogList, BlogListRequest} = BlogStore()
-	useEffect( () => {
-		 BlogListRequest()
-	}, [])
 
-	useEffect(() => {
-		if(BlogList.length > 0){
-			let data= BlogList.slice(0,4)
-			setBlogs(data)
-		}
-	}, [BlogList])
+	const [blogs, setBlogs] = useState([])
+	useEffect( () => {
+		( async () => {
+			let res = await blogList()
+			setBlogs(res.data)
+		})()
+	}, [blogs]);
+
+
 	return (
 		<div className="py-20">
 			<h1 className="text-sky-700 text-center font-semibold text-4xl">Blog and News</h1>
@@ -30,10 +29,11 @@ const BlogSection = () => {
 									<img
 										src={blog['img']}
 										alt="Album"/>
+
 								</figure>
 								<div className="card-body">
 									<h2 className="card-title">{blog['title']}</h2>
-									<p>{blog['des']}</p>
+									<p>{blog.des.slice(0, 200)}</p>
 									<div className="card-actions justify-end">
 										<button className="btn btn-dash btn-info">See Details</button>
 									</div>
@@ -46,7 +46,7 @@ const BlogSection = () => {
 			</div>
 			<div>
 				{
-					BlogList.length > 4 ? <Link className="flex items-center justify-center mt-10 btn btn-outline btn-info w-1/2 lg:w-1/7 mx-auto" to="/blogs">See All Blogs <span><LiaLongArrowAltRightSolid/></span></Link> : <></>
+					blogs.length > 4 ? <Link className="flex items-center justify-center mt-10 btn btn-outline btn-info w-1/2 lg:w-1/7 mx-auto" to="/blogs">See All Blogs <span><LiaLongArrowAltRightSolid/></span></Link> : <></>
 				}
 			</div>
 		</div>

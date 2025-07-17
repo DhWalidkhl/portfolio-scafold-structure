@@ -17,6 +17,7 @@ import {ProjectsList, UploadProject} from "../src/app/controllers/ProjectListCon
 router.get('/BlogList', BlogListController.BlogList)
 router.get('/BlogListByUser',AuthMiddleware, BlogListController.BlogListByUser)
 router.post('/CreateBlog', AuthMiddleware, BlogListController.CreateBlog)
+router.delete('/DeleteBlog/:BlogID', AuthMiddleware, AdminMiddleware, BlogListController.DeleteBlog)
 
 // Education API's
 router.get('/EducationList', EducationListController.EducationList)

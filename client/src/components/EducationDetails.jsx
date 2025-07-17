@@ -12,7 +12,7 @@ const EducationDetails = () => {
 		})()
 	}, []);
 	return (
-		<div>
+		<div className="flex justify-center items-center">
 			<section className="pt-3">
 				<div className="container max-w-5xl px-4 pt-6 mx-auto">
 					<div className="grid gap-4 mx-4 sm:grid-cols-12">

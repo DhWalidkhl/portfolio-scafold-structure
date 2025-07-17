@@ -7,7 +7,7 @@ const ContactInfo = () => {
         <div>
             <h2 className="text-sky-700 text-center font-semibold text-3xl lg:text-5xl mb-7 underline">Get in Touch</h2>
             <div className="container mx-auto lg:text-left text-center">
-                <div className="lg:grid lg:grid-cols-2 gap-10 items-center px-40 justify-center">
+                <div className="lg:grid lg:grid-cols-2 gap-10 items-center px-20 justify-center">
                     <div className="space-y-4">
                         <h1 className="lg:text-5xl text-3xl font-bold">Let's Elevate your business together.</h1>
                         <p>ished fact that a reader will be distrol acted bioiiy desig ished fact that a reader will

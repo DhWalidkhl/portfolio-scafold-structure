@@ -77,14 +77,14 @@ const UserStore = create((set)=>({
 
 	// Profile Details
 
-	UserProfile: null,
+	UserProfile: [],
 	ProfileDetailsByID: async ()=>{
 		try {
 			let res = await axios.get(`/api/v1/UserListByID`)
 			if (res){
 				set ({UserProfile: res?.data?.data})
 			}else {
-				set ({UserProfile: null})
+				set ({UserProfile: []})
 			}
 			return res?.data?.data
 
@@ -107,7 +107,7 @@ const UserStore = create((set)=>({
 			return res.data.data;
 		} catch (e) {
 			console.error("Failed to fetch user list", e);
-			return null;
+			return e.toString();
 		}
 	},
 
