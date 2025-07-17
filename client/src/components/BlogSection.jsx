@@ -3,17 +3,18 @@ import BlogSkeleton from "../skeleton/BlogSkeleton.jsx";
 import {Link} from "react-router-dom";
 import BlogStore from "../store/blogStore.js";
 import {LiaLongArrowAltRightSolid} from "react-icons/lia";
-import {blogList} from "../APIRequest/APIRequest.js";
+import Skeleton from "react-loading-skeleton";
 
 const BlogSection = () => {
-
-	const [blogs, setBlogs] = useState([])
+	let {BlogList, BlogListRequest} = BlogStore()
 	useEffect( () => {
 		( async () => {
-			let res = await blogList()
-			setBlogs(res.data)
+			await BlogListRequest()
 		})()
-	}, [blogs]);
+	}, [BlogList]);
+
+	const blogs = BlogList.slice(0, 4);
+	console.log(blogs, BlogList)
 
 
 	return (
@@ -21,7 +22,14 @@ const BlogSection = () => {
 			<h1 className="text-sky-700 text-center font-semibold text-4xl">Blog and News</h1>
 			<div className="mt-10 grid grid-cols-1 lg:grid-cols-2 px-10 gap-6 container mx-auto">
 
-				{blogs.length === 0 ? <BlogSkeleton></BlogSkeleton> :
+				{blogs.length === 0 ? (
+						<>
+							<BlogSkeleton></BlogSkeleton>
+							<BlogSkeleton></BlogSkeleton>
+							<BlogSkeleton></BlogSkeleton>
+							<BlogSkeleton></BlogSkeleton>
+						</>
+					) :
 					blogs.map((blog) =>
 						(
 							<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
@@ -44,11 +52,22 @@ const BlogSection = () => {
 					)
 				}
 			</div>
-			<div>
-				{
-					blogs.length > 4 ? <Link className="flex items-center justify-center mt-10 btn btn-outline btn-info w-1/2 lg:w-1/7 mx-auto" to="/blogs">See All Blogs <span><LiaLongArrowAltRightSolid/></span></Link> : <></>
-				}
-			</div>
+			{
+				BlogList.length > 4 ? (
+					blogs.length === 0 ? (
+						<div className="text-center">
+							<Skeleton width={300}/>
+						</div>
+					) : (
+						<Link
+							className="flex items-center justify-center mt-10 btn btn-outline btn-info w-1/2 lg:w-1/7 mx-auto"
+							to="/blogs"
+						>
+							See All Blogs <span><LiaLongArrowAltRightSolid /></span>
+						</Link>
+					)
+				) : <></>
+			}
 		</div>
 	);
 };
