@@ -7,6 +7,7 @@ import * as ContactMessageController from "../src/app/controllers/ContactMessage
 import * as EducationListController from "../src/app/controllers/EducationListController.js"
 import * as CourseListController from "../src/app/controllers/CourseListController.js"
 import * as TestimonialsController from "../src/app/controllers/TestimonialsController.js"
+import * as FAQController from "../src/app/controllers/FAQListControler.js"
 import {AdminMiddleware, AuthMiddleware} from "../src/app/middlewares/AuthMiddleware.js";
 import {fileUploadController} from "../src/app/controllers/FileUploadController.js";
 import upload from "../src/app/utilities/FileUploadMiddleware.js";
@@ -65,6 +66,14 @@ router.get('/UserList', AuthMiddleware, AdminMiddleware, UserController.UserList
 router.get('/UserListByID', AuthMiddleware, UserController.UserListByID)
 router.patch('/UpdateUserProfile', AuthMiddleware, UserController.UpdateUserProfile)
 router.delete('/DeleteUser/:userID', AuthMiddleware, AdminMiddleware, UserController.DeleteUser)
+
+
+// FAQ Route
+router.get('/FAQList', FAQController.FAQList)
+router.post('/CreateFAQ', AuthMiddleware, AdminMiddleware, FAQController.CreateFAQ)
+router.post('/UpdateFAQ/:FAQId', AuthMiddleware, AdminMiddleware, FAQController.UpdateFAQ)
+router.delete('/DeleteFAQ/:FAQId', AuthMiddleware, AdminMiddleware, FAQController.DeleteFAQ)
+
 
 // File Upload API's
 router.post('/fileUpload', upload.single("file"), fileUploadController)

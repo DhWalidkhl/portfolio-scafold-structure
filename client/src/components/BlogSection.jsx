@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import BlogSkeleton from "../skeleton/BlogSkeleton.jsx";
 import {Link} from "react-router-dom";
 import BlogStore from "../store/blogStore.js";
@@ -14,7 +14,6 @@ const BlogSection = () => {
 	}, [BlogList]);
 
 	const blogs = BlogList.slice(0, 4);
-	console.log(blogs, BlogList)
 
 
 	return (

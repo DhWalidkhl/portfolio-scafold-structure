@@ -1,20 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import Layout from "../layout/Layout.jsx";
-import {blogList} from "../APIRequest/APIRequest.js";
 import BlogSkeleton from "../skeleton/BlogSkeleton.jsx";
 import SectionHeading from "../components/SectionHeading.jsx";
 import UserStore from "../store/userStore.js";
 import {Link} from "react-router-dom";
+import BlogStore from "../store/blogStore.js";
 
 const BlogPage = () => {
 	let {isLogin} = UserStore()
-	const [blogs, setBlogs] = useState([])
+	let {BlogList, BlogListRequest} = BlogStore()
 	useEffect( () => {
 		( async () => {
-			let res = await blogList()
-			setBlogs(res.data)
+			await BlogListRequest()
 		})()
-	}, []);
+	}, [BlogList]);
 
 	return (
 		<Layout>
@@ -30,7 +29,7 @@ const BlogPage = () => {
 	</div>
 	<div className="mt-6 grid grid-cols-1 lg:grid-cols-3 pb-10 px-10 gap-6 container mx-auto">
 
-		{blogs.length === 0 ?
+		{BlogList.length === 0 ?
 			<>
 				<BlogSkeleton/>
 				<BlogSkeleton/>
@@ -43,7 +42,7 @@ const BlogPage = () => {
 				<BlogSkeleton/>
 			</>
 			:
-			blogs.map((blog) =>
+			BlogList.map((blog) =>
 				(
 					<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
 						<figure>

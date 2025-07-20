@@ -4,7 +4,7 @@ import axios from "axios";
 const BlogStore = create((set)=>({
 	BlogList : [],
 	BlogListRequest : async ()=>{
-		let res = await axios.get("/api/v1/BlogList");
+		let res = await axios.get(`/api/v1/BlogList`);
 		if (res.data['status']=== 'success'){
 			set({BlogList : res.data['data']})
 		}else {
