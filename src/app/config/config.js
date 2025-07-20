@@ -24,6 +24,7 @@ export const CSP_CONFIG = {
                 "https://assets9.lottiefiles.com",
                 "https://lottie.host",
                 "https://lottiefiles.com/",
+                "https://images.pexels.com",
                 "data:"
             ],
 
@@ -42,7 +43,8 @@ export const CSP_CONFIG = {
 
             fontSrc: [
                 "'self'",
-                "https://fonts.gstatic.com"
+                "https://fonts.gstatic.com",
+                "data:"
             ],
 
             connectSrc: [
@@ -64,6 +66,7 @@ export const CSP_CONFIG = {
         }
     }
 }
+
 
 
 
