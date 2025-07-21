@@ -21,6 +21,7 @@ import ContactMassegePage from "./pages/ContactMassegePage.jsx";
 import "./App.css"
 import BlogDetailPage from "./pages/BlogDetailPage.jsx";
 import ProjectDetailPage from "./pages/ProjectDetailPage.jsx";
+import WriteBlogPage from "./pages/WriteBlogPage.jsx";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
 								<Route path="/dashboard" element={<AdminDashboardLayout/>}></Route>
 								<Route path="/dashboard/user-list" element={<UsersList/>}></Route>
 								<Route path="/dashboard/blog-list" element={<BlogList/>}></Route>
+								<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>}></Route>
 								<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>}></Route>
 							</Routes>
 						</BrowserRouter>

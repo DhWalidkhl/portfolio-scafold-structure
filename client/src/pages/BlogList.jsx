@@ -5,6 +5,7 @@ import blogStore from "../store/blogStore.js";
 import Cookies from "js-cookie";
 import Layout from "../layout/Layout.jsx";
 import Login from "../components/Login.jsx";
+import {Link} from "react-router-dom";
 
 const BlogList = () => {
 	let {isLogin} = UserStore()
@@ -31,7 +32,12 @@ const BlogList = () => {
 	return (
 		isLogin() ? (
 			<AdminDashboardLayout>
-				<h1 className="text-xl font-semibold">Total Blogs : {BlogList.length}</h1>
+				<div className="flex justify-between items-center my-5">
+					<h1 className="text-xl font-semibold">Total Blogs : {BlogList.length}</h1>
+					<Link to="/dashboard/writeBlog" className="btn btn-outline btn-primary">
+						Write a Blog
+					</Link>
+				</div>
 				{
 					userRole === "admin" ? (
 						<div className="overflow-x-auto">
@@ -165,9 +171,9 @@ const BlogList = () => {
 					<Login></Login>
 				</div>
 			</Layout>
-)
-)
-	;
+		)
+	)
+		;
 };
 
 export default BlogList;

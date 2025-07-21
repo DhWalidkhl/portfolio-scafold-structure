@@ -25,7 +25,7 @@ const BlogPage = () => {
 		{isLogin() ? (
 			<div className="flex gap-4 container px-10">
 				<Link to="/dashboard/blog-list" className="btn btn-dash">Your Blogs</Link>
-				<button className="btn btn-outline btn-primary">Write a Blog</button>
+				<Link to="/dashboard/writeBlog" className="btn btn-outline btn-primary">Write a Blog</Link>
 			</div>
 		) : (<></>)}
 	</div>
