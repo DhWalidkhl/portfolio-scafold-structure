@@ -33,6 +33,50 @@ export const BlogListByUserServices = async (req) => {
 }
 
 
+export const BlogDetailsService = async (req) => {
+	try {
+		const { BlogID } = req.params;
+
+		if (!BlogID || !mongoose.Types.ObjectId.isValid(BlogID)) {
+			return { status: 'fail', message: 'Invalid or missing BlogID' };
+		}
+
+		const blogObjectID = new mongoose.Types.ObjectId(BlogID);
+
+		const data = await BlogModel.aggregate([
+			{ $match: { _id: blogObjectID } },
+			{
+				$lookup: {
+					from: "users",
+					localField: "userID",
+					foreignField: "_id",
+					as: "user"
+				}
+			},
+			{ $unwind: "$user" },
+			{
+				$project: {
+					"user.password": 0,
+					"user.otp": 0,
+					"user.role": 0,
+					"user.createdAt": 0,
+					"user.updatedAt": 0,
+					"userID": 0,
+				}
+			}
+		]);
+
+		if (!data || data.length === 0) {
+			return { status: 'fail', message: 'No blog found with this ID' };
+		}
+
+		return { status: 'success', data: data[0] };
+	} catch (e) {
+		console.error("BlogDetailsService Error:", e);
+		return { status: 'fail', message: e.message };
+	}
+};
+
 export const CreateBlogService = async (req) => {
 	try {
 		const user_id = req.headers['user_id'];
@@ -70,9 +114,6 @@ export const CreateBlogService = async (req) => {
 };
 
 
-
-
-
 export const DeleteBlogService = async (req) => {
 	try {
 		const { BlogID } = req.params;
@@ -94,7 +135,3 @@ export const DeleteBlogService = async (req) => {
 		return { status: 'fail', message: "Something went wrong" };
 	}
 };
-
-
-
-

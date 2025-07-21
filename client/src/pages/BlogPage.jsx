@@ -13,7 +13,9 @@ const BlogPage = () => {
 		( async () => {
 			await BlogListRequest()
 		})()
-	}, [BlogList]);
+	}, []);
+
+	console.log(BlogList)
 
 	return (
 		<Layout>
@@ -54,7 +56,7 @@ const BlogPage = () => {
 							<h2 className="card-title">{blog['title']}</h2>
 							<p>{blog['des'].slice(0,100)}</p>
 							<div className="card-actions justify-end">
-								<button className="btn btn-outline btn-info">See Details</button>
+								<Link to={`/blogs/${blog._id}`} className="btn btn-outline btn-info">See Details</Link>
 							</div>
 						</div>
 					</div>

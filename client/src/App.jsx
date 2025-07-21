@@ -19,6 +19,7 @@ import OtpPage from "./pages/OtpPage.jsx";
 import ContactMassegePage from "./pages/ContactMassegePage.jsx";
 
 import "./App.css"
+import BlogDetailPage from "./pages/BlogDetailPage.jsx";
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
 								<Route path="/signup" element={<SignUpPage/>}></Route>
 								<Route path="/otp" element={<OtpPage/>}></Route>
 								<Route path="/blogs" element={<BlogPage/>}></Route>
+								<Route path="/blogs/:BlogID" element={<BlogDetailPage/>}></Route>
 								<Route path="/contact" element={<ContactPage/>}></Route>
 								<Route path="/portfolio" element={<PortfolioLayout/>}></Route>
 								<Route path="/portfolio/education" element={<EducationPage/>}></Route>

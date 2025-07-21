@@ -11,7 +11,7 @@ const BlogSection = () => {
 		( async () => {
 			await BlogListRequest()
 		})()
-	}, [BlogList]);
+	}, []);
 
 	const blogs = BlogList.slice(0, 4);
 
@@ -42,7 +42,7 @@ const BlogSection = () => {
 									<h2 className="card-title">{blog['title']}</h2>
 									<p>{blog.des.slice(0, 200)}</p>
 									<div className="card-actions justify-end">
-										<button className="btn btn-dash btn-info">See Details</button>
+										<Link to={`/blogs/${blog._id}`} className="btn btn-outline btn-info">See Details</Link>
 									</div>
 								</div>
 							</div>
