@@ -19,11 +19,11 @@ const ContactInfo = () => {
                             If you want to contact via this web application then please login.
                             Otherwise you can contact via information given below.
                         </p>
-                        <p className="text-lg font-semibold text-sky-700">
-                            Mobile+WhatsApp:<span className="font-bold text-xl text-sky-700">+88 01700 950650</span>
+                        <p className="text-sm lg:text-xl font-semibold text-sky-700">
+                            Mobile+WhatsApp:<span className="font-bold text-sky-700">+8801700950650</span>
                         </p>
-                        <p className="text-lg font-semibold text-sky-700">
-                            Email: <span className="font-bold text-xl text-sky-700">sm.walid69@yahoo.com</span>
+                        <p className="text-sm lg:text-xl font-semibold text-sky-700">
+                            Email: <span className="font-bold  text-sky-700">sm.walid69@yahoo.com</span>
                         </p>
                         <div>
                             <h1>Address : 169, Mondirer More, Rayermahal, Sonadanga, Khulna-9000</h1>

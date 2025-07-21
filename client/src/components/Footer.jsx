@@ -6,7 +6,7 @@ const Footer = () => {
 	return (
 		<>
 			<div className="bg-sky-50 text-base-content p-10 mt-10">
-				<div className="flex justify-between container px-23 mx-auto">
+				<div className="flex justify-between container lg:px-23 mx-auto">
 					<div>
 						<Link to="/contact">
 							<img src={Logo} alt="Logo" className="w-1/4"/>
@@ -23,7 +23,7 @@ const Footer = () => {
 					</nav>
 					<nav>
 						<h6 className="footer-title">Social</h6>
-						<div className="grid grid-flow-col gap-4">
+						<div className="grid lg:grid-flow-col gap-4">
 							<a>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@ const Footer = () => {
 			</div>
 			<footer className="footer sm:footer-horizontal footer-center bg-black text-white p-1">
 				<aside>
-					<p>Copyright © {new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+					<p className="text-xs lg:text-sm">Copyright © {new Date().getFullYear()} - All right reserved by Delowar Hossain Walid</p>
 				</aside>
 			</footer>
 		</>
