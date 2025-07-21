@@ -11,7 +11,7 @@ import * as FAQController from "../src/app/controllers/FAQListControler.js"
 import {AdminMiddleware, AuthMiddleware} from "../src/app/middlewares/AuthMiddleware.js";
 import {fileUploadController} from "../src/app/controllers/FileUploadController.js";
 import upload from "../src/app/utilities/FileUploadMiddleware.js";
-import {ProjectsList, UploadProject} from "../src/app/controllers/ProjectListController.js";
+import * as ProjectListController from "../src/app/controllers/ProjectListController.js";
 
 
 // Blog API's
@@ -46,8 +46,9 @@ router.get('/ContactMessageList',AuthMiddleware, AdminMiddleware, ContactMessage
 
 
 // Project API's
-router.post('/UploadProject',AuthMiddleware, AdminMiddleware, UploadProject)
-router.get('/ProjectsList', ProjectsList)
+router.post('/UploadProject',AuthMiddleware, AdminMiddleware, ProjectListController.UploadProject)
+router.get('/ProjectsList', ProjectListController.ProjectsList)
+router.get('/ProjectDetails/:ProjectID', ProjectListController.ProjectDetails)
 
 
 // Testimonials API's

@@ -22,17 +22,23 @@ const BlogDetailPage = () => {
 	}
 
 	const createdAt = new Date(SingleBlog.createdAt).toLocaleDateString();
+	const updatedAt = new Date(SingleBlog.updatedAt).toLocaleDateString();
 
 	return (
 		<Layout>
-			<div className="mt-20 container mx-auto">
-				<div className="space-y-3 max-w-3xl mx-auto">
-					<p className="text-sm text-gray-500">
-						Written by {SingleBlog.user?.firstName} {SingleBlog.user?.lastName}
-					</p>
-					<h1 className="text-3xl font-bold">{SingleBlog.title}</h1>
-					<p className="text-xs text-gray-400">Published on {createdAt}</p>
-					<img src={SingleBlog.img} alt={SingleBlog.title} className="w-full mt-4 rounded" />
+			<div className="mt-20 container mx-auto px-5">
+				<div className="space-y-3 mx-auto">
+					<div className="lg:flex lg:justify-between items-start gap-4 flex-wrap">
+						<h1 className="text-3xl font-bold">{SingleBlog.title}</h1>
+						<div>
+							<p className="text-sm text-gray-500">
+								Written by {SingleBlog.user?.firstName} {SingleBlog.user?.lastName}
+							</p>
+							<p className="text-xs text-gray-400">Published on {createdAt}</p>
+							<p className="text-xs text-gray-400">Updated on {updatedAt}</p>
+						</div>
+					</div>
+					<img src={SingleBlog.img} alt={SingleBlog.title} className="w-full max-h-screen mt-4 rounded"/>
 					<p className="mt-6 leading-relaxed">{SingleBlog.des}</p>
 					<div className="flex gap-4 mt-6">
 						<a href={SingleBlog.liveLink} target="_blank" className="btn btn-sm btn-primary">Live</a>

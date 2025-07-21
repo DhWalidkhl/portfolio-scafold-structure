@@ -1,4 +1,6 @@
 import ProjectModel from "../models/ProjectModel.js";
+import mongoose from "mongoose";
+import BlogModel from "../models/BlogModel.js";
 
 
 export const ProjectsListServices = async (req) => {
@@ -9,6 +11,32 @@ export const ProjectsListServices = async (req) => {
 		return {status: 'fail', message: e.toString()}
 	}
 }
+
+
+export const ProjectDetailsService = async (req) => {
+	try {
+		const { ProjectID } = req.params;
+
+		if (!ProjectID || !mongoose.Types.ObjectId.isValid(ProjectID)) {
+			return { status: 'fail', message: 'Invalid or missing ProjectID' };
+		}
+
+		const ProjectObjectID = new mongoose.Types.ObjectId(ProjectID);
+
+		const data = await ProjectModel.aggregate([
+			{ $match: { _id: ProjectObjectID } }
+		]);
+
+		if (!data || data.length === 0) {
+			return { status: 'fail', message: 'No blog found with this ID' };
+		}
+
+		return { status: 'success', data: data[0] };
+	} catch (e) {
+		console.error("ProjectDetailsService Error:", e);
+		return { status: 'fail', message: e.message };
+	}
+};
 
 
 export const UploadProjectServices = async (req) => {

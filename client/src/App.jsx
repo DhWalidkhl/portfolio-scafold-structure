@@ -20,6 +20,7 @@ import ContactMassegePage from "./pages/ContactMassegePage.jsx";
 
 import "./App.css"
 import BlogDetailPage from "./pages/BlogDetailPage.jsx";
+import ProjectDetailPage from "./pages/ProjectDetailPage.jsx";
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
 								<Route path="/portfolio/education" element={<EducationPage/>}></Route>
 								<Route path="/portfolio/courses" element={<CourseDetailsPage/>}></Route>
 								<Route path="/portfolio/projects" element={<ProjectsPage/>}></Route>
+								<Route path="/portfolio/projects/:ProjectID" element={<ProjectDetailPage/>}></Route>
 								<Route path="/terms" element={<TermsAndConditionPage/>}></Route>
 								<Route path="/dashboard" element={<AdminDashboardLayout/>}></Route>
 								<Route path="/dashboard/user-list" element={<UsersList/>}></Route>

@@ -72,10 +72,10 @@ const Projects = () => {
 											</h2>
 											<p>{project.des}</p>
 											<div className="card-actions justify-end">
-												<Link target={"_blank"} to={project.githubLink}
-												      className="badge badge-outline">Github</Link>
-												<Link target={"_blank"} to={project.liveLink}
-												      className="badge badge-outline">Live</Link>
+												<div className="card-actions justify-end">
+													<Link to={`/portfolio/projects/${project._id}`}
+													      className="btn btn-outline btn-info">See Details</Link>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -83,9 +83,9 @@ const Projects = () => {
 							}
 						</div>
 
-							}
-						</div>
-					);
-				};
+				}
+		</div>
+	);
+};
 
-			export default Projects;
+export default Projects;
