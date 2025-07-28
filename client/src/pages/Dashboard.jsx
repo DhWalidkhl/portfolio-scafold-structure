@@ -102,7 +102,6 @@ const Dashboard = () => {
 								</tr>
 								</thead>
 								<tbody>
-								{/* row 1 */}
 								{
 									TestimonialList?.slice(0, 4).map((testimonial, index) => (
 										<tr key={testimonial._id || index}>
@@ -129,7 +128,6 @@ const Dashboard = () => {
 								</tr>
 								</thead>
 								<tbody>
-								{/* row 1 */}
 								<tr>
 									<td>Cy Ganderton</td>
 									<td>Quality Control Specialist</td>
