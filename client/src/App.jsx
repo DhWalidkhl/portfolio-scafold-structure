@@ -22,6 +22,7 @@ import "./App.css"
 import BlogDetailPage from "./pages/BlogDetailPage.jsx";
 import ProjectDetailPage from "./pages/ProjectDetailPage.jsx";
 import WriteBlogPage from "./pages/WriteBlogPage.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
 function App() {
 
@@ -57,7 +58,7 @@ function App() {
 								<Route path="/portfolio/projects" element={<ProjectsPage/>}></Route>
 								<Route path="/portfolio/projects/:ProjectID" element={<ProjectDetailPage/>}></Route>
 								<Route path="/terms" element={<TermsAndConditionPage/>}></Route>
-								<Route path="/dashboard" element={<AdminDashboardLayout/>}></Route>
+								<Route path="/dashboard" element={<Dashboard/>}></Route>
 								<Route path="/dashboard/user-list" element={<UsersList/>}></Route>
 								<Route path="/dashboard/blog-list" element={<BlogList/>}></Route>
 								<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>}></Route>

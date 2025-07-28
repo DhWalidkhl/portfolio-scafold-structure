@@ -100,7 +100,6 @@ const UserStore = create((set)=>({
 			let res = await axios.get("/api/v1/UserList");
 			if (res.data.status === 'success') {
 				set({ UserList: res.data.data });
-				console.log(res.data.data)
 			}else {
 				set({ UserList: [] });
 			}

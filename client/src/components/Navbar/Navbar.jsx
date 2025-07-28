@@ -104,7 +104,7 @@ const Navbar = () => {
 												{
 													sessionStorage.getItem('role') === "admin" ?
 														(
-														<li ><Link to="/dashboard/user-list" className="py-3">
+														<li ><Link to="/dashboard" className="py-3">
 														Admin Dashboard
 													</Link></li>
 													) : (

@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import AdminDashboardLayout from "../layout/AdminDashboardLayout.jsx";
 import UserStore from "../store/userStore.js";
-import blogStore from "../store/blogStore.js";
+import BlogStore from "../store/blogStore.js";
 import Cookies from "js-cookie";
 import Layout from "../layout/Layout.jsx";
 import Login from "../components/Login.jsx";
@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 
 const BlogList = () => {
 	let {isLogin} = UserStore()
-	let {BlogListRequest, BlogList,BlogListRequestByUser, BlogListByUer} = blogStore()
+	let {BlogListRequest, BlogList,BlogListRequestByUser, BlogListByUer} = BlogStore()
 	let userRole = sessionStorage.getItem("role");
 
 	useEffect(() => {
@@ -83,7 +83,7 @@ const BlogList = () => {
 												</div>
 											</td>
 											<td>
-												<p>{blog['des']}</p>
+												<p>{blog['des'].slice(0, 100)}</p>
 
 											</td>
 											<td>{blog['githubLink']}</td>
