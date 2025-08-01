@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from "./Layout.jsx";
 import Login from "../components/Login.jsx";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import UserStore from "../store/userStore.js";
 
 const AdminDashboardLayout = ({children}) => {
@@ -29,25 +29,35 @@ const AdminDashboardLayout = ({children}) => {
 						<div className="drawer-side bg-base-200 min-h-full w-80 p-4 text-base-content">
 							{
 								UserProfile === null ? ("") : (<div>
-									<div className="text-center">
-										<img className="w-50" src={UserProfile.img}/>
-
-										{
-											sessionStorage.getItem("role") === "admin" ? (
-												<>
-													<p>{UserProfile.firstName} {UserProfile.lastName}</p>
-													<p>Welcome back <span
-														className="font-semibold uppercase underline text-blue-800">{UserProfile.role}</span>
-													</p>
-												</>
-											) : (<>
-
-													<p>Welcome back </p>
-													<p className="font-semibold uppercase underline text-blue-800">{UserProfile.firstName} {UserProfile.lastName} </p>
-
-												</>
-											)
-										}
+									<div className="max-w-sm mx-auto">
+										<div className="card">
+											<figure className="px-10 pt-10">
+												<img
+													src={UserProfile.img}
+													alt={UserProfile.firstName}
+													className="rounded-xl w-40 h-40 object-cover"
+												/>
+											</figure>
+											<div className="card-body items-center text-center">
+												<h2 className="card-title text-lg">
+													{UserProfile.firstName} {UserProfile.lastName}
+												</h2>
+												<p className="text-sm text-gray-500">{UserProfile.email}</p>
+												<p className="text-sm">📱 {UserProfile.mobile}</p>
+												<p className={`badge ${UserProfile.verified === "yes" ? "badge-success" : "badge-error"}`}>
+													{UserProfile.verified === "yes" ? "Verified" : "Not Verified"}
+												</p>
+												<div className="mt-2 w-full">
+													<div className="flex justify-between text-sm text-gray-400">
+														<span>Role:</span>
+														<span className="capitalize">{UserProfile.role}</span>
+													</div>
+												</div>
+												<div>
+													<Link className="btn btn-soft btn-success w-full px-20">Edit</Link>
+												</div>
+											</div>
+										</div>
 									</div>
 									<label htmlFor="my-drawer-2" aria-label="close sidebar"
 									       className="drawer-overlay"></label>
@@ -67,7 +77,8 @@ const AdminDashboardLayout = ({children}) => {
 												<div>
 													<li><NavLink to="/dashboard">Dashboard</NavLink></li>
 													<li><NavLink to="/dashboard/blog-list">All Blogs</NavLink></li>
-													<li><NavLink to="/dashboard/blog-list">All Testimonials</NavLink></li>
+													<li><NavLink to="/dashboard/blog-list">All Testimonials</NavLink>
+													</li>
 												</div>
 										}
 

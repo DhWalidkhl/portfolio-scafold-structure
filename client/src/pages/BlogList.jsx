@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 
 const BlogList = () => {
 	let {isLogin} = UserStore()
-	let {BlogListRequest, BlogList,BlogListRequestByUser, BlogListByUer} = BlogStore()
+	let {BlogListRequest, BlogList,BlogListRequestByUser, BlogListByUser} = BlogStore()
 	let userRole = sessionStorage.getItem("role");
 
 	useEffect(() => {
@@ -33,7 +33,12 @@ const BlogList = () => {
 		isLogin() ? (
 			<AdminDashboardLayout>
 				<div className="flex justify-between items-center my-5">
-					<h1 className="text-xl font-semibold">Total Blogs : {BlogList.length}</h1>
+					{
+						userRole === "admin" ? (
+							<h1 className="text-xl font-semibold">Total Blogs : {BlogList.length}</h1>) : (
+							<h1 className="text-xl font-semibold">Total Blogs : {BlogListByUser.length}</h1>)
+					}
+
 					<Link to="/dashboard/writeBlog" className="btn btn-outline btn-primary">
 						Write a Blog
 					</Link>
@@ -119,7 +124,7 @@ const BlogList = () => {
 								</thead>
 								<tbody>
 								{
-									BlogListByUer.map((userBlog, index) => (
+									BlogListByUser.map((userBlog, index) => (
 										<tr key={userBlog._id}>
 											<th>
 												<label>

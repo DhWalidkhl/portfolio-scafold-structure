@@ -108,15 +108,13 @@ const Navbar = () => {
 														Admin Dashboard
 													</Link></li>
 													) : (
-															<li><Link to="/dashboard/blog-list" className="py-3">
+															<li><Link to="/dashboard" className="py-3">
 																Dashboard
 															</Link></li>
 														)
 
 												}
-												<li><a className="py-3">
-												Profile
-												</a></li>
+
 												<li>
 													<button onClick={handleLogout}
 													        className="btn btn-outline btn-error">Logout

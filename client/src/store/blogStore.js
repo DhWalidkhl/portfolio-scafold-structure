@@ -14,14 +14,14 @@ const BlogStore = create((set)=>({
 	},
 
 
-	BlogListByUer: [],
+	BlogListByUser: [],
 	BlogListRequestByUser: async ()=>{
 		try {
 			let res = await axios.get(`/api/v1/BlogListByUser`)
 			if (res){
-				set ({BlogListByUer: res?.data?.data})
+				set ({BlogListByUser: res?.data?.data})
 			}else {
-				set ({BlogListByUer: []})
+				set ({BlogListByUser: []})
 			}
 			return res?.data?.data
 
