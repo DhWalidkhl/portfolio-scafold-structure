@@ -55,7 +55,6 @@ const Login = () => {
 								</div>
 								<button
 									className="w-full p-3 text-white font-bold text-center rounded-sm btn btn-info text-lg">Login
-									in
 								</button>
 							</form>
 							<p className="text-md text-center sm:px-6 text-gray-400">Don't have an account?

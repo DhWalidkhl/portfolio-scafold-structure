@@ -47,14 +47,18 @@ const BlogPage = () => {
 			BlogList.map((blog) =>
 				(
 					<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
-						<figure>
+						<figure className="w-64">
 							<img
 								src={blog['img']}
 								alt="Album"/>
 						</figure>
 						<div className="card-body">
 							<h2 className="card-title">{blog['title']}</h2>
-							<p>{blog['des'].slice(0,100)}</p>
+							<div
+								className="mt-2 text-sm text-gray-700 leading-snug"
+								dangerouslySetInnerHTML={{__html: blog.des.slice(0, 200)}}
+							/>
+							<p></p>
 							<div className="card-actions justify-end">
 								<Link to={`/blogs/${blog._id}`} className="btn btn-outline btn-info">See Details</Link>
 							</div>

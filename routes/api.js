@@ -18,6 +18,7 @@ import * as ProjectListController from "../src/app/controllers/ProjectListContro
 router.get('/BlogList', BlogListController.BlogList)
 router.get('/BlogListByUser',AuthMiddleware, BlogListController.BlogListByUser)
 router.post('/CreateBlog', AuthMiddleware, BlogListController.CreateBlog)
+router.delete('/DeleteBlogByUser/:BlogID', AuthMiddleware, BlogListController.DeleteBlogByUser)
 router.delete('/DeleteBlog/:BlogID', AuthMiddleware, AdminMiddleware, BlogListController.DeleteBlog)
 router.get('/BlogDetails/:BlogID', BlogListController.BlogDetails)
 

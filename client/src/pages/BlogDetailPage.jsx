@@ -39,7 +39,10 @@ const BlogDetailPage = () => {
 						</div>
 					</div>
 					<img src={SingleBlog.img} alt={SingleBlog.title} className="w-full max-h-screen mt-4 rounded"/>
-					<p className="mt-6 leading-relaxed">{SingleBlog.des}</p>
+					<div
+						className="mt-6 leading-relaxed"
+						dangerouslySetInnerHTML={{__html: SingleBlog.des}}
+					/>
 					<div className="flex gap-4 mt-6">
 						<a href={SingleBlog.liveLink} target="_blank" className="btn btn-sm btn-primary">Live</a>
 						<a href={SingleBlog.githubLink} target="_blank" className="btn btn-sm btn-outline">GitHub</a>

@@ -27,3 +27,8 @@ export const DeleteBlog = async (req, res) => {
 	const result = await BlogListServices.DeleteBlogService(req)
 	return res.status(200).send(result)
 }
+
+export const DeleteBlogByUser = async (req, res) => {
+	const result = await BlogListServices.DeleteBlogByUserServices(req)
+	return res.status(200).send(result)
+}

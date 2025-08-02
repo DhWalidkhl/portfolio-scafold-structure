@@ -33,6 +33,35 @@ export const BlogListByUserServices = async (req) => {
 }
 
 
+
+export const DeleteBlogByUserServices = async (req) => {
+	try {
+		const user_id = req.headers['user_id']
+		const userID = new ObjectID(user_id);
+		const BlogID = req.params.BlogID
+		if (!mongoose.Types.ObjectId.isValid(userID) || !mongoose.Types.ObjectId.isValid(BlogID)) {
+			return { status: 'fail', message: 'Invalid user or blog ID' };
+		}
+		const userObjectId = new mongoose.Types.ObjectId(userID);
+		const blogObjectId = new mongoose.Types.ObjectId(BlogID);
+		const deleteResult = await BlogModel.deleteOne({
+			_id: blogObjectId,
+			userID: userObjectId
+		});
+
+		if (deleteResult.deletedCount === 0) {
+			return { status: 'fail', message: 'No matching blog found or you are not authorized to delete it.' };
+		}
+
+		return {status: 'success',	message: 'Blog deleted successfully.'};
+
+	} catch (e) {
+		return {status: 'fail', message: e.toString()}
+	}
+}
+
+
+
 export const BlogDetailsService = async (req) => {
 	try {
 		const { BlogID } = req.params;

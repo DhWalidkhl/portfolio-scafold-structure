@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import AdminDashboardLayout from "../layout/AdminDashboardLayout.jsx";
 import UserStore from "../store/userStore.js";
 import BlogStore from "../store/blogStore.js";
@@ -6,11 +6,16 @@ import Cookies from "js-cookie";
 import Layout from "../layout/Layout.jsx";
 import Login from "../components/Login.jsx";
 import {Link} from "react-router-dom";
+import { IoEyeOutline } from "react-icons/io5";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import swal from 'sweetalert';
+import axios from "axios";
 
 const BlogList = () => {
 	let {isLogin} = UserStore()
 	let {BlogListRequest, BlogList,BlogListRequestByUser, BlogListByUser} = BlogStore()
 	let userRole = sessionStorage.getItem("role");
+	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
 		( () => {
@@ -24,7 +29,46 @@ const BlogList = () => {
 			}
 		})();
 
-	}, [BlogListRequest, BlogListRequestByUser, isLogin]);
+	}, [BlogListRequest, BlogListRequestByUser, isLogin, loading]);
+
+
+	const handleDelete = async (id) => {
+		swal({
+			title: "Are you sure?",
+			text: "Once deleted, you will not be able to recover this imaginary file!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then(async (willDelete) => {
+			if (willDelete) {
+				try {
+					if (userRole === 'admin'){
+						const response = await axios.delete(`/api/v1/DeleteBlog/${id}`);
+						if (response.data.status === 'success') {
+							swal("Your blog has been deleted!", { icon: "success" });
+							setLoading(prev => !prev); // Trigger a re-fetch if needed
+						} else {
+							swal("Failed to delete the blog!", { icon: "error" });
+						}
+					} else {
+						const response = await axios.delete(`/api/v1/DeleteBlogByUser/${id}`);
+						if (response.data.status === 'success') {
+							swal("Your blog has been deleted!", { icon: "success" });
+							setLoading(prev => !prev);
+						} else {
+							swal("Failed to delete the blog!", { icon: "error" });
+						}
+					}
+
+				} catch (error) {
+					console.error(error);
+					swal("Something went wrong!", { icon: "error" });
+				}
+			} else {
+				swal("Your blog is safe!");
+			}
+		});
+	};
 
 
 
@@ -55,11 +99,10 @@ const BlogList = () => {
 											SL
 										</label>
 									</th>
-									<th>Name</th>
-									<th>Email</th>
-									<th>Mobile Number</th>
+									<th>Photo</th>
+									<th>Title</th>
+									<th>Description</th>
 									<th>Action</th>
-									<th></th>
 								</tr>
 								</thead>
 								<tbody>
@@ -81,20 +124,24 @@ const BlogList = () => {
 														</div>
 													</div>
 													<div>
-														<div
-															className="font-bold">{blog['title']}</div>
+
 
 													</div>
 												</div>
 											</td>
 											<td>
+												<p className="font-bold">{blog['title'].slice(0, 100)}</p>
+
+											</td>
+											<td>
 												<p>{blog['des'].slice(0, 100)}</p>
 
 											</td>
-											<td>{blog['githubLink']}</td>
 											<th>
 												<div className="flex gap-1">
-													<button className="btn btn-ghost btn-xs">details</button>
+													<button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline /></button>
+													<button onClick={()=>handleDelete(blog._id)} className="btn btn-soft btn-error btn-xs text-md"><RiDeleteBin6Line />
+													</button>
 												</div>
 											</th>
 										</tr>
@@ -115,11 +162,10 @@ const BlogList = () => {
 											SL
 										</label>
 									</th>
-									<th>Name</th>
-									<th>Email</th>
-									<th>Mobile Number</th>
+									<th>Photo</th>
+									<th>Title</th>
+									<th>Description</th>
 									<th>Action</th>
-									<th></th>
 								</tr>
 								</thead>
 								<tbody>
@@ -141,20 +187,28 @@ const BlogList = () => {
 														</div>
 													</div>
 													<div>
-														<div
-															className="font-bold">{userBlog['title']}</div>
+
 
 													</div>
 												</div>
 											</td>
 											<td>
-												<p>{userBlog['des']}</p>
+												<p className="font-bold">{userBlog['title']}</p>
 
 											</td>
-											<td>{userBlog['githubLink']}</td>
+											<td>
+												<p>{userBlog['des'].slice(0, 100)}</p>
+
+											</td>
+
 											<th>
 												<div className="flex gap-1">
-													<button className="btn btn-ghost btn-xs">details</button>
+													<button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
+													</button>
+													<button onClick={() => handleDelete(userBlog._id)}
+													        className="btn btn-soft btn-error btn-xs text-md">
+														<RiDeleteBin6Line/>
+													</button>
 												</div>
 											</th>
 										</tr>

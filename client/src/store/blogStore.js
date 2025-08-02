@@ -31,6 +31,30 @@ const BlogStore = create((set)=>({
 	},
 
 
+
+	CreatingBlog: false,
+	PostBlogRequest: async (reqBody) => {
+		try {
+			set({ CreatingBlog: true });
+
+			const res = await axios.post(`/api/v1/CreateBlog`, reqBody);
+
+			if (res.status === 200 && res.data?.status === "success") {
+				return true;
+			} else {
+				console.warn("Blog creation failed:", res.data);
+				return false;
+			}
+		} catch (error) {
+			console.error("PostBlogRequest Error:", error);
+			return false;
+		} finally {
+			set({ CreatingBlog: false });
+		}
+	},
+
+
+
 	SingleBlog: null,
 
 	BlogDetailsRequest: async (BlogID) => {
@@ -49,6 +73,8 @@ const BlogStore = create((set)=>({
 			return null;
 		}
 	},
+
+
 
 
 }))
