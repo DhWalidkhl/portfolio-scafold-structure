@@ -9,23 +9,26 @@ import CourseDetailsPage from "./pages/CourseDetailsPage.jsx";
 import ProjectsPage from "./pages/ProjectsPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import PreLoadingSpinner from "./components/PreLoaderSpinner/PreLoadingSpinner.jsx";
 import TermsAndConditionPage from "./pages/TermsAndConditionPage.jsx";
 import UsersList from "./pages/UsersList.jsx";
 import AdminDashboardLayout from "./layout/AdminDashboardLayout.jsx";
-import BlogList from "./pages/BlogList.jsx";
+import BlogList from "./pages/UserControllPages/BlogList.jsx";
 import OtpPage from "./pages/OtpPage.jsx";
-import ContactMassegePage from "./pages/ContactMassegePage.jsx";
+import ContactMassegePage from "./pages/UserControllPages/ContactMassegePage.jsx";
 
 import "./App.css"
 import BlogDetailPage from "./pages/BlogDetailPage.jsx";
 import ProjectDetailPage from "./pages/ProjectDetailPage.jsx";
-import WriteBlogPage from "./pages/WriteBlogPage.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import WriteBlogPage from "./pages/UserControllPages/WriteBlogPage.jsx";
+import Dashboard from "./pages/UserControllPages/Dashboard.jsx";
+import Login from "./components/Login.jsx";
+import Layout from "./layout/Layout.jsx";
+import UserStore from "./store/userStore.js";
 
 function App() {
-
+	let {isLogin} = UserStore()
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		const preLoader = () => {
@@ -58,11 +61,29 @@ function App() {
 								<Route path="/portfolio/projects" element={<ProjectsPage/>}></Route>
 								<Route path="/portfolio/projects/:ProjectID" element={<ProjectDetailPage/>}></Route>
 								<Route path="/terms" element={<TermsAndConditionPage/>}></Route>
-								<Route path="/dashboard" element={<Dashboard/>}></Route>
-								<Route path="/dashboard/user-list" element={<UsersList/>}></Route>
-								<Route path="/dashboard/blog-list" element={<BlogList/>}></Route>
-								<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>}></Route>
-								<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>}></Route>
+
+								{
+									isLogin() ? (
+										<>
+											<Route path="/dashboard" element={<Dashboard/>} />
+											<Route path="/dashboard/user-list" element={<UsersList/>} />
+											<Route path="/dashboard/blog-list" element={<BlogList/>} />
+											<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>} />
+											<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>} />
+										</>
+									) : (
+										<Route path="/dashboard/*" element={
+											<Layout>
+												<div className="flex flex-col gap-10 items-center justify-center h-screen">
+													<h1 className="text-4xl font-bold">Please Login to Access the Page</h1>
+													<Login />
+												</div>
+											</Layout>
+										}/>
+									)
+								}
+
+
 							</Routes>
 						</BrowserRouter>
 					)

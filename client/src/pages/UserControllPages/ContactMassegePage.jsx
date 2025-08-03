@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AdminDashboardLayout from "../layout/AdminDashboardLayout.jsx";
+import AdminDashboardLayout from "../../layout/AdminDashboardLayout.jsx";
 
 const ContactMassegePage = () => {
     return (

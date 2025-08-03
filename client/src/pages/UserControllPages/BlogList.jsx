@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import AdminDashboardLayout from "../layout/AdminDashboardLayout.jsx";
-import UserStore from "../store/userStore.js";
-import BlogStore from "../store/blogStore.js";
+import AdminDashboardLayout from "../../layout/AdminDashboardLayout.jsx";
+import UserStore from "../../store/userStore.js";
+import BlogStore from "../../store/blogStore.js";
 import Cookies from "js-cookie";
-import Layout from "../layout/Layout.jsx";
-import Login from "../components/Login.jsx";
+import Layout from "../../layout/Layout.jsx";
+import Login from "../../components/Login.jsx";
 import {Link} from "react-router-dom";
 import { IoEyeOutline } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -134,12 +134,15 @@ const BlogList = () => {
 
 											</td>
 											<td>
-												<p>{blog['des'].slice(0, 100)}</p>
-
+												<div
+													className="mt-2 text-sm text-gray-700 leading-snug"
+													dangerouslySetInnerHTML={{__html: blog.des.slice(0, 200)}}
+												/>
 											</td>
 											<th>
 												<div className="flex gap-1">
-													<button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline /></button>
+													<button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
+													</button>
 													<button onClick={()=>handleDelete(blog._id)} className="btn btn-soft btn-error btn-xs text-md"><RiDeleteBin6Line />
 													</button>
 												</div>

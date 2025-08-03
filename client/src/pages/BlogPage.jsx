@@ -47,7 +47,7 @@ const BlogPage = () => {
 			BlogList.map((blog) =>
 				(
 					<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
-						<figure className="w-64">
+						<figure className="lg:w-64">
 							<img
 								src={blog['img']}
 								alt="Album"/>
