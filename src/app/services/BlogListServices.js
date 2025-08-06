@@ -1,5 +1,6 @@
 import BlogModel from "../models/BlogModel.js";
 import mongoose from "mongoose";
+import LikeModel from "../models/LikeModel.js";
 
 
 const ObjectID = mongoose.Types.ObjectId;
@@ -33,7 +34,6 @@ export const BlogListByUserServices = async (req) => {
 }
 
 
-
 export const DeleteBlogByUserServices = async (req) => {
 	try {
 		const user_id = req.headers['user_id']
@@ -59,7 +59,6 @@ export const DeleteBlogByUserServices = async (req) => {
 		return {status: 'fail', message: e.toString()}
 	}
 }
-
 
 
 export const BlogDetailsService = async (req) => {
@@ -142,6 +141,50 @@ export const CreateBlogService = async (req) => {
 	}
 };
 
+export const AddLikeService = async (req) => {
+	try {
+		const user_id = req.headers['user_id'];
+		const { BlogID } = req.params;
+
+		if (!user_id || !ObjectID.isValid(user_id) || !ObjectID.isValid(BlogID)) {
+			return { status: "fail", message: "Invalid userID or BlogID" };
+		}
+		const userID = new mongoose.Types.ObjectId(user_id);
+		const blogID = new mongoose.Types.ObjectId(BlogID);
+
+
+
+		const LikeData = { userID: userID, blogID: blogID };
+
+
+		const data = await LikeModel.updateOne(
+			{ userID: new ObjectID(user_id), blogID: new ObjectID(BlogID) },
+			{ $setOnInsert: LikeData },
+			{ upsert: true }
+		);
+
+		return { status: 'success', message: "Blog liked successfully", data: data };
+	} catch (e) {
+		return { status: 'fail', message: e.message };
+	}
+};
+
+export const CountLikeService = async (req) => {
+	try {
+		const { BlogID } = req.params;
+
+		if ( !ObjectID.isValid(BlogID)) {
+			return { status: "fail", message: "Invalid BlogID" };
+		}
+		const blogID = new mongoose.Types.ObjectId(BlogID);
+
+		const totalLikes = await LikeModel.countDocuments({ blogID });
+
+		return { status: 'success', totalLikes: totalLikes };
+	} catch (e) {
+		return { status: 'fail', message: e.message };
+	}
+};
 
 export const DeleteBlogService = async (req) => {
 	try {

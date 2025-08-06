@@ -22,6 +22,15 @@ export const CreateBlog = async (req, res) => {
 	return res.status(200).send(result)
 }
 
+export const AddLike = async (req, res) => {
+	const result = await BlogListServices.AddLikeService(req)
+	return res.status(200).send(result)
+}
+
+export const CountLike = async (req, res) => {
+	const result = await BlogListServices.CountLikeService(req)
+	return res.status(200).send(result)
+}
 
 export const DeleteBlog = async (req, res) => {
 	const result = await BlogListServices.DeleteBlogService(req)

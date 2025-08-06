@@ -74,6 +74,26 @@ const BlogStore = create((set)=>({
 		}
 	},
 
+	TotalLikes: 0,
+
+	TotalLikesRequest: async (BlogID) => {
+		try {
+			const res = await axios.get(`/api/v1/CountLike/${BlogID}`);
+			if (res.data.status === 'success') {
+				const count = res.data?.totalLikes ?? 0;
+				set({ TotalLikes: count });
+				return count;
+			} else {
+				set({ TotalLikes: 0 });
+				return null;
+			}
+		} catch (error) {
+			console.error("FetchTotalLikes error:", error);
+			set({ TotalLikes: 0 });
+			return null;
+		}
+	},
+
 
 
 

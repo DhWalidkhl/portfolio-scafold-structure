@@ -5,6 +5,7 @@ import {FaNodeJs} from "react-icons/fa";
 import {Link} from "react-router-dom";
 import OwnerImg from "../assets/owner_img_2.png";
 
+
 const HeroSection = () => {
 	return (
 		<div>
@@ -19,13 +20,24 @@ const HeroSection = () => {
 					/>
 
 					<div className="space-y-5 lg:pr-22">
-						<h1 className="text-xl font-semibold uppercase">hello</h1>
+
+						<div
+							className="flex items-center justify-center gap-3 bg-slate-900 p-2 rounded-3xl w-fit shadow-lg border border-slate-700">
+							<span className="w-3.5 h-3.5 bg-slate-100 rounded-full shadow-sm animate-pulse"></span>
+							<h1 className="text-slate-100 font-medium  tracking-wider">Welcome to my
+								universe</h1>
+						</div>
+
+
+						<h1 className="text-4xl font-semibold uppercase">hello</h1>
 						<div>
 							<h1 className="text-4xl font-bold">I'm Delowar Hossain Walid</h1>
 							<h1 className="text-3xl font-bold">
 								A <span className="text-sky-600">MERN Stack Web Developer</span>
 							</h1>
 						</div>
+
+
 						<div className="flex lg:gap-16 gap-6 py-3">
 							<div className="flex flex-col items-center">
 								<SiMongodb className="lg:text-6xl text-5xl" style={{color: "#13AA52"}}/>
@@ -33,7 +45,7 @@ const HeroSection = () => {
 							</div>
 							<div className="flex flex-col items-center">
 								<SiExpress className="lg:text-6xl text-5xl"/>
-								<p className="text-xs">Express</p>
+								<p className="text-xs">ExpressJS</p>
 							</div>
 							<div className="flex flex-col items-center">
 								<SiReact className="lg:text-6xl text-5xl" style={{color: "#61DAFB"}}/>

@@ -2,16 +2,19 @@ import React, { useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import blogStore from "../store/blogStore.js";
 import Layout from "../layout/Layout.jsx";
+import { AiFillLike } from "react-icons/ai";
 
 const BlogDetailPage = () => {
 	const { BlogID } = useParams();
-	const { SingleBlog, BlogDetailsRequest } = blogStore();
+	const { SingleBlog, BlogDetailsRequest, TotalLikesRequest, TotalLikes } = blogStore();
 
 	useEffect(() => {
 		if (BlogID) {
 			BlogDetailsRequest(BlogID);
+			TotalLikesRequest(BlogID);
 		}
 	}, [BlogID]);
+
 
 	if (!SingleBlog) {
 		return (
@@ -24,6 +27,7 @@ const BlogDetailPage = () => {
 	const createdAt = new Date(SingleBlog.createdAt).toLocaleDateString();
 	const updatedAt = new Date(SingleBlog.updatedAt).toLocaleDateString();
 
+	console.log(typeof (TotalLikes))
 	return (
 		<Layout>
 			<div className="mt-20 container mx-auto px-5">
@@ -39,6 +43,10 @@ const BlogDetailPage = () => {
 						</div>
 					</div>
 					<img src={SingleBlog.img} alt={SingleBlog.title} className="w-full max-h-screen mt-4 rounded"/>
+					<div className="mt-5 gap-2 flex items-center">
+						<button><AiFillLike className="text-2xl"/></button>
+						<p className="text-xs">{TotalLikes}</p>
+					</div>
 					<div
 						className="mt-6 leading-relaxed"
 						dangerouslySetInnerHTML={{__html: SingleBlog.des}}
@@ -48,6 +56,7 @@ const BlogDetailPage = () => {
 						<a href={SingleBlog.githubLink} target="_blank" className="btn btn-sm btn-outline">GitHub</a>
 					</div>
 				</div>
+
 			</div>
 		</Layout>
 	);

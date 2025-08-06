@@ -12,12 +12,15 @@ import {AdminMiddleware, AuthMiddleware} from "../src/app/middlewares/AuthMiddle
 import {fileUploadController} from "../src/app/controllers/FileUploadController.js";
 import upload from "../src/app/utilities/FileUploadMiddleware.js";
 import * as ProjectListController from "../src/app/controllers/ProjectListController.js";
+import {CountLike} from "../src/app/controllers/BlogListController.js";
 
 
 // Blog API's
 router.get('/BlogList', BlogListController.BlogList)
 router.get('/BlogListByUser',AuthMiddleware, BlogListController.BlogListByUser)
 router.post('/CreateBlog', AuthMiddleware, BlogListController.CreateBlog)
+router.post('/AddLike/:BlogID', AuthMiddleware, BlogListController.AddLike)
+router.get('/CountLike/:BlogID', BlogListController.CountLike)
 router.delete('/DeleteBlogByUser/:BlogID', AuthMiddleware, BlogListController.DeleteBlogByUser)
 router.delete('/DeleteBlog/:BlogID', AuthMiddleware, AdminMiddleware, BlogListController.DeleteBlog)
 router.get('/BlogDetails/:BlogID', BlogListController.BlogDetails)
