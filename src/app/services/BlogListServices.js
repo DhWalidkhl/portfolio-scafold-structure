@@ -1,6 +1,7 @@
 import BlogModel from "../models/BlogModel.js";
 import mongoose from "mongoose";
 import LikeModel from "../models/LikeModel.js";
+import CommentModel from "../models/CommentModel.js";
 
 
 const ObjectID = mongoose.Types.ObjectId;
@@ -162,6 +163,9 @@ export const AddLikeService = async (req) => {
 			{ $setOnInsert: LikeData },
 			{ upsert: true }
 		);
+		if (result.upsertedCount === 0) {
+			return { status: 'Liked', message: "User has already liked this blog." };
+		}
 
 		return { status: 'success', message: "Blog liked successfully", data: data };
 	} catch (e) {
@@ -185,6 +189,52 @@ export const CountLikeService = async (req) => {
 		return { status: 'fail', message: e.message };
 	}
 };
+
+export const CreateCommentService = async (req) => {
+	try {
+		const user_id = req.headers['user_id'];
+		const { BlogID } = req.params;
+		const { text } = req.body;
+
+		if (!user_id || !ObjectID.isValid(user_id) || !ObjectID.isValid(BlogID) || !text) {
+			return { status: "fail", message: "Invalid input" };
+		}
+
+		const comment = await CommentModel.create({
+			userID: new ObjectID(user_id),
+			blogID: new ObjectID(BlogID),
+			text
+		});
+
+		return { status: "success", message: "Comment created", data: comment };
+	} catch (e) {
+		return { status: "fail", message: e.message };
+	}
+};
+
+export const GetCommentsByBlogService = async (req) => {
+	try {
+		const { BlogID } = req.params;
+
+		if (!BlogID || !ObjectID.isValid(BlogID)) {
+			return { status: "fail", message: "Invalid BlogID" };
+		}
+
+		const data = await CommentModel.aggregate([
+			{ $match: { blogID: new ObjectID(BlogID) } },
+			{ $lookup: { from: "users",	localField: "userID", foreignField: "_id", as: "user" }
+			},
+			{ $unwind: "$user" },
+			{ $project: {"user.password": 0, "user.otp": 0,	"user.role": 0,	"user.createdAt": 0, "user.updatedAt": 0 }},
+			{ $sort: { createdAt: -1 } }
+		]);
+
+		return { status: "success", data: data };
+	} catch (e) {
+		return { status: "fail", message: e.message };
+	}
+};
+
 
 export const DeleteBlogService = async (req) => {
 	try {

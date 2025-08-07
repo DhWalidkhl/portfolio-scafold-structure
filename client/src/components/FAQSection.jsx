@@ -9,7 +9,7 @@ const FaqSection = () => {
 		( async () => {
 			await FAQListRequest()
 		})()
-	}, [FAQList]);
+	}, []);
 
 
 	return (

@@ -74,6 +74,27 @@ const BlogStore = create((set)=>({
 		}
 	},
 
+
+	AddLikeRequest: async (BlogID) => {
+		try {
+			const res = await axios.post(`/api/v1/AddLike/${BlogID}`);
+			if (res.data.status === 'success') {
+				await BlogStore.getState().TotalLikesRequest(BlogID);
+				return true;
+			} else {
+				console.warn("AddLike failed:", res.data);
+				return false;
+			}
+		} catch (error) {
+			console.error("AddLikeRequest error:", error);
+			return false;
+		}
+	},
+
+
+
+
+
 	TotalLikes: 0,
 
 	TotalLikesRequest: async (BlogID) => {
@@ -91,6 +112,39 @@ const BlogStore = create((set)=>({
 			console.error("FetchTotalLikes error:", error);
 			set({ TotalLikes: 0 });
 			return null;
+		}
+	},
+
+
+	CommentsByBlog: [],
+	GetCommentsByBlogRequest: async (BlogID) => {
+		try {
+			const res = await axios.get(`/api/v1/GetCommentsByBlog/${BlogID}`);
+			if (res.data.status === 'success') {
+				set({ CommentsByBlog: res.data?.data });
+			} else {
+				set({ CommentsByBlog: [] });
+			}
+		} catch (error) {
+			console.error("GetCommentsByBlog error:", error);
+			set({ CommentsByBlog: [] });
+		}
+	},
+
+
+	CreateCommentRequest: async (BlogID, commentData) => {
+		try {
+			const res = await axios.post(`/api/v1/CreateComment/${BlogID}`, commentData);
+			if (res.data.status === 'success') {
+				await BlogStore.getState().GetCommentsByBlogRequest(BlogID);
+				return true;
+			} else {
+				console.warn("CreateComment failed:", res.data);
+				return false;
+			}
+		} catch (error) {
+			console.error("CreateCommentRequest error:", error);
+			return false;
 		}
 	},
 

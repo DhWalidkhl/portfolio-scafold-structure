@@ -1,5 +1,5 @@
 import * as BlogListServices from "../services/BlogListServices.js"
-import {BlogDetailsService} from "../services/BlogListServices.js";
+import {BlogDetailsService, CreateCommentService, GetCommentsByBlogService} from "../services/BlogListServices.js";
 
 
 export const BlogList = async (req, res) => {
@@ -29,6 +29,16 @@ export const AddLike = async (req, res) => {
 
 export const CountLike = async (req, res) => {
 	const result = await BlogListServices.CountLikeService(req)
+	return res.status(200).send(result)
+}
+
+export const CreateComment = async (req, res) => {
+	const result = await BlogListServices.CreateCommentService(req)
+	return res.status(200).send(result)
+}
+
+export const GetCommentsByBlog = async (req, res) => {
+	const result = await BlogListServices.GetCommentsByBlogService(req)
 	return res.status(200).send(result)
 }
 
