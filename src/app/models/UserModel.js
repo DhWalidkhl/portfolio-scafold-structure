@@ -5,8 +5,22 @@ const DataSchema = new mongoose.Schema(
 		img: {type: String, required: true},
 		firstName: {type: String, required: true},
 		lastName: {type: String, required: true},
-		email: {type: String, unique: true, required: true, lowercase: true, trim: true, match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address']},
-		password: {type: String, required: true},
+		email: {
+            type: String,
+            unique: true,
+            required: true,
+            lowercase: true,
+            trim: true,
+            match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address']
+        },
+        password: {
+            type: String,
+            required: true,
+            match: [
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                'Password must contain at least 8 characters, including uppercase, lowercase, number and special character',
+            ],
+        },
 		mobile: { type: String, required: true, match: [/^\d{10,15}$/, 'Invalid mobile number'] },
 		verified: {type: String, required: true},
 		otp: {type: String, required: true},

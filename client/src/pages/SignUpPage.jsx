@@ -12,6 +12,13 @@ const SignUpPage = () => {
 
 		const signUpData = { ...LoginFormData, img: ImageName };
 
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        if (!passwordRegex.test(LoginFormData.password)) {
+
+            window.alert("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.");
+            return;
+        }
+
 		try {
 			await UserSignUpRequest(signUpData);
 			sessionStorage.setItem("email", LoginFormData.email);

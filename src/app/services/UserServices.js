@@ -10,14 +10,29 @@ const ObjectID = mongoose.Types.ObjectId;
 export const UserRegisterServices = async (req) => {
 	try {
 		const {firstName, lastName, email, password, mobile, img} = req.body
+        const passwordCheckRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+        // Password validation with regex
+        if (!passwordCheckRegex.test(password)) {
+            return {
+                status: 'fail',
+                message: 'Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.'
+            };
+        }
+
+        // Create Code
 		const code = Math.floor(100000 + Math.random() * 900000)
+
+        // Make password and otp hashed
 		const salt = await bcrypt.genSalt(10);
 		const hashedPassword = await bcrypt.hash(password, salt);
 		const hashedOTP = await bcrypt.hash(code.toString(), salt);
+
 		const EmailText = `Your Verification Code is = ${code}`
 		const EmailSubject = 'Email Verification code from Walid Portfolio'
 		const totalUser = await UserModel.find()
 		const findUser = await UserModel.findOne({email: email})
+
 		if (findUser) {
 			return {status: 'fail', message: `User Already Exist`}
 		}
