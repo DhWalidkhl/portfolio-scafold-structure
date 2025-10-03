@@ -7,6 +7,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { testimonialList } from "../APIRequest/APIRequest.js";
 import Rating from "react-rating";
 import { FaStar } from 'react-icons/fa';
+import TestimonialSkeleton from "../skeleton/TestimonialSkeleton.jsx";
 
 const TestimonialSection = () => {
 	const [testimonials, setTestimonials] = useState(null);
@@ -38,7 +39,7 @@ const TestimonialSection = () => {
 				className="mySwiper"
 			>
 				{testimonials === null ? (
-					<h1>Loading.....</h1>
+					<TestimonialSkeleton/>
 				) : (
 					testimonials.map((testimonial) => (
 						<SwiperSlide
