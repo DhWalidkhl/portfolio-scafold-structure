@@ -83,7 +83,7 @@ const SignUpPage = () => {
 
                             {FileUploadError ? (
                                 <p className="text-red-500 text-sm mt-1">{FileUploadError}</p>
-                            ) : <label className="label text-sm">Max size 2MB</label>}
+                            ) : <label className="label text-sm">Max size 2MB (JPG, JPEG or PNG file)</label>}
                         </div>
 
 					</div>
