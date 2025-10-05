@@ -4,12 +4,13 @@ import bcrypt from "bcryptjs"
 import {EncodeToken} from "../utilities/TokenUtility.js";
 
 import mongoose from "mongoose";
+import { v2 as cloudinary } from "cloudinary";
 
 const ObjectID = mongoose.Types.ObjectId;
 
 export const UserRegisterServices = async (req) => {
 	try {
-		const {firstName, lastName, email, password, mobile, img} = req.body
+		const {firstName, lastName, email, password, mobile, img, imagePublicId} = req.body
         const passwordCheckRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
         // Password validation with regex
@@ -37,15 +38,18 @@ export const UserRegisterServices = async (req) => {
 			return {status: 'fail', message: `User Already Exist`}
 		}
 		let sentMail
-		try {
-			sentMail = await EmailSend(email, EmailText, EmailSubject)
-		} catch (e) {
-			return {status: 'fail', message: 'Failed to send OTP. Please try again.'};
-		}
-		if (!sentMail?.accepted?.includes(email)) {
-			return {status: 'fail', message: `Please try again!!`}
-		}
-		await UserModel.create({img: img, firstName: firstName,lastName:lastName, email: email, role: totalUser.length === 0 ? "admin" : "user", password: hashedPassword, mobile:mobile, otp: hashedOTP, verified: "no"})
+
+		await UserModel.create({img: img, imagePublicId: imagePublicId, firstName: firstName,lastName:lastName, email: email, role: totalUser.length === 0 ? "admin" : "user", password: hashedPassword, mobile:mobile, otp: hashedOTP, verified: "no"})
+
+        try {
+            sentMail = await EmailSend(email, EmailText, EmailSubject)
+        } catch (e) {
+            return {status: 'fail', message: 'Failed to send OTP. Please try again.'};
+        }
+        if (!sentMail?.accepted?.includes(email)) {
+            return {status: 'fail', message: `Please try again!!`}
+        }
+
 		return {status: 'success', message: `Your 6 digit OTP has been sent to your ${email} email address`}
 
 	} catch (e) {
@@ -71,6 +75,7 @@ export const VerifyOTPServices = async (req) => {
 			await UserModel.updateOne({email: email}, {$set: {otp: "0", verified: "yes"}})
 			return {status: 'success', message: "Valid OTP", token: token}
 		}
+        return { status: 'fail', message: "User not found with given email" };
 	} catch (e) {
 		return {status: 'fail', message: e.toString()}
 	}
@@ -147,11 +152,13 @@ export const UserListByIDServices = async (req) =>{
 export const DeleteUserServices = async (req) =>{
 	try {
 		const userID = req.params.userID
+        const user = await UserModel.findById(userID)
+        await cloudinary.uploader.destroy(user.imagePublicId)
 		const data = await UserModel.deleteOne({_id: userID})
 		if(data.deletedCount === 0){
 			return { status: 'fail', message: 'User not found' };
 		}
-		return {status: 'success', message: `User Deleted Successfully`}
+		return {status: 'success', message: 'User Deleted Successfully'}
 	} catch (e) {
 		return {status: 'fail', message: e.toString()}
 	}

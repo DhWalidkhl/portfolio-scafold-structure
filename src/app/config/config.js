@@ -16,7 +16,7 @@ export const API_SECRET = "InJQs52SbU7Lj4WMVYFgKt48i1I";
 export const CSP_CONFIG = {
     contentSecurityPolicy: {
         directives: {
-            defaultSrc: ["'self'"],
+            defaultSrc: ["'none'"],
 
             imgSrc: [
                 "'self'",
@@ -61,6 +61,7 @@ export const CSP_CONFIG = {
                 "https://assets9.lottiefiles.com",
                 "https://lottie.host"
             ],
+            frameAncestors: ["'none'"],
 
             upgradeInsecureRequests: []
         }

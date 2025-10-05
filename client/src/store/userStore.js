@@ -28,14 +28,16 @@ const UserStore = create((set)=>({
 
 	// File upload data
 	ImageName: "",
+    imagePublicId: "",
 	FileUploading: false,
+    FileUploadError: "",
 	FileUploadOnChange: async (event) => {
 		set({FileUploading: true})
 		try {
 			const file = event.target.files[0];
 			if (!file) {
 				console.log("No file selected");
-				set({ ImageName: "", FileUploading: false });
+				set({ ImageName: "", imagePublicId: "", FileUploading: false, FileUploadError: "Please Select a file." });
 				return false;
 			}
 			const formData = new FormData();
@@ -46,14 +48,14 @@ const UserStore = create((set)=>({
 			});
 
 			if (res.status === 200) {
-				set({ ImageName: res?.data?.data?.path, FileUploading: false });
+				set({ ImageName: res?.data?.data?.path, imagePublicId: res?.data?.data?.filename, FileUploading: false, FileUploadError: "" });
 				return true;
 			} else {
-				set({ ImageName: "", FileUploading: false });
+				set({ ImageName: "", imagePublicId: "", FileUploading: false, FileUploadError: "Upload failed. Try again." });
 				return false;
 			}
 		} catch (error) {
-			set({ ImageName: "", FileUploading: false });
+			set({ ImageName: "", imagePublicId: "", FileUploading: false, FileUploadError: "Upload failed. Try again with jpg/jpeg/png format with 2MB file size.", });
 			console.log(error)
 			return false;
 		}

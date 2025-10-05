@@ -11,7 +11,7 @@ cloudinary.config({
 
 
 const UPLOAD_FOLDER = 'uploads';
-const FILE_SIZE_LIMIT = 3000000;
+const FILE_SIZE_LIMIT = 2097152;
 
 
 const storage = new CloudinaryStorage({
@@ -39,6 +39,7 @@ else {
 	}
 }
 };
+
 
 // const fileStorage = multer.diskStorage({
 // 	destination: (req, file, cb) => {

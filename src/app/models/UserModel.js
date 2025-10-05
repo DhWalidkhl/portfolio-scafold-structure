@@ -3,8 +3,9 @@ import mongoose from "mongoose";
 const DataSchema = new mongoose.Schema(
 	{
 		img: {type: String, required: true},
-		firstName: {type: String, required: true},
-		lastName: {type: String, required: true},
+        imagePublicId: {type: String, required: true},
+		firstName: {type: String, required: true, trim: true},
+		lastName: {type: String, required: true, trim: true},
 		email: {
             type: String,
             unique: true,
@@ -16,10 +17,6 @@ const DataSchema = new mongoose.Schema(
         password: {
             type: String,
             required: true,
-            match: [
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                'Password must contain at least 8 characters, including uppercase, lowercase, number and special character',
-            ],
         },
 		mobile: { type: String, required: true, match: [/^\d{10,15}$/, 'Invalid mobile number'] },
 		verified: {type: String, required: true},

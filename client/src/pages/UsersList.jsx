@@ -3,18 +3,34 @@ import AdminDashboardLayout from "../layout/AdminDashboardLayout.jsx";
 import UserStore from "../store/userStore.js";
 import Cookies from "js-cookie";
 import axios from "axios";
+import swal from 'sweetalert';
 
 const UsersList = () => {
 	const {isLogin, UserListRequest, UserList} = UserStore();
 
-	const handleUserDelete = async (id) => {
-		try {
-			await axios.delete(`/api/v1/DeleteUser/${id}`);
-			UserListRequest();
-		} catch (error) {
-			console.error('Failed to delete user:', error);
-		}
-	};
+
+    const handleUserDelete = (id) => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this user!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then(async (willDelete) => {
+            if (willDelete) {
+                try {
+                    await axios.delete(`/api/v1/DeleteUser/${id}`);
+                    await UserListRequest();
+                    swal("User has been deleted!", { icon: "success" });
+                } catch (error) {
+                    console.error('Failed to delete user:', error);
+                    swal("Error!", "Something went wrong.", "error");
+                }
+            }
+        });
+    };
+
+
 
 	useEffect(() => {
 		( () => {

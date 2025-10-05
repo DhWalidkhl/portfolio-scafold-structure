@@ -3,6 +3,7 @@ export const fileUploadController = async (req, res)=>{
 		if (!req.file) {
 			return res.status(400).send({message: 'Please select a file'});
 		}
+
 		await res.status(200).json({
 			status: 'success',
 			data: req.file

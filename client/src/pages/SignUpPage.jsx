@@ -1,20 +1,24 @@
 import React from 'react';
+import swal from 'sweetalert';
 import SectionHeading from "../components/SectionHeading.jsx";
 import Layout from "../layout/Layout.jsx";
 import userStore from "../store/userStore.js";
 import {Link, useNavigate} from "react-router-dom";
 
+
 const SignUpPage = () => {
-	let {FileUploading,LoginFormData, LoginFormOnChange, FileUploadOnChange, ImageName,UserSignUpRequest} = userStore()
+	let {FileUploading,LoginFormData, LoginFormOnChange, FileUploadOnChange, FileUploadError, ImageName,imagePublicId, UserSignUpRequest} = userStore()
 	const navigate = useNavigate();
 	const handleSignUp = async (e) => {
 		e.preventDefault();
 
-		const signUpData = { ...LoginFormData, img: ImageName };
+		const signUpData = { ...LoginFormData, img: ImageName, imagePublicId: imagePublicId };
+
+
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
         if (!passwordRegex.test(LoginFormData.password)) {
-
+            swal("Oops!", "Something went wrong!", "error");
             window.alert("Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.");
             return;
         }
@@ -75,13 +79,25 @@ const SignUpPage = () => {
 					<div className="col-span-full sm:col-span-3">
 						<legend className="fieldset-legend text-sm">Profile Photo</legend>
 						<input onChange={FileUploadOnChange} type="file" className="file-input w-full" required/>
-						<label className="label text-sm">Max size 2MB</label>
+						<div className="flex">
+
+                            {FileUploadError ? (
+                                <p className="text-red-500 text-sm mt-1">{FileUploadError}</p>
+                            ) : <label className="label text-sm">Max size 2MB</label>}
+                        </div>
+
 					</div>
 					<div className="col-span-full sm:col-span-3">
-						<button disabled={FileUploading} className="btn btn-dash btn-info text-lg w-full">{FileUploading ? "Loading" : "Sign Up"}</button>
+                        <button
+                            type="submit"
+                            disabled={FileUploading}
+                            className="btn btn-dash btn-info text-lg w-full"
+                        >
+                            {FileUploading ? "Uploading..." : "Sign Up"}
+                        </button>
 					</div>
 					<div className=" col-span-full sm:col-span-3">
-						<Link hidden={FileUploading} className="btn btn-soft btn-primary w-full text-lg" to="/">Home</Link>
+						<Link disabled={FileUploading} className="btn btn-soft btn-primary w-full text-lg" to="/">Home</Link>
 					</div>
 
 				</div>

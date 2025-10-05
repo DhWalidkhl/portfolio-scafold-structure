@@ -7,12 +7,12 @@ import {useNavigate} from "react-router-dom";
 const OtpPage = () => {
     let {LoginFormData, LoginFormOnChange} = userStore()
     const navigate = useNavigate();
+    const email = sessionStorage.getItem("email");
 
     const handleOtpVerification = async (e) => {
         e.preventDefault();
-        const email = sessionStorage.getItem("email");
         try {
-            const res = await axios.get(`/api/v1/VerifyOTP/${email}/${LoginFormData.otp}`);
+                const res = await axios.get(`/api/v1/VerifyOTP/${email}/${LoginFormData.otp}`);
             if (res.data.status === "success") {
                 window.alert("User Registered Successfully. Please login.");
                 navigate("/");
@@ -20,7 +20,11 @@ const OtpPage = () => {
                 window.alert(res?.data?.message);
             }
         } catch (error) {
-            window.alert("Something went wrong. Please try again.", error);
+            console.log("Axios error:", error);
+            console.log("Response:", error.response);
+            console.log("Status:", error.response?.status);
+            console.log("Message:", error.message);
+            window.alert(`Something went wrong. Please try again. Error: ${error.message}`);
         }
     };
 

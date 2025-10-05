@@ -13,6 +13,7 @@ import {fileUploadController} from "../src/app/controllers/FileUploadController.
 import upload from "../src/app/utilities/FileUploadMiddleware.js";
 import * as ProjectListController from "../src/app/controllers/ProjectListController.js";
 import {CountLike} from "../src/app/controllers/BlogListController.js";
+import {FileUploadHandlerMiddlewar} from "../src/app/middlewares/FileUploadHandlerMiddlewar.js";
 
 
 // Blog API's
@@ -84,7 +85,7 @@ router.delete('/DeleteFAQ/:FAQId', AuthMiddleware, AdminMiddleware, FAQControlle
 
 
 // File Upload API's
-router.post('/fileUpload', upload.single("file"), fileUploadController)
+router.post('/fileUpload', FileUploadHandlerMiddlewar, fileUploadController)
 
 
 

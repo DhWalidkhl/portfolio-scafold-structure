@@ -9,6 +9,7 @@ export const UserRegister = async (req, res) =>{
 
 export const VerifyOTP = async (req, res) => {
 	const result = await UserServices.VerifyOTPServices(req)
+
 	if (result['status'] === "success") {
 		const cookieOptions = {
 			expires: new Date(Date.now() + 24 * 6060 * 1000), httpOnly: true,  credentials: true,  secure: true, sameSite: "none"
@@ -16,7 +17,7 @@ export const VerifyOTP = async (req, res) => {
 		res.cookie('token', result['token'], cookieOptions)
 		return res.status(200).send(result)
 	}else {
-		return res.status(200).json(result)
+		return res.status(400).json(result)
 	}
 }
 
