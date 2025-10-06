@@ -29,7 +29,9 @@ export const UserLogin = async (req, res) =>{
 		}
 		res.cookie('token', result['token'], cookieOptions)
 		return res.status(200).send(result)
-	}
+	}  else {
+        return res.status(401).send(result);
+    }
 }
 
 export const UserLogout = async (req, res) => {

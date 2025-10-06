@@ -83,22 +83,37 @@ export const VerifyOTPServices = async (req) => {
 
 
 export const UserLoginServices = async (req) => {
-	try {
-		const email = req.body.email;
-		const password = req.body.password;
-		const findUser = await UserModel.findOne({email: email, otp: "0"})
-		const hash = findUser.password;
-		const bcryptPassword = await bcrypt.compare(password, hash);
-		if (!findUser || !bcryptPassword) {
-			return {status: "fail", message: "Invalid email or password!!"}
-		}
-		const user_id = findUser._id.toString()
-		const token = EncodeToken(email, user_id)
-		return {status: "success", message: "User Login successfully.", token: token, role: findUser.role};
-	} catch (e) {
-		return {status: 'fail', message: e.toString()}
-	}
-}
+    try {
+        const email = req.body.email;
+        const password = req.body.password;
+
+        const findUser = await UserModel.findOne({ email: email, otp: "0" });
+
+        if (!findUser) {
+            return { status: "fail", message: "Invalid email or password!!" };
+        }
+
+        const hash = findUser.password;
+        const bcryptPassword = await bcrypt.compare(password, hash);
+
+        if (!bcryptPassword) {
+            return { status: "fail", message: "Invalid email or password!!" };
+        }
+
+        const user_id = findUser._id.toString();
+        const token = EncodeToken(email, user_id);
+
+        return {
+            status: "success",
+            message: "User Login successfully.",
+            token: token,
+            role: findUser.role,
+        };
+    } catch (e) {
+        return { status: "fail", message: e.toString() };
+    }
+};
+
 
 export const UserListServices = async () =>{
 	try {

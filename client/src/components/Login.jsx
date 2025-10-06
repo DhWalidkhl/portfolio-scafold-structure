@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import UserStore from "../store/userStore.js";
 import {useNavigate} from "react-router-dom";
+import swal from 'sweetalert';
 
 
 const Login = () => {
@@ -10,7 +11,12 @@ const Login = () => {
 	const handleLogin = async (e) => {
 		e.preventDefault()
 		try {
-			await UserLoginRequest(LoginFormData)
+			const loginResult = await UserLoginRequest(LoginFormData)
+            console.log(loginResult)
+            if (loginResult.status === "fail") {
+                swal(loginResult.message);
+                return;
+            }
 			e.target.reset()
 			document.getElementById('my_modal_3').close()
 			window.location.reload()
@@ -18,6 +24,8 @@ const Login = () => {
 
 		}catch (e) {
 			console.log(e)
+            document.getElementById('my_modal_3').close()
+            swal("Oops!", e?.response?.data?.message, "error");
 		}
 	}
 
