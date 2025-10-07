@@ -18,6 +18,11 @@ export const UpdateFAQ = async (req, res) => {
 	return res.status(200).send(result)
 }
 
+export const FaqDetails = async (req, res) => {
+    const result = await FAQListServices.FaqDetailsService(req)
+    return res.status(200).send(result)
+}
+
 export const DeleteFAQ = async (req, res) => {
 	const result = await FAQListServices.DeleteFAQService(req)
 	return res.status(200).send(result)

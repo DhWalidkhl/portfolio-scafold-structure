@@ -1,4 +1,5 @@
 import FAQModel from "../models/FAQModel.js";
+import mongoose from "mongoose";
 
 
 export const FAQListService = async (req) => {
@@ -46,6 +47,20 @@ export const UpdateFAQService = async (req) => {
 	} catch (e) {
 		return {status: 'fail', message: "something went wrong"}
 	}
+}
+
+export const FaqDetailsService = async (req) => {
+    try {
+        const FAQId = req.params.FAQId;
+        if (!FAQId || !mongoose.Types.ObjectId.isValid(FAQId)) {
+            return { status: 'fail', message: 'Invalid or missing FAQId' };
+        }
+        const data = await FAQModel.findById(FAQId);
+        return {status: 'success', data: data}
+    }catch (e) {
+        console.error(e);
+        return {status: 'fail', message: 'Something went wrong.'};
+    }
 }
 
 export const DeleteFAQService = async (req) => {

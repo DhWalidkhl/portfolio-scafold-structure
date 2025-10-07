@@ -68,10 +68,9 @@ const AdminDashboardLayout = ({children}) => {
 													<li><NavLink to="/dashboard">Dashboard</NavLink></li>
 													<li><NavLink to="/dashboard/user-list">All Users</NavLink></li>
 													<li><NavLink to="/dashboard/blog-list">All Blogs</NavLink></li>
-													<li><NavLink to="/dashboard/contact-message-list">All
-														Message</NavLink></li>
-													<li><NavLink to="/dashboard/blog-list">All Testimonials</NavLink>
-													</li>
+													<li><NavLink to="/dashboard/contact-message-list">All Message</NavLink></li>
+													<li><NavLink to="/dashboard/blog-list">All Testimonials</NavLink></li>
+                                                    <li><NavLink to="/dashboard/faq-list">All FAQ</NavLink></li>
 												</div>
 												:
 												<div>

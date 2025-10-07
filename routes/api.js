@@ -79,6 +79,7 @@ router.delete('/DeleteUser/:userID', AuthMiddleware, AdminMiddleware, UserContro
 
 // FAQ Route
 router.get('/FAQList', FAQController.FAQList)
+router.get('/FAQDetails/:FAQId',AuthMiddleware, AdminMiddleware, FAQController.FaqDetails)
 router.post('/CreateFAQ', AuthMiddleware, AdminMiddleware, FAQController.CreateFAQ)
 router.post('/UpdateFAQ/:FAQId', AuthMiddleware, AdminMiddleware, FAQController.UpdateFAQ)
 router.delete('/DeleteFAQ/:FAQId', AuthMiddleware, AdminMiddleware, FAQController.DeleteFAQ)
