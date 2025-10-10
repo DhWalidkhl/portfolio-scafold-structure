@@ -2,6 +2,7 @@ import BlogModel from "../models/BlogModel.js";
 import mongoose from "mongoose";
 import LikeModel from "../models/LikeModel.js";
 import CommentModel from "../models/CommentModel.js";
+import path from "path";
 
 
 const ObjectID = mongoose.Types.ObjectId;
@@ -65,12 +66,13 @@ export const DeleteBlogByUserServices = async (req) => {
 export const BlogDetailsService = async (req) => {
 	try {
 		const { BlogID } = req.params;
+        const blogObjectID = new mongoose.Types.ObjectId(BlogID);
 
-		if (!BlogID || !mongoose.Types.ObjectId.isValid(BlogID)) {
+		if (!BlogID || !blogObjectID) {
 			return { status: 'fail', message: 'Invalid or missing BlogID' };
 		}
 
-		const blogObjectID = new mongoose.Types.ObjectId(BlogID);
+
 
 		const data = await BlogModel.aggregate([
 			{ $match: { _id: blogObjectID } },
@@ -82,7 +84,7 @@ export const BlogDetailsService = async (req) => {
 					as: "user"
 				}
 			},
-			{ $unwind: "$user" },
+			{ $unwind: {path: "$user", preserveNullAndEmptyArrays: true} },
 			{
 				$project: {
 					"user.password": 0,
@@ -93,7 +95,7 @@ export const BlogDetailsService = async (req) => {
 					"userID": 0,
 				}
 			}
-		]);
+		 ]);
 
 		if (!data || data.length === 0) {
 			return { status: 'fail', message: 'No blog found with this ID' };

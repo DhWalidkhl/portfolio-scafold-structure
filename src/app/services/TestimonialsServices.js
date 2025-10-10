@@ -8,7 +8,7 @@ export const TestimonialsListServices = async (req) => {
     try {
         const SortStage = { $sort: { createdAt: -1 } };
         const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
-        const UnwindUser = {$unwind: "$user"};
+        const UnwindUser = {$unwind: {path: "$user", preserveNullAndEmptyArrays: true}};
         const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.address': 0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}
         const data = await TestimonialsModel.aggregate([
             SortStage, JoinWithUserStage, UnwindUser, ProjectionStage
@@ -26,7 +26,7 @@ export const TestimonialsListByUserServices = async (req) => {
 	    const userID = new ObjectID(user_id);
 	    const MatchStage = {$match: {userID: userID}};
 	    const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
-	    const UnwindUser = {$unwind: "$user"};
+	    const UnwindUser = {$unwind: {path: "$user", preserveNullAndEmptyArrays: true}};
 	    const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.address': 0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}
 		const data = await TestimonialsModel.aggregate([
 			MatchStage, JoinWithUserStage, UnwindUser, ProjectionStage
