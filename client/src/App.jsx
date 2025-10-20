@@ -28,6 +28,7 @@ import Layout from "./layout/Layout.jsx";
 import UserStore from "./store/userStore.js";
 import FAQPage from "./pages/UserControllPages/FAQPage.jsx";
 import FAQDetailsPage from "./pages/UserControllPages/FAQDetailsPage.jsx";
+import TestimonialPage from "./pages/UserControllPages/TestimonialPage.jsx";
 
 function App() {
 	let {isLogin} = UserStore()
@@ -70,6 +71,7 @@ function App() {
 											<Route path="/dashboard" element={<Dashboard/>} />
 											<Route path="/dashboard/user-list" element={<UsersList/>} />
 											<Route path="/dashboard/blog-list" element={<BlogList/>} />
+                                            <Route path="/dashboard/testimonial-list" element={<TestimonialPage/>} />
 											<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>} />
 											<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>} />
                                             <Route path="/dashboard/faq-list" element={<FAQPage/>} />

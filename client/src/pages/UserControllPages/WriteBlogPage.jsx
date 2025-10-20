@@ -8,7 +8,7 @@ import Login from "../../components/Login.jsx";
 import Layout from "../../layout/Layout.jsx";
 
 const WriteBlogPage = () => {
-	const {	isLogin, FileUploading,	LoginFormData, LoginFormOnChange, FileUploadOnChange, ImageName,	} = userStore();
+	const {	isLogin, FileUploading,	LoginFormData, LoginFormOnChange, FileUploadOnChange, ImageName, imagePublicId	} = userStore();
 	const { PostBlogRequest, CreatingBlog } = BlogStore();
 	const editor = useRef(null);
 	const [content, setContent] = useState('');
@@ -42,6 +42,7 @@ const WriteBlogPage = () => {
 			const BlogData = {
 				...LoginFormData,
 				img: ImageName,
+                imagePublicId: imagePublicId,
 				des: content,
 			};
 

@@ -2,7 +2,7 @@ import BlogModel from "../models/BlogModel.js";
 import mongoose from "mongoose";
 import LikeModel from "../models/LikeModel.js";
 import CommentModel from "../models/CommentModel.js";
-import path from "path";
+import { v2 as cloudinary } from "cloudinary";
 
 
 const ObjectID = mongoose.Types.ObjectId;
@@ -40,12 +40,13 @@ export const DeleteBlogByUserServices = async (req) => {
 	try {
 		const user_id = req.headers['user_id']
 		const userID = new ObjectID(user_id);
-		const BlogID = req.params.BlogID
-		if (!mongoose.Types.ObjectId.isValid(userID) || !mongoose.Types.ObjectId.isValid(BlogID)) {
+		const BlogID = req.params.id;
+        const userObjectId = new mongoose.Types.ObjectId(userID);
+        const blogObjectId = new mongoose.Types.ObjectId(BlogID);
+		if (!userObjectId || !blogObjectId) {
 			return { status: 'fail', message: 'Invalid user or blog ID' };
 		}
-		const userObjectId = new mongoose.Types.ObjectId(userID);
-		const blogObjectId = new mongoose.Types.ObjectId(BlogID);
+
 		const deleteResult = await BlogModel.deleteOne({
 			_id: blogObjectId,
 			userID: userObjectId
@@ -116,7 +117,7 @@ export const CreateBlogService = async (req) => {
 		}
 		const userID = new mongoose.Types.ObjectId(user_id);
 
-		const { title, img, des, liveLink, githubLink } = req.body;
+		const { title, img, des, liveLink, githubLink, imagePublicId  } = req.body;
 
 		if (!title || !img || !des || !liveLink || !githubLink) {
 			return { status: 'fail', message: 'Missing required fields' };
@@ -128,6 +129,7 @@ export const CreateBlogService = async (req) => {
 			des,
 			liveLink,
 			githubLink,
+            imagePublicId,
 			userID
 		};
 
@@ -241,12 +243,16 @@ export const GetCommentsByBlogService = async (req) => {
 export const DeleteBlogService = async (req) => {
 	try {
 		const { BlogID } = req.params;
+        console.log("Blog ID", BlogID);
 
 		if (!BlogID) {
 			return { status: 'fail', message: "BlogID is required" };
 		}
-
+        const blog = await BlogModel.findById(BlogID)
+        console.log("Blog", blog);
+        await cloudinary.uploader.destroy(blog.imagePublicId)
 		const result = await BlogModel.deleteOne({ _id: BlogID });
+        console.log(result);
 
 		if (result.deletedCount === 0) {
 			return { status: 'fail', message: "No blog found with this ID" };
