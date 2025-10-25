@@ -5,8 +5,17 @@ const ObjectID = mongoose.Types.ObjectId;
 
 export const ContactMassegeListService = async (req)=>{
 	try {
-		const data = await ContactMessageModel.find().sort({createdAt: -1})
-		return {status: 'success', data: data}
+        const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "sender"}}
+        const UnwindUser = {
+            $unwind: {
+                path: "$sender",
+                preserveNullAndEmptyArrays: true
+            }
+        };
+        const ProjectionStage = { $project: {'sender._id':0, 'sender.password':0, 'sender.address': 0, 'sender.otp':0, 'sender.role':0, 'sender.createdAt':0, 'sender.updatedAt':0, 'sender.imagePublicId':0}}
+        const SortStage = { $sort: { createdAt: -1 } };
+		const data = await ContactMessageModel.aggregate([JoinWithUserStage, UnwindUser, ProjectionStage, SortStage])
+        return {status: 'success', data: data}
 	} catch (e) {
 		return {status: 'fail', message: e.toString()}
 	}
