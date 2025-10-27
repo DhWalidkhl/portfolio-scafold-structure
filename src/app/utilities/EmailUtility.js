@@ -13,7 +13,7 @@ const EmailSend=async (EmailTo,EmailText,EmailSubject)=>{
 
 
 	let mailOption={
-		from:'Tasnim Shop <sm.walid69@yahoo.com>',
+		from:'D H Walid <sm.walid69@yahoo.com>',
 		to:EmailTo,
 		subject:EmailSubject,
 		text:EmailText

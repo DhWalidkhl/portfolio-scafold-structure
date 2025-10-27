@@ -7,16 +7,20 @@ import {IoEyeOutline} from "react-icons/io5";
 import {RiDeleteBin6Line} from "react-icons/ri";
 import swal from "sweetalert";
 import axios from "axios";
+import Layout from "../../layout/Layout.jsx";
+import Login from "../../components/Login.jsx";
 
 const TestimonialPage = () => {
     let {isLogin} = UserStore()
-    let {TestimonialListRequest, TestimonialList} = TestimonialStore()
+    let {TestimonialListRequest, TestimonialList, TestimonialListByUser, TestimonialListByUserRequest} = TestimonialStore()
     let userRole = sessionStorage.getItem("role");
 
     useEffect(() => {
         ( async () => {
             if(isLogin() && userRole === "admin"){
                 await TestimonialListRequest();
+            }else if(isLogin() && userRole === "user"){
+                await TestimonialListByUserRequest();
             }else {
                 Cookies.remove('token')
                 sessionStorage.clear()
@@ -60,69 +64,152 @@ const TestimonialPage = () => {
 
 
     return (
-        <AdminDashboardLayout>
-            <div>
-                <h1 className= "text-xl font-semibold">
-                    Total Testimonials: {TestimonialList.length}
-                </h1>
-            </div>
-            <div className="overflow-x-auto">
-                <table className="table">
-                    {/* head */}
-                    <thead>
-                    <tr>
-                        <th>SL</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
 
-                    {
-                        TestimonialList.length === 0 ?
-                            (<p className="text-center text-gray-500 py-4">No testimonials found.</p>)
-                            :
-                            TestimonialList.map((testimonial, index) => (
-                                <tr key={testimonial._id}>
-                                    <td>
-                                        {index + 1}
-                                    </td>
-                                    <td>
-                                        <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle h-12 w-12">
-                                                    <img
-                                                        src={testimonial.user?.img}
-                                                        alt="author image" />
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div className="font-bold">{testimonial.user?.firstName} {testimonial.user?.lastName}</div>
-                                                <div className="text-sm opacity-50">{testimonial.user?.email}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {testimonial.des?.slice(0, 100)}
-                                    </td>
-                                    <th>
-                                        <div className="flex gap-1">
-                                            <button title="View" className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
-                                            </button>
-                                            <button title="Delete" onClick={()=>handleDelete(testimonial._id)} className="btn btn-soft btn-error btn-xs text-md"><RiDeleteBin6Line />
-                                            </button>
-                                        </div>
-                                    </th>
-                                </tr>
-                            ))
-                    }
+            isLogin() ? (
+            <AdminDashboardLayout>
+                {
+                    userRole === "admin" ? (
+                        <>
+                            <div>
+                                <h1 className= "text-xl font-semibold">
+                                    Total Testimonials: {TestimonialList.length}
+                                </h1>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="table">
+                                    {/* head */}
+                                    <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                    </tbody>
+                                    {
+                                        TestimonialList.length === 0 ?
+                                            (<p className="text-center text-gray-500 py-4">No testimonials found.</p>)
+                                            :
+                                            TestimonialList.map((testimonial, index) => (
+                                                <tr key={testimonial._id}>
+                                                    <td>
+                                                        {index + 1}
+                                                    </td>
+                                                    <td>
+                                                        <div className="flex items-center gap-3">
+                                                            <div className="avatar">
+                                                                <div className="mask mask-squircle h-12 w-12">
+                                                                    <img
+                                                                        src={testimonial.user?.img}
+                                                                        alt="author image" />
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div className="font-bold">{testimonial.user?.firstName} {testimonial.user?.lastName}</div>
+                                                                <div className="text-sm opacity-50">{testimonial.user?.email}</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        {testimonial.des?.slice(0, 100)}
+                                                    </td>
+                                                    <th>
+                                                        <div className="flex gap-1">
+                                                            <button title="View" className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
+                                                            </button>
+                                                            <button title="Delete" onClick={()=>handleDelete(testimonial._id)} className="btn btn-soft btn-error btn-xs text-md"><RiDeleteBin6Line />
+                                                            </button>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            ))
+                                    }
 
-                </table>
-            </div>
-        </AdminDashboardLayout>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div>
+                                <h1 className= "text-xl font-semibold">
+                                    Total Testimonials: {TestimonialListByUser.length}
+                                </h1>
+                            </div>
+                            <div className="overflow-x-auto">
+                                <table className="table">
+                                    {/* head */}
+                                    <thead>
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {
+                                        TestimonialListByUser.length === 0 ?
+                                            (<p className="text-center text-gray-500 py-4">No testimonials found.</p>)
+                                            :
+                                            TestimonialList.map((testimonial, index) => (
+                                                <tr key={testimonial._id}>
+                                                    <td>
+                                                        {index + 1}
+                                                    </td>
+                                                    <td>
+                                                        <div className="flex items-center gap-3">
+                                                            <div className="avatar">
+                                                                <div className="mask mask-squircle h-12 w-12">
+                                                                    <img
+                                                                        src={testimonial.user?.img}
+                                                                        alt="author image" />
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div className="font-bold">{testimonial.user?.firstName} {testimonial.user?.lastName}</div>
+                                                                <div className="text-sm opacity-50">{testimonial.user?.email}</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        {testimonial.des?.slice(0, 100)}
+                                                    </td>
+                                                    <th>
+                                                        <div className="flex gap-1">
+                                                            <button title="View" className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
+                                                            </button>
+                                                            <button title="Delete" onClick={()=>handleDelete(testimonial._id)} className="btn btn-soft btn-error btn-xs text-md"><RiDeleteBin6Line />
+                                                            </button>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            ))
+                                    }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </>
+                    )
+                }
+
+            </AdminDashboardLayout>
+        ) : (
+            <Layout>
+                <div className="flex flex-col gap-10 items-center justify-center h-screen">
+                    <h1 className="text-4xl font-bold">Please Login to Access the Page</h1>
+                    <Login></Login>
+                </div>
+            </Layout>
+        )
+
+
     );
 };
 

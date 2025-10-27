@@ -13,5 +13,16 @@ const TestimonialStore = create((set)=>({
 		}
 	},
 
+    TestimonialListByUser : [],
+    TestimonialListByUserRequest : async ()=>{
+        let res = await axios.get(`/api/v1/TestimonialsListByUser`);
+        if (res.data['status']=== 'success'){
+            set({TestimonialListByUser : res.data['data']})
+        }else {
+            set({TestimonialListByUser : []})
+
+        }
+    },
+
 }))
 export default TestimonialStore

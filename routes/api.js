@@ -50,6 +50,7 @@ router.post('/UploadSkill',AuthMiddleware, AdminMiddleware, SkillListController.
 router.post('/SendMessage',AuthMiddleware, ContactMessageController.SendMessage)
 router.get('/MassegeListByUser',AuthMiddleware, ContactMessageController.MassegeListByUser)
 router.get('/ContactMessageList',AuthMiddleware, AdminMiddleware, ContactMessageController.ContactMessageList)
+router.post('/replymessage/:email',AuthMiddleware, AdminMiddleware, ContactMessageController.ReplyMessage)
 
 
 // Project API's

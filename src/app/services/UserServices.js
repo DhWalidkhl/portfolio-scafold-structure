@@ -30,7 +30,7 @@ export const UserRegisterServices = async (req) => {
 		const hashedOTP = await bcrypt.hash(code.toString(), salt);
 
 		const EmailText = `Your Verification Code is = ${code}`
-		const EmailSubject = 'Email Verification code from Walid Portfolio'
+		const EmailSubject = 'Verification code from Walid Portfolio'
 		const totalUser = await UserModel.find()
 		const findUser = await UserModel.findOne({email: email})
 

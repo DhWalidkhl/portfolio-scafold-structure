@@ -1,5 +1,6 @@
 import ContactMessageModel from "../models/ContactMessageModel.js";
 import mongoose from "mongoose";
+import EmailSend from "../utilities/EmailUtility.js";
 
 const ObjectID = mongoose.Types.ObjectId;
 
@@ -51,4 +52,31 @@ export const SendMessageService = async (req)=>{
 	} catch (e) {
 		return {status: 'fail', message: "something went wrong"}
 	}
+}
+
+export const ReplyMessageService = async (req)=>{
+    try {
+        let replyEmail = req.params.email;
+        let {emailSubject, emailText} = req.body
+        if(!replyEmail){
+            return {status: 'fail', message: 'Please enter a valid email address'};
+        }
+        if (!emailSubject || !emailText) {
+            return { status: 'fail', message: 'Email subject and text are required.' };
+        }
+        let sentMail
+        try {
+            sentMail = await EmailSend(replyEmail, emailText, emailSubject)
+        } catch (e) {
+            return {status: 'fail', message: 'Failed to reply. Please try again.'};
+        }
+        if (!sentMail?.accepted?.includes(replyEmail)) {
+            return {status: 'fail', message: `Please try again!!`}
+        }
+
+        return {status: 'success', message: `Your reply sent to your ${replyEmail} email address`}
+
+    } catch (e) {
+        return {status: 'fail', message: e.toString()}
+    }
 }

@@ -28,11 +28,11 @@ const CoursesDetails = () => {
 								<ul className="timeline timeline-vertical pt-10">
 									{
 										courses.map((course) => (
-											<ul className="p-4 lg:p-8 bg-gray-50 rounded-2xl">
+											<ul className="p-4 lg:p-8 bg-gray-50 rounded-2xl mb-5 hover:bg-gray-900 hover:text-white transition-colors duration-500 ease-in-out">
 												<li>
 													<article>
 														<div rel="noopener noreferrer"
-															 className="grid p-4 overflow-hidden md:grid-cols-5 rounded-xl lg:p-6 xl:grid-cols-12 hover:bg-gray-900 hover:text-white">
+															 className="grid p-4 overflow-hidden md:grid-cols-5 rounded-xl lg:p-6 xl:grid-cols-12">
 															<h3 className="mb-1 lg:text-3xl ml-8 font-semibold md:col-start-2 md:col-span-4 md:ml-0 xl:col-start-3 xl:col-span-9">{course['courseName']}</h3>
 															<time dateTime={new Date(course.startingDate).toISOString()}
 																  className="row-start-1 lg:text-xl mb-1 md:col-start-1 xl:col-span-2 text-gray-500">

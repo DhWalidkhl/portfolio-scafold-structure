@@ -7,12 +7,14 @@ import {Link} from "react-router-dom";
 import TestimonialStore from "../../store/TestimonialStore.js";
 import Login from "../../components/Login.jsx";
 import Layout from "../../layout/Layout.jsx";
+import contactMessageStore from "../../store/contactMessageStore.js";
 
 const Dashboard = () => {
 	let {BlogListRequest, BlogList,BlogListRequestByUser, BlogListByUser} = BlogStore()
 	let userRole = sessionStorage.getItem("role");
 	let {isLogin, UserList ,UserListRequest} = UserStore()
-	let {TestimonialList ,TestimonialListRequest} = TestimonialStore()
+	let {TestimonialList ,TestimonialListRequest, TestimonialListByUser, TestimonialListByUserRequest} = TestimonialStore()
+    const {ContactMessageList, ContactMessageListRequest, ContactMessageListByUser, ContactMessageListRequestByUser} = contactMessageStore()
 
 	useEffect(() => {
 		( () => {
@@ -20,8 +22,11 @@ const Dashboard = () => {
 				BlogListRequest();
 				UserListRequest();
 				TestimonialListRequest()
+                ContactMessageListRequest()
 			}else if(isLogin() && userRole === "user") {
 				BlogListRequestByUser()
+                ContactMessageListRequestByUser()
+                TestimonialListByUserRequest()
 			}else {
 				Cookies.remove('token')
 				sessionStorage.clear()
@@ -67,7 +72,7 @@ const Dashboard = () => {
 											<div
 												className="bg-cyan-500 text-white p-5 text-center rounded-lg font-semibold text-3xl space-y-4">
 												<h1>Message</h1>
-												<p>12</p>
+												<p>{ContactMessageList.length}</p>
 											</div>
 										</div>
 									</div>
@@ -162,18 +167,18 @@ const Dashboard = () => {
 												<p>{BlogListByUser.length}</p>
 											</div>
 										</div>
-										{/*<div className="p-5 lg:w-1/4 shadow-lg border-lg rounded-lg">*/}
-										{/*	<div*/}
-										{/*		className="bg-cyan-500 text-white p-5 text-center rounded-lg font-semibold text-3xl space-y-4">*/}
-										{/*		<h1>Testimonials</h1>*/}
-										{/*		<p>{TestimonialList.length}</p>*/}
-										{/*	</div>*/}
-										{/*</div>*/}
+										<div className="p-5 lg:w-1/4 shadow-lg border-lg rounded-lg">
+											<div
+												className="bg-cyan-500 text-white p-5 text-center rounded-lg font-semibold text-3xl space-y-4">
+												<h1>Testimonials</h1>
+												<p>{TestimonialListByUser.length}</p>
+											</div>
+										</div>
 										<div className="p-5 lg:w-1/4 shadow-lg border-lg rounded-lg">
 											<div
 												className="bg-cyan-500 text-white p-5 text-center rounded-lg font-semibold text-3xl space-y-4">
 												<h1>Message</h1>
-												<p>12</p>
+												<p>{ContactMessageListByUser.length}</p>
 											</div>
 										</div>
 									</div>
@@ -206,32 +211,32 @@ const Dashboard = () => {
 												</table>
 											</div>
 										</Link>
-										{/*<Link to="" className="shadow-lg border rounded-lg p-8">*/}
-										{/*	<h2 className="pb-5 text-3xl">Recent Testimonials</h2>*/}
-										{/*	<div*/}
-										{/*		className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">*/}
-										{/*		<table className="table">*/}
-										{/*			/!* head *!/*/}
-										{/*			<thead>*/}
-										{/*			<tr>*/}
-										{/*				<th>Author</th>*/}
-										{/*				<th>Date</th>*/}
-										{/*			</tr>*/}
-										{/*			</thead>*/}
-										{/*			<tbody>*/}
-										{/*			{*/}
-										{/*				TestimonialList?.slice(0, 4).map((testimonial, index) => (*/}
-										{/*					<tr key={testimonial._id || index}>*/}
-										{/*						<td>{testimonial.user?.lastName}</td>*/}
-										{/*						<td>{new Date(testimonial.createdAt).toLocaleDateString()}</td>*/}
-										{/*					</tr>*/}
-										{/*				))*/}
-										{/*			}*/}
+										<Link to="" className="shadow-lg border rounded-lg p-8">
+											<h2 className="pb-5 text-3xl">Recent Testimonials</h2>
+											<div
+												className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+												<table className="table">
+													{/* head */}
+													<thead>
+													<tr>
+														<th>Author</th>
+														<th>Date</th>
+													</tr>
+													</thead>
+													<tbody>
+													{
+                                                        TestimonialListByUser?.slice(0, 4).map((testimonial, index) => (
+															<tr key={testimonial._id || index}>
+																<td>{testimonial.user?.lastName}</td>
+																<td>{new Date(testimonial.createdAt).toLocaleDateString()}</td>
+															</tr>
+														))
+													}
 
-										{/*			</tbody>*/}
-										{/*		</table>*/}
-										{/*	</div>*/}
-										{/*</Link>*/}
+													</tbody>
+												</table>
+											</div>
+										</Link>
 										<div className="shadow-lg border rounded-lg p-8">
 											<h2 className="pb-5 text-3xl">Recent Message</h2>
 											<div
