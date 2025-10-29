@@ -13,6 +13,18 @@ const BlogStore = create((set)=>({
 		}
 	},
 
+    ApprovedBlogList: [],
+    ApprovedBlogListRequest : async ()=>{
+        let res = await axios.get(`/api/v1/ApprovedBlogList`);
+        if (res.data['status']=== 'success'){
+            set({ApprovedBlogList : res?.data?.data})
+        }else {
+            set({ApprovedBlogList : []})
+
+        }
+    },
+
+
 
 	BlogListByUser: [],
 	BlogListRequestByUser: async ()=>{

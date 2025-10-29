@@ -17,9 +17,11 @@ import {FileUploadHandlerMiddlewar} from "../src/app/middlewares/FileUploadHandl
 
 
 // Blog API's
-router.get('/BlogList', BlogListController.BlogList)
+router.get('/ApprovedBlogList', BlogListController.ApprovedBlogList)
+router.get('/BlogList',AuthMiddleware, AdminMiddleware, BlogListController.BlogList)
 router.get('/BlogListByUser',AuthMiddleware, BlogListController.BlogListByUser)
 router.post('/CreateBlog', AuthMiddleware, BlogListController.CreateBlog)
+router.post('/ApproveBlog/:BlogID', AuthMiddleware, AdminMiddleware, BlogListController.ApproveBlog)
 router.post('/AddLike/:BlogID', AuthMiddleware, BlogListController.AddLike)
 router.post('/CreateComment/:BlogID', AuthMiddleware, BlogListController.CreateComment)
 router.get('/GetCommentsByBlog/:BlogID', BlogListController.GetCommentsByBlog)

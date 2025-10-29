@@ -7,6 +7,11 @@ export const BlogList = async (req, res) => {
 	return res.status(200).send(result)
 }
 
+export const ApprovedBlogList = async (req, res) => {
+    const result = await BlogListServices.ApprovedBlogListService(req)
+    return res.status(200).send(result)
+}
+
 export const BlogListByUser = async (req, res) => {
 	const result = await BlogListServices.BlogListByUserServices(req)
 	return res.status(200).send(result)
@@ -20,6 +25,11 @@ export const BlogDetails = async (req, res) => {
 export const CreateBlog = async (req, res) => {
 	const result = await BlogListServices.CreateBlogService(req)
 	return res.status(200).send(result)
+}
+
+export const ApproveBlog = async (req, res) => {
+    const result = await BlogListServices.ApproveBlogService(req)
+    return res.status(200).send(result)
 }
 
 export const AddLike = async (req, res) => {

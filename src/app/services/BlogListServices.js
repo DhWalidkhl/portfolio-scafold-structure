@@ -16,7 +16,24 @@ export const BlogListServices = async (req) => {
 	}
 }
 
-
+export const ApprovedBlogListService = async (req) => {
+    try {
+        const MatchStage = {$match: {approved: true}};
+        const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
+        const UnwindUser = {$unwind: "$user"};
+        const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}
+        const SortStage = { $sort: { createdAt: -1 } };
+        const data = await BlogModel.aggregate([
+            MatchStage, JoinWithUserStage, UnwindUser, ProjectionStage, SortStage
+        ])
+        if (!data || data.length === 0) {
+            return { status: 'fail', message: "No approved blogs found" };
+        }
+        return {status: 'success', data: data}
+    } catch (e) {
+        return {status: 'fail', message: e.toString()}
+    }
+}
 
 export const BlogListByUserServices = async (req) => {
 	try {
@@ -34,7 +51,6 @@ export const BlogListByUserServices = async (req) => {
 		return {status: 'fail', message: e.toString()}
 	}
 }
-
 
 export const DeleteBlogByUserServices = async (req) => {
 	try {
@@ -62,7 +78,6 @@ export const DeleteBlogByUserServices = async (req) => {
 		return {status: 'fail', message: e.toString()}
 	}
 }
-
 
 export const BlogDetailsService = async (req) => {
 	try {
@@ -239,6 +254,24 @@ export const GetCommentsByBlogService = async (req) => {
 	}
 };
 
+export const ApproveBlogService = async (req) => {
+    try {
+        const { BlogID } = req.params;
+
+        if (!BlogID) {
+            return { status: 'fail', message: "BlogID is required" };
+        }
+        const blog = await BlogModel.findById(BlogID)
+        if (!blog) {
+            return { status: 'fail', message: "Blog not found" };
+        }
+        await BlogModel.updateOne({_id: BlogID}, { approved: true });
+        return { status: 'success', data: "Your Blog has been approved" };
+
+    } catch (error) {
+        return { status: 'fail', message: "Something went wrong" };
+    }
+};
 
 export const DeleteBlogService = async (req) => {
 	try {
@@ -248,9 +281,15 @@ export const DeleteBlogService = async (req) => {
 		if (!BlogID) {
 			return { status: 'fail', message: "BlogID is required" };
 		}
-        const blog = await BlogModel.findById(BlogID)
-        console.log("Blog", blog);
-        await cloudinary.uploader.destroy(blog.imagePublicId)
+        const blogObjectId = new mongoose.Types.ObjectId(BlogID);
+        const blog = await BlogModel.findById(blogObjectId)
+        if (blog.imagePublicId) {
+            try {
+                await cloudinary.uploader.destroy(blog.imagePublicId);
+            } catch (err) {
+                console.error("Cloudinary delete error:", err);
+            }
+        }
 		const result = await BlogModel.deleteOne({ _id: BlogID });
         console.log(result);
 

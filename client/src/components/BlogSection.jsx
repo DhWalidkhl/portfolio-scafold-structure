@@ -6,14 +6,15 @@ import {LiaLongArrowAltRightSolid} from "react-icons/lia";
 import Skeleton from "react-loading-skeleton";
 
 const BlogSection = () => {
-	let {BlogList, BlogListRequest} = BlogStore()
+	let {ApprovedBlogList, ApprovedBlogListRequest} = BlogStore()
 	useEffect(() => {
 		(async () => {
-			await BlogListRequest()
+			await ApprovedBlogListRequest()
+            console.log(ApprovedBlogList)
 		})()
 	}, []);
 
-	const blogs = BlogList.slice(0, 4);
+	const blogs = ApprovedBlogList.slice(0, 4);
 
 
 	return (
@@ -55,7 +56,7 @@ const BlogSection = () => {
 				}
 			</div>
 			{
-				BlogList.length > 4 ? (
+                ApprovedBlogList.length > 4 ? (
 					blogs.length === 0 ? (
 						<div className="text-center">
 							<Skeleton width={300}/>

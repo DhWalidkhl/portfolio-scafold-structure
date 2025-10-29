@@ -8,6 +8,7 @@ const DataSchema = new mongoose.Schema(
 		des: {type: String, required: true},
 		liveLink: {type: String, required: true},
 		githubLink: {type: String, required: true},
+        approved: {type: Boolean, default: false},
 		userID: {type: mongoose.Schema.Types.ObjectId, required: true}
 	},
 	{

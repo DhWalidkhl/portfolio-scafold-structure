@@ -46,9 +46,10 @@ const BlogList = () => {
 						const response = await axios.delete(`/api/v1/DeleteBlog/${id}`);
 						if (response.data.status === 'success') {
 							swal("Your blog has been deleted!", { icon: "success" });
-							setLoading(prev => !prev); // Trigger a re-fetch if needed
+							setLoading(prev => !prev);
 						} else {
 							swal("Failed to delete the blog!", { icon: "error" });
+                            console.log(response);
 						}
 					} else {
 						const response = await axios.delete(`/api/v1/DeleteBlogByUser/${id}`);
@@ -82,6 +83,45 @@ const BlogList = () => {
 							<h1 className="text-xl font-semibold">Total Blogs : {BlogList.length}</h1>) : (
 							<h1 className="text-xl font-semibold">Total Blogs : {BlogListByUser.length}</h1>)
 					}
+
+
+                    <div className="join">
+                        <input
+                            className="join-item btn btn-approved"
+                            type="radio"
+                            name="options"
+                            aria-label="Approved"
+                        />
+                        <input
+                            className="join-item btn btn-pending"
+                            type="radio"
+                            name="options"
+                            aria-label="Pending"
+                        />
+                    </div>
+
+
+                    <style>
+                        {`
+                        .btn-approved:checked {
+                          background-color: green !important;
+                          border-color: green !important;
+                          color: white !important; 
+                          --tw-shadow-color: green !important;
+                        }
+                    
+                       
+                        .btn-pending:checked {
+                          background-color: red !important;
+                          border-color: red !important; 
+                          color: white !important;
+                          --tw-shadow-color: red !important;
+                        }
+                      `}
+                    </style>
+
+
+
 
 					<Link to="/dashboard/writeBlog" className="btn btn-outline btn-primary">
 						Write a Blog

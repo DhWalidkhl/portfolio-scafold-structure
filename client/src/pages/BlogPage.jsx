@@ -8,14 +8,12 @@ import BlogStore from "../store/blogStore.js";
 
 const BlogPage = () => {
 	let {isLogin} = UserStore()
-	let {BlogList, BlogListRequest} = BlogStore()
+	let {ApprovedBlogList, ApprovedBlogListRequest} = BlogStore()
 	useEffect( () => {
 		( async () => {
-			await BlogListRequest()
+			await ApprovedBlogListRequest()
 		})()
 	}, []);
-
-	console.log(BlogList)
 
 	return (
 		<Layout>
@@ -31,7 +29,7 @@ const BlogPage = () => {
 	</div>
 	<div className="mt-6 grid grid-cols-1 lg:grid-cols-3 pb-10 px-10 gap-6 container mx-auto">
 
-		{BlogList.length === 0 ?
+		{ApprovedBlogList.length === 0 ?
 			<>
 				<BlogSkeleton/>
 				<BlogSkeleton/>
@@ -44,7 +42,7 @@ const BlogPage = () => {
 				<BlogSkeleton/>
 			</>
 			:
-			BlogList.map((blog) =>
+            ApprovedBlogList.map((blog) =>
 				(
 					<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
 						<figure className="lg:w-64">

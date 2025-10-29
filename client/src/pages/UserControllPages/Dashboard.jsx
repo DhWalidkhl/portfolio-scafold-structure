@@ -77,7 +77,7 @@ const Dashboard = () => {
 										</div>
 									</div>
 									<div className="mt-10 grid grid-cols-2 items-center gap-8">
-										<Link to="/dashboard/blog-list" className="shadow-lg border rounded-lg p-8">
+										<Link to="/dashboard/blog-list" className="shadow-2xl rounded-lg p-8">
 											<h2 className="pb-5 text-3xl">Recent Blogs</h2>
 											<div
 												className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -105,7 +105,7 @@ const Dashboard = () => {
 												</table>
 											</div>
 										</Link>
-										<Link to="" className="shadow-lg border rounded-lg p-8">
+										<Link to="" className="shadow-2xl rounded-lg p-8">
 											<h2 className="pb-5 text-3xl">Recent Testimonials</h2>
 											<div
 												className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -131,7 +131,7 @@ const Dashboard = () => {
 												</table>
 											</div>
 										</Link>
-										<div className="shadow-lg border rounded-lg p-8">
+										<div className="shadow-2xl rounded-lg p-8">
 											<h2 className="pb-5 text-3xl">Recent Message</h2>
 											<div
 												className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -183,7 +183,7 @@ const Dashboard = () => {
 										</div>
 									</div>
 									<div className="mt-10 grid grid-cols-2 items-center gap-8">
-										<Link to="/dashboard/blog-list" className="shadow-lg border rounded-lg p-8">
+										<Link to="/dashboard/blog-list" className="shadow-2xl rounded-lg p-8">
 											<h2 className="pb-5 text-3xl">Recent Blogs</h2>
 											<div
 												className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -211,7 +211,7 @@ const Dashboard = () => {
 												</table>
 											</div>
 										</Link>
-										<Link to="" className="shadow-lg border rounded-lg p-8">
+										<Link to="" className="shadow-2xl rounded-lg p-8">
 											<h2 className="pb-5 text-3xl">Recent Testimonials</h2>
 											<div
 												className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
@@ -237,7 +237,7 @@ const Dashboard = () => {
 												</table>
 											</div>
 										</Link>
-										<div className="shadow-lg border rounded-lg p-8">
+										<div className="shadow-2xl rounded-lg p-8">
 											<h2 className="pb-5 text-3xl">Recent Message</h2>
 											<div
 												className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">

@@ -19,8 +19,7 @@ const Login = () => {
             }
 			e.target.reset()
 			document.getElementById('my_modal_3').close()
-			window.location.reload()
-			navigate("/")
+			navigate("/dashboard")
 
 		}catch (e) {
 			console.log(e)

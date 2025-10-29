@@ -68,6 +68,7 @@ const Navbar = () => {
 						<Link to="/" className="text-xl text-blue-50 bg-base-500"><img className="lg:w-1/5 w-1/2  ml-3" src={logo}/></Link>
 					</div>
 					<div className="navbar-center hidden lg:flex">
+
 						<ul className="menu menu-horizontal px-1 text-lg">
 							<li><NavLink to="/">Home</NavLink></li>
 							<li><NavLink to="/blogs">Blogs</NavLink></li>
@@ -80,10 +81,12 @@ const Navbar = () => {
 							isLogin() ? (
 									<div className="flex gap-6 items-center">
 										<div className="text-end text-xs lg:text-lg">
-											<h1 className="lg:text-xl text-xs">Hi, <span
-												className="text-sky-600 font-semibold">{UserProfile?.lastName}</span>
+											<h1 className="lg:text-xl text-xs">
+                                                <small className="mr-5">{sessionStorage.getItem('role') === "admin" ? <Link to="/dashboard" className="btn btn-soft btn-info">Admin Dashboard</Link> : <Link to="/dashboard" className="btn btn-soft btn-info">Dashboard</Link>}</small>
+                                                Hi, <span
+                                                className="text-sky-600 font-semibold">{UserProfile?.lastName}</span>
 											</h1>
-											<small>{sessionStorage.getItem('role') === "admin" ? "Hello Admin" : "Welcome to the application"}</small>
+
 										</div>
 										<div style={{cursor: 'pointer'}} className="dropdown dropdown-end">
 											<div  tabIndex={0} role="button">
@@ -100,21 +103,6 @@ const Navbar = () => {
 											<ul
 												tabIndex={0}
 												className="menu dropdown-content text-md bg-base-200 rounded-box gap-1 z-1 mt-4 w-52 p-2 shadow-sm">
-
-												{
-													sessionStorage.getItem('role') === "admin" ?
-														(
-														<li ><Link to="/dashboard" className="py-3">
-														Admin Dashboard
-													</Link></li>
-													) : (
-															<li><Link to="/dashboard" className="py-3">
-																Dashboard
-															</Link></li>
-														)
-
-												}
-
 												<li>
 													<button onClick={handleLogout}
 													        className="btn btn-outline btn-error">Logout
