@@ -12,14 +12,15 @@ import {AdminMiddleware, AuthMiddleware} from "../src/app/middlewares/AuthMiddle
 import {fileUploadController} from "../src/app/controllers/FileUploadController.js";
 import upload from "../src/app/utilities/FileUploadMiddleware.js";
 import * as ProjectListController from "../src/app/controllers/ProjectListController.js";
-import {CountLike} from "../src/app/controllers/BlogListController.js";
+import {CountLike, PendingBlogList} from "../src/app/controllers/BlogListController.js";
 import {FileUploadHandlerMiddlewar} from "../src/app/middlewares/FileUploadHandlerMiddlewar.js";
 
 
 // Blog API's
 router.get('/ApprovedBlogList', BlogListController.ApprovedBlogList)
-router.get('/BlogList',AuthMiddleware, AdminMiddleware, BlogListController.BlogList)
-router.get('/BlogListByUser',AuthMiddleware, BlogListController.BlogListByUser)
+router.get('/PendingBlogList', AuthMiddleware, AdminMiddleware, BlogListController.PendingBlogList)
+router.get('/ApproveBlogListByUser',AuthMiddleware, BlogListController.ApproveBlogListByUser)
+router.get('/PendingBlogListByUser',AuthMiddleware, BlogListController.PendingBlogListByUser)
 router.post('/CreateBlog', AuthMiddleware, BlogListController.CreateBlog)
 router.post('/ApproveBlog/:BlogID', AuthMiddleware, AdminMiddleware, BlogListController.ApproveBlog)
 router.post('/AddLike/:BlogID', AuthMiddleware, BlogListController.AddLike)

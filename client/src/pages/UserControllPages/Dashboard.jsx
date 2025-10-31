@@ -10,7 +10,7 @@ import Layout from "../../layout/Layout.jsx";
 import contactMessageStore from "../../store/contactMessageStore.js";
 
 const Dashboard = () => {
-	let {BlogListRequest, BlogList,BlogListRequestByUser, BlogListByUser} = BlogStore()
+	let {ApprovedBlogList, ApprovedBlogListRequest, ApproveBlogListByUser, ApproveBlogListRequestByUser, PendingBlogList, PendingBlogListRequest, PendingBlogListByUser, PendingBlogListRequestByUser} = BlogStore()
 	let userRole = sessionStorage.getItem("role");
 	let {isLogin, UserList ,UserListRequest} = UserStore()
 	let {TestimonialList ,TestimonialListRequest, TestimonialListByUser, TestimonialListByUserRequest} = TestimonialStore()
@@ -19,12 +19,14 @@ const Dashboard = () => {
 	useEffect(() => {
 		( () => {
 			if(isLogin() && userRole === "admin"){
-				BlogListRequest();
+                ApprovedBlogListRequest();
+                PendingBlogListRequest();
 				UserListRequest();
 				TestimonialListRequest()
                 ContactMessageListRequest()
 			}else if(isLogin() && userRole === "user") {
-				BlogListRequestByUser()
+                ApproveBlogListRequestByUser()
+                PendingBlogListRequestByUser()
                 ContactMessageListRequestByUser()
                 TestimonialListByUserRequest()
 			}else {
@@ -33,9 +35,7 @@ const Dashboard = () => {
 			}
 		})();
 
-	}, [BlogListRequest, BlogListByUser, TestimonialListRequest, BlogListRequestByUser, isLogin]);
-
-	console.log(BlogListByUser)
+	}, [ApprovedBlogListRequest, PendingBlogListRequest, TestimonialListRequest, isLogin]);
 
 	return (
 		<>
@@ -57,8 +57,8 @@ const Dashboard = () => {
 										<div className="p-5 lg:w-1/4 shadow-lg border-lg rounded-lg">
 											<div
 												className="bg-green-500 text-white p-5 text-center rounded-lg font-semibold text-3xl space-y-4">
-												<h1>Blogs</h1>
-												<p>{BlogList.length}</p>
+												<h1>Approved Blogs</h1>
+												<p>{ApprovedBlogList.length}</p>
 											</div>
 										</div>
 										<div className="p-5 lg:w-1/4 shadow-lg border-lg rounded-lg">
@@ -93,7 +93,7 @@ const Dashboard = () => {
 													<tbody>
 													{/* row 1 */}
 
-													{BlogList?.slice(0, 4).map(blog => (
+													{ApprovedBlogList?.slice(0, 4).map(blog => (
 														<tr key={blog._id}>
 															<td>{blog.title}</td>
 															<td>{blog.des.slice(0, 20) || "Unknown"}</td>
@@ -164,7 +164,7 @@ const Dashboard = () => {
 											<div
 												className="bg-green-500 text-white p-5 text-center rounded-lg font-semibold text-3xl space-y-4">
 												<h1>Blogs</h1>
-												<p>{BlogListByUser.length}</p>
+												<p>{ApproveBlogListByUser.length}</p>
 											</div>
 										</div>
 										<div className="p-5 lg:w-1/4 shadow-lg border-lg rounded-lg">
@@ -199,7 +199,7 @@ const Dashboard = () => {
 													<tbody>
 													{/* row 1 */}
 
-													{BlogListByUser?.slice(0, 4).map(userBlog => (
+													{ApproveBlogListByUser?.slice(0, 4).map(userBlog => (
 														<tr key={userBlog._id}>
 															<td>{userBlog.title}</td>
 															<td>{userBlog.des.slice(0, 20) || "Unknown"}</td>

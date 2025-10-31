@@ -35,11 +35,31 @@ export const ApprovedBlogListService = async (req) => {
     }
 }
 
-export const BlogListByUserServices = async (req) => {
+
+export const PendingBlogListService = async (req) => {
+    try {
+        const MatchStage = {$match: {approved: false}};
+        const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
+        const UnwindUser = {$unwind: "$user"};
+        const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}
+        const SortStage = { $sort: { createdAt: -1 } };
+        const data = await BlogModel.aggregate([
+            MatchStage, JoinWithUserStage, UnwindUser, ProjectionStage, SortStage
+        ])
+        if (!data || data.length === 0) {
+            return { status: 'fail', message: "No approved blogs found" };
+        }
+        return {status: 'success', data: data}
+    } catch (e) {
+        return {status: 'fail', message: e.toString()}
+    }
+}
+
+export const ApproveBlogListByUserServices = async (req) => {
 	try {
 		const user_id = req.headers['user_id']
 		const userID = new ObjectID(user_id);
-		const MatchStage = {$match: {userID: userID}};
+		const MatchStage = {$match: {userID: userID, approved: true}};
 		const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
 		const UnwindUser = {$unwind: "$user"};
 		const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}
@@ -50,6 +70,23 @@ export const BlogListByUserServices = async (req) => {
 	} catch (e) {
 		return {status: 'fail', message: e.toString()}
 	}
+}
+
+export const PendingBlogListByUserServices = async (req) => {
+    try {
+        const user_id = req.headers['user_id']
+        const userID = new ObjectID(user_id);
+        const MatchStage = {$match: {userID: userID, approved: false}};
+        const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
+        const UnwindUser = {$unwind: "$user"};
+        const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}
+        const data = await BlogModel.aggregate([
+            MatchStage, JoinWithUserStage, UnwindUser, ProjectionStage
+        ])
+        return {status: 'success', data: data}
+    } catch (e) {
+        return {status: 'fail', message: e.toString()}
+    }
 }
 
 export const DeleteBlogByUserServices = async (req) => {

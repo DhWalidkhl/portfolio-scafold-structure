@@ -13,23 +13,25 @@ import axios from "axios";
 
 const BlogList = () => {
 	let {isLogin} = UserStore()
-	let {BlogListRequest, BlogList,BlogListRequestByUser, BlogListByUser} = BlogStore()
+	let {PendingBlogList, PendingBlogListRequest, ApprovedBlogList, ApprovedBlogListRequest, ApproveBlogListByUser, ApproveBlogListRequestByUser, PendingBlogListByUser, PendingBlogListRequestByUser } = BlogStore()
 	let userRole = sessionStorage.getItem("role");
 	const [loading, setLoading] = useState(false)
 
 	useEffect(() => {
 		( () => {
 			if(isLogin() && userRole === "admin"){
-				BlogListRequest();
+                PendingBlogListRequest();
+                ApprovedBlogListRequest();
 			}else if(isLogin() && userRole === "user") {
-				BlogListRequestByUser()
+                ApproveBlogListRequestByUser()
+                PendingBlogListRequestByUser()
 			}else {
 				Cookies.remove('token')
 				sessionStorage.clear()
 			}
 		})();
 
-	}, [BlogListRequest, BlogListRequestByUser, isLogin, loading]);
+	}, [PendingBlogListRequestByUser, ApprovedBlogListRequest, PendingBlogListRequest, ApproveBlogListRequestByUser, isLogin, loading]);
 
 
 	const handleDelete = async (id) => {
@@ -80,8 +82,8 @@ const BlogList = () => {
 				<div className="flex justify-between items-center my-5">
 					{
 						userRole === "admin" ? (
-							<h1 className="text-xl font-semibold">Total Blogs : {BlogList.length}</h1>) : (
-							<h1 className="text-xl font-semibold">Total Blogs : {BlogListByUser.length}</h1>)
+							<h1 className="text-xl font-semibold">Total Blogs : {PendingBlogList.length}</h1>) : (
+							<h1 className="text-xl font-semibold">Total Blogs : {PendingBlogListByUser.length}</h1>)
 					}
 
 
@@ -147,7 +149,7 @@ const BlogList = () => {
 								</thead>
 								<tbody>
 								{
-									BlogList.map((blog, index) => (
+                                    ApprovedBlogList.map((blog, index) => (
 										<tr key={blog._id}>
 											<th>
 												<label>
@@ -213,7 +215,7 @@ const BlogList = () => {
 								</thead>
 								<tbody>
 								{
-									BlogListByUser.map((userBlog, index) => (
+                                    ApproveBlogListByUser.map((userBlog, index) => (
 										<tr key={userBlog._id}>
 											<th>
 												<label>

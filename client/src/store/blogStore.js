@@ -2,13 +2,13 @@ import {create} from "zustand";
 import axios from "axios";
 
 const BlogStore = create((set)=>({
-	BlogList : [],
-	BlogListRequest : async ()=>{
-		let res = await axios.get(`/api/v1/BlogList`);
+	PendingBlogList : [],
+    PendingBlogListRequest : async ()=>{
+		let res = await axios.get(`/api/v1/PendingBlogList`);
 		if (res.data['status']=== 'success'){
-			set({BlogList : res.data['data']})
+			set({PendingBlogList : res.data['data']})
 		}else {
-			set({BlogList : []})
+			set({PendingBlogList : []})
 
 		}
 	},
@@ -26,14 +26,14 @@ const BlogStore = create((set)=>({
 
 
 
-	BlogListByUser: [],
-	BlogListRequestByUser: async ()=>{
+    ApproveBlogListByUser: [],
+	ApproveBlogListRequestByUser: async ()=>{
 		try {
-			let res = await axios.get(`/api/v1/BlogListByUser`)
+			let res = await axios.get(`/api/v1/ApproveBlogListByUser`)
 			if (res){
-				set ({BlogListByUser: res?.data?.data})
+				set ({ApproveBlogListByUser: res?.data?.data})
 			}else {
-				set ({BlogListByUser: []})
+				set ({ApproveBlogListByUser: []})
 			}
 			return res?.data?.data
 
@@ -41,6 +41,23 @@ const BlogStore = create((set)=>({
 			console.log(e)
 		}
 	},
+
+
+    PendingBlogListByUser: [],
+    PendingBlogListRequestByUser: async ()=>{
+        try {
+            let res = await axios.get(`/api/v1/PendingBlogListByUser`)
+            if (res){
+                set ({PendingBlogListByUser: res?.data?.data})
+            }else {
+                set ({PendingBlogListByUser: []})
+            }
+            return res?.data?.data
+
+        }catch (e){
+            console.log(e)
+        }
+    },
 
 
 

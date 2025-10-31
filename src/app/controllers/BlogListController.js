@@ -2,19 +2,24 @@ import * as BlogListServices from "../services/BlogListServices.js"
 import {BlogDetailsService, CreateCommentService, GetCommentsByBlogService} from "../services/BlogListServices.js";
 
 
-export const BlogList = async (req, res) => {
-	const result = await BlogListServices.BlogListServices(req)
-	return res.status(200).send(result)
-}
-
 export const ApprovedBlogList = async (req, res) => {
     const result = await BlogListServices.ApprovedBlogListService(req)
     return res.status(200).send(result)
 }
 
-export const BlogListByUser = async (req, res) => {
-	const result = await BlogListServices.BlogListByUserServices(req)
+export const PendingBlogList = async (req, res) => {
+    const result = await BlogListServices.PendingBlogListService(req)
+    return res.status(200).send(result)
+}
+
+export const ApproveBlogListByUser = async (req, res) => {
+	const result = await BlogListServices.ApproveBlogListByUserServices(req)
 	return res.status(200).send(result)
+}
+
+export const PendingBlogListByUser = async (req, res) => {
+    const result = await BlogListServices.PendingBlogListByUserServices(req)
+    return res.status(200).send(result)
 }
 
 export const BlogDetails = async (req, res) => {
