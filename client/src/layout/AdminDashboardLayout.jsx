@@ -54,7 +54,7 @@ const AdminDashboardLayout = ({children}) => {
 													</div>
 												</div>
 												<div>
-													<Link className="btn btn-soft btn-success w-full px-20">Edit</Link>
+													<Link to="/dashboard/user-details" className="btn btn-soft btn-success w-full px-20">Edit</Link>
 												</div>
 											</div>
 										</div>

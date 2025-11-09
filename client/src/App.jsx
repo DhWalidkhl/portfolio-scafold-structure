@@ -31,6 +31,7 @@ import FAQDetailsPage from "./pages/UserControllPages/FAQDetailsPage.jsx";
 import TestimonialPage from "./pages/UserControllPages/TestimonialPage.jsx";
 import ApproveBlogListPage from "./pages/UserControllPages/ApproveBlogListPage.jsx";
 import PendingBlogListPage from "./pages/UserControllPages/PendingBlogListPage.jsx";
+import UserDetails from "./pages/UserDetails.jsx";
 
 function App() {
 	let {isLogin} = UserStore()
@@ -78,6 +79,7 @@ function App() {
 											<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>} />
 											<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>} />
                                             <Route path="/dashboard/faq-list" element={<FAQPage/>} />
+											<Route path="/dashboard/user-details" element={<UserDetails/>} />
                                             <Route path="/faqdetails/:FAQId" element={<FAQDetailsPage/>}></Route>
 										</>
 									) : (
