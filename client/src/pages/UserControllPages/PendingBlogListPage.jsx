@@ -1,251 +1,185 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import UserStore from "../../store/userStore.js";
 import BlogStore from "../../store/blogStore.js";
 import Cookies from "js-cookie";
 import Layout from "../../layout/Layout.jsx";
 import Login from "../../components/Login.jsx";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IoEyeOutline } from "react-icons/io5";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import axios from "axios";
 import BlogListLayout from "../../layout/BlogListLayout.jsx";
 
 const PendingBlogListPage = () => {
-    let {isLogin} = UserStore()
-    let {PendingBlogList, PendingBlogListRequest, PendingBlogListByUser, PendingBlogListRequestByUser } = BlogStore()
-    let userRole = sessionStorage.getItem("role");
-    const [loading, setLoading] = useState(false)
+    const { isLogin } = UserStore();
+    const {
+        PendingBlogList,
+        PendingBlogListRequest,
+        PendingBlogListByUser,
+        PendingBlogListRequestByUser
+    } = BlogStore();
 
+    const userRole = sessionStorage.getItem("role");
+    const [loading, setLoading] = useState(false);
+
+    // -----------------------
+    // Fetch Data
+    // -----------------------
     useEffect(() => {
-        ( () => {
-            if(isLogin() && userRole === "admin"){
-                PendingBlogListRequest();
-            }else if(isLogin() && userRole === "user") {
-                PendingBlogListRequestByUser()
-            }else {
-                Cookies.remove('token')
-                sessionStorage.clear()
-            }
-        })();
+        if (!isLogin()) return;
 
-    }, [PendingBlogListRequestByUser, PendingBlogListRequest, isLogin, loading]);
+        if (userRole === "admin") {
+            PendingBlogListRequest();
+        } else if (userRole === "user") {
+            PendingBlogListRequestByUser();
+        } else {
+            Cookies.remove("token");
+            sessionStorage.clear();
+        }
 
-    const handleDelete = async (id) => {
+    }, [isLogin, loading]);
+
+    // -----------------------
+    // Delete Handler
+    // -----------------------
+    const handleDelete = (id) => {
         swal({
             title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            text: "You cannot recover this blog after deletion!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
         }).then(async (willDelete) => {
-            if (willDelete) {
-                try {
-                    if (userRole === 'admin'){
-                        const response = await axios.delete(`/api/v1/DeleteBlog/${id}`);
-                        if (response.data.status === 'success') {
-                            swal("Your blog has been deleted!", { icon: "success" });
-                            setLoading(prev => !prev);
-                        } else {
-                            swal("Failed to delete the blog!", { icon: "error" });
-                            console.log(response);
-                        }
-                    } else {
-                        const response = await axios.delete(`/api/v1/DeleteBlogByUser/${id}`);
-                        if (response.data.status === 'success') {
-                            swal("Your blog has been deleted!", { icon: "success" });
-                            setLoading(prev => !prev);
-                        } else {
-                            swal("Failed to delete the blog!", { icon: "error" });
-                        }
-                    }
+            if (!willDelete) return swal("Your blog is safe!");
 
-                } catch (error) {
-                    console.error(error);
-                    swal("Something went wrong!", { icon: "error" });
+            try {
+                const url =
+                    userRole === "admin"
+                        ? `/api/v1/DeleteBlog/${id}`
+                        : `/api/v1/DeleteBlogByUser/${id}`;
+
+                const response = await axios.delete(url);
+
+                if (response.data.status === "success") {
+                    swal("Blog Deleted!", { icon: "success" });
+                    setLoading(prev => !prev);
+                } else {
+                    swal("Failed to delete!", { icon: "error" });
                 }
-            } else {
-                swal("Your blog is safe!");
+            } catch (error) {
+                console.error(error);
+                swal("Something went wrong!", { icon: "error" });
             }
         });
     };
 
+    // -----------------------
+    // Approve Handler (Admin Only)
+    // -----------------------
     const handleApprove = async (id) => {
-        if (userRole === "admin"){
-            try {
-                await axios.post(`/api/v1/ApproveBlog/${id}`);
-                swal("Blog Approved Successfully", { icon: "success" });
-                setLoading(prev => !prev);
-            }catch (error) {
-                console.error(error);
-                swal("Something went wrong!", { icon: "error" });
-            }
+        if (userRole !== "admin") return;
+
+        try {
+            await axios.post(`/api/v1/ApproveBlog/${id}`);
+            swal("Blog Approved Successfully!", { icon: "success" });
+            setLoading(prev => !prev);
+        } catch (error) {
+            console.error(error);
+            swal("Something went wrong!", { icon: "error" });
         }
-    }
+    };
 
-    return (
-        isLogin() ? (
-            <BlogListLayout>
-                <div className="flex justify-between items-center my-5">
-                    {
-                        userRole === "admin" ? (
-                            <h1 className="text-xl font-semibold">Total Blogs : {PendingBlogList.length}</h1>) : (
-                            <h1 className="text-xl font-semibold">Total Blogs : {PendingBlogListByUser.length}</h1>)
-                    }
-
-                    <Link to="/dashboard/writeBlog" className="btn btn-outline btn-primary">
-                        Write a Blog
-                    </Link>
-                </div>
-                {
-                    userRole === "admin" ? (
-                        <div className="overflow-x-auto">
-                            <table className="table">
-                                {/* head */}
-                                <thead>
-                                <tr>
-                                    <th>
-                                        <label>
-                                            SL
-                                        </label>
-                                    </th>
-                                    <th>Photo</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    PendingBlogList.map((blog, index) => (
-                                        <tr key={blog._id}>
-                                            <th>
-                                                <label>
-                                                    {index + 1}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="avatar">
-                                                        <div className="mask mask-squircle h-12 w-12">
-                                                            <img
-                                                                src={blog['img']}
-                                                                alt="blog Photo"/>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p className="font-bold">{blog['title'].slice(0, 100)}</p>
-
-                                            </td>
-                                            <td>
-                                                <div
-                                                    className="mt-2 text-sm text-gray-700 leading-snug"
-                                                    dangerouslySetInnerHTML={{__html: blog.des.slice(0, 200)}}
-                                                />
-                                            </td>
-                                            <th>
-                                                <div className="flex gap-1">
-                                                    <button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
-                                                    </button>
-                                                    <button onClick={()=>handleDelete(blog._id)} className="btn btn-soft btn-error btn-xs text-md"><RiDeleteBin6Line />
-                                                    </button>
-                                                    <button onClick={()=>handleApprove(blog._id)} className="btn btn-soft btn-warning">Approve</button>
-                                                </div>
-                                            </th>
-                                        </tr>
-                                    ))
-                                }
-
-                                </tbody>
-                            </table>
-                        </div>
-                    ) : (
-                        <div className="overflow-x-auto">
-                            <table className="table">
-                                {/* head */}
-                                <thead>
-                                <tr>
-                                    <th>
-                                        <label>
-                                            SL
-                                        </label>
-                                    </th>
-                                    <th>Photo</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {
-                                    PendingBlogListByUser.map((userBlog, index) => (
-                                        <tr key={userBlog._id}>
-                                            <th>
-                                                <label>
-                                                    {index + 1}
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="avatar">
-                                                        <div className="mask mask-squircle h-12 w-12">
-                                                            <img
-                                                                src={userBlog['img']}
-                                                                alt="blog Photo"/>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p className="font-bold">{userBlog['title']}</p>
-
-                                            </td>
-                                            <td>
-                                                <p>{userBlog['des'].slice(0, 100)}</p>
-
-                                            </td>
-
-                                            <th>
-                                                <div className="flex gap-1">
-                                                    <button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
-                                                    </button>
-                                                    <button onClick={() => handleDelete(userBlog._id)}
-                                                            className="btn btn-soft btn-error btn-xs text-md">
-                                                        <RiDeleteBin6Line/>
-                                                    </button>
-                                                </div>
-                                            </th>
-                                        </tr>
-                                    ))
-                                }
-
-                                </tbody>
-                            </table>
-                        </div>
-                    )
-                }
-            </BlogListLayout>
-        ) : (
+    // -----------------------
+    // If Not Logged In
+    // -----------------------
+    if (!isLogin()) {
+        return (
             <Layout>
                 <div className="flex flex-col gap-10 items-center justify-center h-screen">
                     <h1 className="text-4xl font-bold">Please Login to Access the Page</h1>
-                    <Login></Login>
+                    <Login />
                 </div>
             </Layout>
-        )
-    )
-        ;
-};
+        );
+    }
 
+    const isAdmin = userRole === "admin";
+    const blogs = isAdmin ? PendingBlogList : PendingBlogListByUser;
+
+    return (
+        <BlogListLayout>
+            <div className="flex justify-between items-center my-5">
+                <h1 className="text-xl font-semibold">
+                    Total Blogs: {blogs.length}
+                </h1>
+
+                <Link to="/dashboard/writeBlog" className="btn btn-outline btn-primary">
+                    Write a Blog
+                </Link>
+            </div>
+
+            {/* Table Wrapper */}
+            <div className="overflow-x-auto">
+                <table className="table">
+                    <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Photo</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {blogs.map((blog, idx) => (
+                        <tr key={blog._id}>
+                            <td>{idx + 1}</td>
+
+                            <td>
+                                <div className="avatar">
+                                    <div className="mask mask-squircle h-12 w-12">
+                                        <img src={blog.img} alt="blog" />
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td className="font-bold">
+                                {blog.title.slice(0, 100)}
+                            </td>
+
+                            <td>
+                                <p className="text-sm text-gray-700 leading-snug">
+                                    {blog.des.replace(/<[^>]+>/g, "").slice(0, 200)}
+                                </p>
+                            </td>
+
+                            <td>
+                                <div className="flex gap-2">
+
+                                    <Link to={`/dashboard/editblog/${blog._id}`} className="btn btn-ghost btn-xs text-lg" ><IoEyeOutline /></Link>
+
+                                    <button onClick={() => handleDelete(blog._id)} className="btn btn-error btn-xs"><RiDeleteBin6Line /></button>
+
+                                    {/* Approve (Admin Only) */}
+                                    {isAdmin && (
+                                        <button
+                                            onClick={() => handleApprove(blog._id)}
+                                            className="btn btn-warning btn-xs"
+                                        >
+                                            Approve
+                                        </button>
+                                    )}
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+        </BlogListLayout>
+    );
+};
 
 export default PendingBlogListPage;

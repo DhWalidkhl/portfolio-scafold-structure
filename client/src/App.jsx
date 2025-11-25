@@ -32,6 +32,7 @@ import TestimonialPage from "./pages/UserControllPages/TestimonialPage.jsx";
 import ApproveBlogListPage from "./pages/UserControllPages/ApproveBlogListPage.jsx";
 import PendingBlogListPage from "./pages/UserControllPages/PendingBlogListPage.jsx";
 import UserDetails from "./pages/UserDetails.jsx";
+import EditBlogPage from "./pages/UserControllPages/EditBlogPage.jsx";
 
 function App() {
 	let {isLogin} = UserStore()
@@ -75,6 +76,7 @@ function App() {
 											<Route path="/dashboard/user-list" element={<UsersList/>} />
 											<Route path="/dashboard/approveblog-list" element={<ApproveBlogListPage/>} />
                                             <Route path="/dashboard/pendingblog-list" element={<PendingBlogListPage/>} />
+                                            <Route path="/dashboard/editblog/:BlogID" element={<EditBlogPage/>} />
                                             <Route path="/dashboard/testimonial-list" element={<TestimonialPage/>} />
 											<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>} />
 											<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>} />
