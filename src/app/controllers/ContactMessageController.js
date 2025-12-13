@@ -22,3 +22,8 @@ export const MassegeListByUser = async (req, res) =>{
 	const result = await ContactMessageServices.MassegeListByUserService(req)
 	return res.status(200).send(result)
 }
+
+export const MassegeDetails = async (req, res) =>{
+	const result = await ContactMessageServices.massegeDetails(req)
+	return res.status(200).send(result)
+}

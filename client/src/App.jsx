@@ -32,6 +32,8 @@ import TestimonialPage from "./pages/UserControllPages/TestimonialPage.jsx";
 import ApproveBlogListPage from "./pages/UserControllPages/ApproveBlogListPage.jsx";
 import PendingBlogListPage from "./pages/UserControllPages/PendingBlogListPage.jsx";
 import UserDetails from "./pages/UserDetails.jsx";
+import ViewBlogPage from "./pages/UserControllPages/ViewBlogPage.jsx";
+import MsgDetailsPage from "./pages/UserControllPages/MsgDetailsPage.jsx";
 
 function App() {
 	let {isLogin} = UserStore()
@@ -77,7 +79,9 @@ function App() {
                                             <Route path="/dashboard/pendingblog-list" element={<PendingBlogListPage/>} />
                                             <Route path="/dashboard/testimonial-list" element={<TestimonialPage/>} />
 											<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>} />
+											<Route path="/dashboard/viewBlog/:BlogID" element={<ViewBlogPage/>} />
 											<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>} />
+											<Route path="/dashboard/singleMsg/:msgID" element={<MsgDetailsPage/>} />
                                             <Route path="/dashboard/faq-list" element={<FAQPage/>} />
 											<Route path="/dashboard/user-details" element={<UserDetails/>} />
                                             <Route path="/faqdetails/:FAQId" element={<FAQDetailsPage/>}></Route>

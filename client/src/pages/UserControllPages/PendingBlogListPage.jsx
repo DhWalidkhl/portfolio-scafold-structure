@@ -151,8 +151,13 @@ const PendingBlogListPage = () => {
                                             </td>
                                             <th>
                                                 <div className="flex gap-1">
-                                                    <button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
-                                                    </button>
+                                                    <Link
+                                                        to={`/dashboard/viewBlog/${blog?._id}`}
+                                                        className="btn btn-ghost btn-xs text-lg"
+                                                        title="View Blog"
+                                                    >
+                                                        <IoEyeOutline />
+                                                    </Link>
                                                     <button onClick={()=>handleDelete(blog._id)} className="btn btn-soft btn-error btn-xs text-md"><RiDeleteBin6Line />
                                                     </button>
                                                     <button onClick={()=>handleApprove(blog._id)} className="btn btn-soft btn-warning">Approve</button>
@@ -217,8 +222,13 @@ const PendingBlogListPage = () => {
 
                                             <th>
                                                 <div className="flex gap-1">
-                                                    <button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
-                                                    </button>
+                                                    <Link
+                                                        to={`/dashboard/viewBlog/${userBlog?._id}`}
+                                                        className="btn btn-ghost btn-xs text-lg"
+                                                        title="View Blog"
+                                                    >
+                                                        <IoEyeOutline />
+                                                    </Link>
                                                     <button onClick={() => handleDelete(userBlog._id)}
                                                             className="btn btn-soft btn-error btn-xs text-md">
                                                         <RiDeleteBin6Line/>
