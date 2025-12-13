@@ -145,13 +145,8 @@ const ApproveBlogListPage = () => {
                                             </td>
                                             <th>
                                                 <div className="flex gap-1">
-                                                    <Link
-                                                        to={`/dashboard/viewBlog/${blog?._id}`}
-                                                        className="btn btn-ghost btn-xs text-lg"
-                                                        title="View Blog"
-                                                    >
-                                                        <IoEyeOutline />
-                                                    </Link>
+                                                    <button className="btn btn-ghost btn-xs text-lg"><IoEyeOutline/>
+                                                    </button>
                                                     <button onClick={()=>handleDelete(blog._id)} className="btn btn-soft btn-error btn-xs text-md"><RiDeleteBin6Line />
                                                     </button>
                                                 </div>
