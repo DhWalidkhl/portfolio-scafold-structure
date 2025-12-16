@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import SectionHeading from "./SectionHeading.jsx";
 import {Link} from "react-router-dom";
 import {projectList} from "../APIRequest/APIRequest.js";
 import Skeleton from "react-loading-skeleton";
