@@ -6,6 +6,7 @@ import UserStore from "../../store/userStore.js";
 import Login from "../../components/Login.jsx";
 import Layout from "../../layout/Layout.jsx";
 import Cookies from "js-cookie";
+import {Link} from "react-router-dom";
 
 const ContactMassegePage = () => {
     let {isLogin} = UserStore()
@@ -67,7 +68,7 @@ const ContactMassegePage = () => {
                                                 {message?.msg}
                                             </div>
                                             <div className="text-center w-24 px-2 py-3 sm:p-3 sm:block text-gray-400">
-                                                <p>View</p>
+                                                <Link to={`/dashboard/singleMsg/${message?._id}`}>View</Link>
                                             </div>
                                         </div>
                                     ))

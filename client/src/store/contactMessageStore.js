@@ -14,6 +14,26 @@ const ContactMessageStore = create((set)=>({
         }
     },
 
+
+    SingleMsg: null,
+
+    MessageDetailsRequest: async (msgID) => {
+        try {
+            const res = await axios.get(`/api/v1/message-details/${msgID}`);
+            if (res.data.status === 'success') {
+                set({ SingleMsg: res?.data?.data });
+                return res?.data?.data;
+            } else {
+                set({ SingleMsg: null });
+                return null;
+            }
+        } catch (error) {
+            console.error("FetchBlogDetails error:", error);
+            set({ SingleMsg: null });
+            return null;
+        }
+    },
+
     ContactMessageListByUser: [],
     ContactMessageListRequestByUser: async ()=>{
         try {

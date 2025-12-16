@@ -1,6 +1,7 @@
 import ContactMessageModel from "../models/ContactMessageModel.js";
 import mongoose from "mongoose";
 import EmailSend from "../utilities/EmailUtility.js";
+import BlogModel from "../models/BlogModel.js";
 
 const ObjectID = mongoose.Types.ObjectId;
 
@@ -77,6 +78,48 @@ export const ReplyMessageService = async (req)=>{
         return {status: 'success', message: `Your reply sent to your ${replyEmail} email address`}
 
     } catch (e) {
+        return {status: 'fail', message: e.toString()}
+    }
+}
+
+
+export const massegeDetails = async (req)=>{
+    try{
+        const {msgID} = req.params;
+        const msgObjectID = new mongoose.Types.ObjectId(msgID)
+        if(!msgObjectID || !msgID){
+            return { status: 'fail', message: 'Invalid or missing Message ID' };
+        }
+        const data = await ContactMessageModel.aggregate([
+            { $match: { _id: msgObjectID } },
+            {
+                $lookup: {
+                    from: "users",
+                    localField: "userID",
+                    foreignField: "_id",
+                    as: "user"
+                }
+            },
+            { $unwind: {path: "$msg", preserveNullAndEmptyArrays: true} },
+            {
+                $project: {
+                    "user.password": 0,
+                    "user.otp": 0,
+                    "user.role": 0,
+                    "user.imagePublicId": 0,
+                    "user.createdAt": 0,
+                    "user.updatedAt": 0,
+                    "userID": 0,
+                }
+            }
+        ]);
+
+        if (!data || data.length === 0) {
+            return { status: 'fail', message: 'No blog found with this ID' };
+        }
+
+        return { status: 'success', data: data[0] };
+    }catch (e) {
         return {status: 'fail', message: e.toString()}
     }
 }
