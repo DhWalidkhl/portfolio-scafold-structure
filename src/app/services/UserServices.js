@@ -135,7 +135,7 @@ export const UpdateUserProfileServices = async (req) =>{
 		if(email){
 			return {status: "fail", message: "Email Cannot be Changed"}
 		}
-		let updatedData = {img: img, firstName: firstName, lastName: lastName, password: password, mobile: mobile}
+		let updatedData = {img: img, firstName: firstName, lastName: lastName, mobile: mobile}
 		if(password){
 			const salt = await bcrypt.genSalt(10);
 			let hashedPassword = await bcrypt.hash(password, salt);
