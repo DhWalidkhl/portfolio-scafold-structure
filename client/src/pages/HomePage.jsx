@@ -11,6 +11,7 @@ import BlogSection from "../components/BlogSection.jsx";
 import HeroSection from "../components/HeroSection.jsx";
 import FAQSection from "../components/FAQSection.jsx";
 import Projects from "../components/Projects.jsx";
+import ProjectSection from "../components/ProjectSection.jsx";
 
 const HomePage = () => {
 	let {isLogin} = UserStore()
@@ -20,10 +21,7 @@ const HomePage = () => {
 			<WhatIdoSection></WhatIdoSection>
 			<SkillProficiencySection></SkillProficiencySection>
 			<img className="w-full" src={middleBanner}/>
-            <div className="container mx-auto px-6">
-                <h1 className="text-sky-700 text-center font-semibold text-5xl py-20">My Projects</h1>
-                <Projects></Projects>
-            </div>
+			<ProjectSection></ProjectSection>
 			<FAQSection></FAQSection>
             <BlogSection></BlogSection>
 			<TestimonialSection></TestimonialSection>

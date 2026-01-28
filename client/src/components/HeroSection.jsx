@@ -12,7 +12,6 @@ const HeroSection = () => {
 			<div style={{backgroundImage: `url(${bgImg})`}} className="pt-15 bg-cover bg-center">
 				<div
 					className="flex container px-5 mx-auto flex-col lg:flex-row gap-16 items-center justify-center min-h-screen">
-
 					<img
 						alt="Owner image"
 						src={OwnerImg}
