@@ -13,8 +13,6 @@ import React, {useEffect, useState} from "react";
 import PreLoadingSpinner from "./components/PreLoaderSpinner/PreLoadingSpinner.jsx";
 import TermsAndConditionPage from "./pages/TermsAndConditionPage.jsx";
 import UsersList from "./pages/UsersList.jsx";
-import AdminDashboardLayout from "./layout/AdminDashboardLayout.jsx";
-import BlogList from "./pages/UserControllPages/BlogList.jsx";
 import OtpPage from "./pages/OtpPage.jsx";
 import ContactMassegePage from "./pages/UserControllPages/ContactMassegePage.jsx";
 
@@ -35,6 +33,7 @@ import UserDetails from "./pages/UserDetails.jsx";
 import EditBlogPage from "./pages/UserControllPages/EditBlogPage.jsx";
 import MsgDetailsPage from "./pages/UserControllPages/MsgDetailsPage.jsx";
 import TnTCreatePage from "./pages/UserControllPages/TnTCreatePage.jsx";
+import TnTListPage from "./pages/UserControllPages/TnTListPage.jsx";
 
 function App() {
 	let {isLogin} = UserStore()
@@ -81,7 +80,8 @@ function App() {
                                             <Route path="/dashboard/editblog/:BlogID" element={<EditBlogPage/>} />
                                             <Route path="/dashboard/testimonial-list" element={<TestimonialPage/>} />
 											<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>} />
-											<Route path="/dashboard/creatTnT" element={<TnTCreatePage/>} />
+											<Route path="/dashboard/TnTList" element={<TnTListPage/>} />
+                                            <Route path="/dashboard/createTnT" element={<TnTCreatePage/>} />
 											<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>} />
                                             <Route path="/dashboard/singleMsg/:msgID" element={<MsgDetailsPage/>} />
                                             <Route path="/dashboard/faq-list" element={<FAQPage/>} />
@@ -99,8 +99,6 @@ function App() {
 										}/>
 									)
 								}
-
-
 							</Routes>
 						</BrowserRouter>
 					)
