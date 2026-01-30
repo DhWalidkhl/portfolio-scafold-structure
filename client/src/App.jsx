@@ -34,6 +34,7 @@ import PendingBlogListPage from "./pages/UserControllPages/PendingBlogListPage.j
 import UserDetails from "./pages/UserDetails.jsx";
 import EditBlogPage from "./pages/UserControllPages/EditBlogPage.jsx";
 import MsgDetailsPage from "./pages/UserControllPages/MsgDetailsPage.jsx";
+import TnTCreatePage from "./pages/UserControllPages/TnTCreatePage.jsx";
 
 function App() {
 	let {isLogin} = UserStore()
@@ -80,6 +81,7 @@ function App() {
                                             <Route path="/dashboard/editblog/:BlogID" element={<EditBlogPage/>} />
                                             <Route path="/dashboard/testimonial-list" element={<TestimonialPage/>} />
 											<Route path="/dashboard/writeBlog" element={<WriteBlogPage/>} />
+											<Route path="/dashboard/creatTnT" element={<TnTCreatePage/>} />
 											<Route path="/dashboard/contact-message-list" element={<ContactMassegePage/>} />
                                             <Route path="/dashboard/singleMsg/:msgID" element={<MsgDetailsPage/>} />
                                             <Route path="/dashboard/faq-list" element={<FAQPage/>} />
