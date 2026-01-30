@@ -6,6 +6,7 @@ import * as UserController from "../src/app/controllers/UserController.js"
 import * as ContactMessageController from "../src/app/controllers/ContactMessageController.js"
 import * as EducationListController from "../src/app/controllers/EducationListController.js"
 import * as CourseListController from "../src/app/controllers/CourseListController.js"
+import * as TnTController from "../src/app/controllers/TnTController.js"
 import * as TestimonialsController from "../src/app/controllers/TestimonialsController.js"
 import * as FAQController from "../src/app/controllers/FAQListControler.js"
 import {AdminMiddleware, AuthMiddleware} from "../src/app/middlewares/AuthMiddleware.js";
@@ -14,6 +15,7 @@ import upload from "../src/app/utilities/FileUploadMiddleware.js";
 import * as ProjectListController from "../src/app/controllers/ProjectListController.js";
 import {CountLike, PendingBlogList} from "../src/app/controllers/BlogListController.js";
 import {FileUploadHandlerMiddlewar} from "../src/app/middlewares/FileUploadHandlerMiddlewar.js";
+import {CreateTnT, DeleteTnT, UpdateTnT} from "../src/app/controllers/TnTController.js";
 
 
 // Blog API's
@@ -43,6 +45,13 @@ router.get('/CourseList', CourseListController.CourseList)
 router.post('/CreateCourse', AuthMiddleware, AdminMiddleware, CourseListController.CreateCourse)
 router.post('/UpdateCourse/:CourseID', AuthMiddleware, AdminMiddleware, CourseListController.UpdateCourse)
 router.delete('/DeleteCourse/:CourseID', AuthMiddleware, AdminMiddleware, CourseListController.DeleteCourse)
+
+
+// Terms & Condition API's
+router.get('/TnTList', TnTController.TnTList)
+router.post('/CreateTnT', AuthMiddleware, AdminMiddleware, TnTController.CreateTnT)
+router.post('/UpdateTnT/:TnTID', AuthMiddleware, AdminMiddleware, TnTController.UpdateTnT)
+router.delete('/DeleteTnT/:TnTID', AuthMiddleware, AdminMiddleware, TnTController.DeleteTnT)
 
 // Skill API's
 router.get('/SkillList', SkillListController.SkillList)
