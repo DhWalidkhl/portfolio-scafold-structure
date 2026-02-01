@@ -12,14 +12,14 @@ const PortfolioLayout = ({children}) => {
 				</div>
 				<div className="px-10 pb-10 text-center">
 					<ul className="menu lg:gap-20 menu-horizontal text-lg lg:text-xl bg-base-200 rounded-box">
+						<li><NavLink to="/portfolio/projects">Projects</NavLink></li>
 						<li><NavLink to="/portfolio/education">Education</NavLink></li>
 						<li><NavLink to="/portfolio/courses">Courses</NavLink></li>
-						<li><NavLink to="/portfolio/projects">Projects</NavLink></li>
 					</ul>
 				</div>
 
 				<div className="px-16 container mx-auto">
-					<div className="pb-16">
+				<div className="pb-16">
 						{children}
 					</div>
 				</div>

@@ -64,9 +64,9 @@ function App() {
 								<Route path="/blogs/:BlogID" element={<BlogDetailPage/>}></Route>
 								<Route path="/contact" element={<ContactPage/>}></Route>
 								<Route path="/portfolio" element={<PortfolioLayout/>}></Route>
+								<Route path="/portfolio/projects" element={<ProjectsPage/>}></Route>
 								<Route path="/portfolio/education" element={<EducationPage/>}></Route>
 								<Route path="/portfolio/courses" element={<CourseDetailsPage/>}></Route>
-								<Route path="/portfolio/projects" element={<ProjectsPage/>}></Route>
 								<Route path="/portfolio/projects/:ProjectID" element={<ProjectDetailPage/>}></Route>
 								<Route path="/terms" element={<TermsAndConditionPage/>}></Route>
 

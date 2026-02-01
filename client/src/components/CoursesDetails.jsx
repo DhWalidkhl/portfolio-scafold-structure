@@ -18,7 +18,7 @@ const CoursesDetails = () => {
 
 					{
 						courses === null ?
-							<div className="px-50">
+							<div className="py-10 px-2 ">
 								<CourseDetailsSkeleton/>
 								<CourseDetailsSkeleton/>
 								<CourseDetailsSkeleton/>
