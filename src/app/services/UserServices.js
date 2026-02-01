@@ -178,3 +178,74 @@ export const DeleteUserServices = async (req) =>{
 		return {status: 'fail', message: e.toString()}
 	}
 }
+
+
+
+
+export const ForgetPasswordService = async (req) => {
+    try {
+        const { email } = req.body;
+
+        const findUser = await UserModel.findOne({ email });
+        if (!findUser) {
+            return { status: "fail", message: "User not found with this email" };
+        }
+
+        const code = Math.floor(100000 + Math.random() * 900000);
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedOTP = await bcrypt.hash(code.toString(), salt);
+
+        await UserModel.updateOne({ email }, { $set: { otp: hashedOTP, verified: "no" } });
+
+        const emailText = `Your password reset code is: ${code}`;
+        const emailSubject = "Password Reset Request";
+        const sentMail = await EmailSend(email, emailText, emailSubject);
+
+        if (!sentMail?.accepted?.includes(email)) {
+            return { status: "fail", message: "Failed to send OTP. Please try again." };
+        }
+
+        return {
+            status: "success",
+            message: `A 6-digit OTP has been sent to ${email}. Please check your inbox.`,
+        };
+    } catch (e) {
+        return { status: "fail", message: e.toString() };
+    }
+};
+
+
+export const ResetPasswordService = async (req) => {
+    try {
+        const { email, otp, newPassword } = req.body;
+
+        const findUser = await UserModel.findOne({ email });
+        if (!findUser) {
+            return { status: "fail", message: "User not found" };
+        }
+
+        const isValidOTP = await bcrypt.compare(otp, findUser.otp);
+        if (!isValidOTP) {
+            return { status: "fail", message: "Invalid OTP" };
+        }
+
+        const passwordCheckRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        if (!passwordCheckRegex.test(newPassword)) {
+            return {
+                status: "fail",
+                message:
+                    "Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.",
+            };
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        await UserModel.updateOne({ email }, { $set: { password: hashedPassword, otp: "0", verified: "yes" } });
+
+        return { status: "success", message: "Password has been reset successfully." };
+    } catch (e) {
+        return { status: "fail", message: e.toString() };
+    }
+};

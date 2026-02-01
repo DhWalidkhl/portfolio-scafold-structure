@@ -34,6 +34,7 @@ import EditBlogPage from "./pages/UserControllPages/EditBlogPage.jsx";
 import MsgDetailsPage from "./pages/UserControllPages/MsgDetailsPage.jsx";
 import TnTCreatePage from "./pages/UserControllPages/TnTCreatePage.jsx";
 import TnTListPage from "./pages/UserControllPages/TnTListPage.jsx";
+import ForgetPass from "./pages/ForgetPass.jsx";
 
 function App() {
 	let {isLogin} = UserStore()
@@ -60,6 +61,7 @@ function App() {
 								<Route path="/" element={<HomePage/>}></Route>
 								<Route path="/signup" element={<SignUpPage/>}></Route>
 								<Route path="/otp" element={<OtpPage/>}></Route>
+                                <Route path="/forget-pass" element={<ForgetPass/>}></Route>
 								<Route path="/blogs" element={<BlogPage/>}></Route>
 								<Route path="/blogs/:BlogID" element={<BlogDetailPage/>}></Route>
 								<Route path="/contact" element={<ContactPage/>}></Route>

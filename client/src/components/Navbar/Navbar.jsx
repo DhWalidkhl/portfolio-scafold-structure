@@ -5,6 +5,10 @@ import './Navbar.css'
 import UserStore from "../../store/userStore.js";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg"
+import { BsFillTelephoneForwardFill } from "react-icons/bs";
+import { MdEmail } from "react-icons/md";
+import { FaGithub, FaLinkedinIn, FaTwitter, FaFacebookSquare, FaYoutube } from "react-icons/fa";
+
 
 const Navbar = () => {
 	const navigate = useNavigate();
@@ -48,53 +52,84 @@ const Navbar = () => {
 		<div ref={navRef}
 			 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${scrolled ? 'bg-base-100 backdrop-blur-lg shadow-lg border-base-300 translate-y-0' : 'bg-transparent -translate-y-1'}`}>
 			<div
-				className={`px-6 flex overflow-hidden transition-all duration-300 ease-in-out ${scrolled ? 'opacity-0 -translate-y-4 scale-95 max-h-0' : 'opacity-100 translate-y-0 scale-100 max-h-40'}`}>
-				<div className="flex justify-between items-center gap-6 text-sm font-medium">
-					<a
-						href="tel:+1234567890"
-						className="flex items-center gap-2 text-sky-500 hover:text-indigo-500 transition-colors"
-					>
-						📞 <span>+1 234 567 890</span>
-					</a>
+				className={`px-6 flex justify-between overflow-hidden bg-cyan-800  transition-all duration-300 ease-in-out ${scrolled ? 'opacity-0 -translate-y-4 scale-95 max-h-0' : 'opacity-100 translate-y-0 scale-100 max-h-40'}`}>
+                <div className="w-full">
+                    <div className="container mx-auto px-4">
+                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-2 text-sm lg:font-medium text-white">
+                            <div className="flex items-center gap-6">
+                                <a
+                                    href="tel:+8801700950650"
+                                    className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:text-black transition-all"
+                                >
+                                    <span className="text-base"><BsFillTelephoneForwardFill /></span>
+                                    <span className="hidden sm:inline">+8801700950650</span>
+                                </a>
 
-					<a
-						href="mailto:hello@example.com"
-						className="flex items-center gap-2 text-sky-500 hover:text-indigo-500 transition-colors"
-					>
-						✉️ <span>hello@example.com</span>
-					</a>
+                                <a
+                                    href="mailto:sm.walid69@yahoo.com"
+                                    className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:text-black transition-all"
+                                >
+                                    <span className="text-base"><MdEmail /></span>
+                                    <span className="hidden sm:inline">sm.walid69@yahoo.com</span>
+                                </a>
+                            </div>
 
-					<div className="flex items-center gap-3">
-						<a
-							href="https://github.com/yourusername"
-							target="_blank"
-							rel="noreferrer"
-							className="hover:scale-110 transition-transform"
-						>
-							<span className="text-sky-500 hover:text-indigo-500">🐙</span>
-						</a>
+                            <div className="flex items-center gap-4">
+                                <a
+                                    href="https://github.com/yourusername"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="GitHub"
+                                    className=" hover:text-black transition-colors duration-200"
+                                >
+                                    <FaGithub className="text-lg hover:scale-110 transition-transform" />
+                                </a>
 
-						<a
-							href="https://linkedin.com/in/yourusername"
-							target="_blank"
-							rel="noreferrer"
-							className="hover:scale-110 transition-transform"
-						>
-							<span className="text-sky-500 hover:text-indigo-500">💼</span>
-						</a>
+                                <a
+                                    href="https://linkedin.com/in/yourusername"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="LinkedIn"
+                                    className="hover:text-black transition-colors duration-200"
+                                >
+                                    <FaLinkedinIn className="text-lg hover:scale-110 transition-transform" />
+                                </a>
 
-						<a
-							href="https://twitter.com/yourusername"
-							target="_blank"
-							rel="noreferrer"
-							className="hover:scale-110 transition-transform"
-						>
-							<span className="text-sky-500 hover:text-indigo-500">🐦</span>
-						</a>
-					</div>
-				</div>
+                                <a
+                                    href="https://twitter.com/yourusername"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Twitter"
+                                    className="hover:text-black transition-colors duration-200"
+                                >
+                                    <FaTwitter className="text-lg hover:scale-110 transition-transform" />
+                                </a>
+                                <a
+                                    href="https://twitter.com/yourusername"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Twitter"
+                                    className="hover:text-black transition-colors duration-200"
+                                >
+                                    <FaFacebookSquare className="text-lg hover:scale-110 transition-transform" />
+                                </a>
+                                <a
+                                    href="https://twitter.com/yourusername"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label="Twitter"
+                                    className="hover:text-black transition-colors duration-200"
+                                >
+                                    <FaYoutube className="text-lg hover:scale-110 transition-transform" />
+                                </a>
+                            </div>
 
-			</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
 
 			<div>
 				<div className={`navbar container mx-auto transition-all duration-300`}>

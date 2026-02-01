@@ -83,6 +83,8 @@ router.delete('/DeleteTestimonial/:TestimonialID', AuthMiddleware, TestimonialsC
 // User's Route
 router.post('/UserRegister', UserController.UserRegister)
 router.post('/UserLogin', UserController.UserLogin)
+router.post('/ForgetPassword', UserController.ForgetPassword)
+router.post('/ResetPassword', UserController.ResetPassword)
 router.get('/VerifyOTP/:email/:otp', UserController.VerifyOTP)
 router.get('/UserLogout',AuthMiddleware, UserController.UserLogout)
 router.get('/UserList', AuthMiddleware, AdminMiddleware, UserController.UserList)

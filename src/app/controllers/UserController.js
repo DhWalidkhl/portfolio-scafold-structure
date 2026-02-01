@@ -68,3 +68,13 @@ export const DeleteUser = async (req, res) =>{
 	return res.status(200).send(result)
 }
 
+export const ForgetPassword = async (req, res) =>{
+    const result = await UserServices.ForgetPasswordService(req)
+    return res.status(200).send(result)
+}
+
+export const ResetPassword = async (req, res) =>{
+    const result = await UserServices.ResetPasswordService(req)
+    return res.status(200).send(result)
+}
+

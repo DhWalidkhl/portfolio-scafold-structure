@@ -57,7 +57,7 @@ const Login = () => {
 									}} type="password" id="password" placeholder="Password"
 									       className="w-full px-4 py-3 rounded-md border-gray-700 bg-gray-200 text-gray-900 focus:border-violet-400"/>
 									<div className="flex justify-end text-xs text-gray-400">
-										<a rel="noopener noreferrer" href="#">Forgot Password?</a>
+										<Link rel="noopener noreferrer" to="/forget-pass">Forgot Password?</Link>
 										
 									</div>
 								</div>
