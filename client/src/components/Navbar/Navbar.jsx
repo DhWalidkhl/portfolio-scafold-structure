@@ -45,9 +45,59 @@ const Navbar = () => {
 	}
 
 	return (
-		<div ref={navRef} className={`fixed px-6 top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-base-100 shadow-md' : ''}`}>
+		<div ref={navRef}
+			 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${scrolled ? 'bg-base-100 backdrop-blur-lg shadow-lg border-base-300 translate-y-0' : 'bg-transparent -translate-y-1'}`}>
+			<div
+				className={`px-6 flex overflow-hidden transition-all duration-300 ease-in-out ${scrolled ? 'opacity-0 -translate-y-4 scale-95 max-h-0' : 'opacity-100 translate-y-0 scale-100 max-h-40'}`}>
+				<div className="flex justify-between items-center gap-6 text-sm font-medium">
+					<a
+						href="tel:+1234567890"
+						className="flex items-center gap-2 text-sky-500 hover:text-indigo-500 transition-colors"
+					>
+						📞 <span>+1 234 567 890</span>
+					</a>
+
+					<a
+						href="mailto:hello@example.com"
+						className="flex items-center gap-2 text-sky-500 hover:text-indigo-500 transition-colors"
+					>
+						✉️ <span>hello@example.com</span>
+					</a>
+
+					<div className="flex items-center gap-3">
+						<a
+							href="https://github.com/yourusername"
+							target="_blank"
+							rel="noreferrer"
+							className="hover:scale-110 transition-transform"
+						>
+							<span className="text-sky-500 hover:text-indigo-500">🐙</span>
+						</a>
+
+						<a
+							href="https://linkedin.com/in/yourusername"
+							target="_blank"
+							rel="noreferrer"
+							className="hover:scale-110 transition-transform"
+						>
+							<span className="text-sky-500 hover:text-indigo-500">💼</span>
+						</a>
+
+						<a
+							href="https://twitter.com/yourusername"
+							target="_blank"
+							rel="noreferrer"
+							className="hover:scale-110 transition-transform"
+						>
+							<span className="text-sky-500 hover:text-indigo-500">🐦</span>
+						</a>
+					</div>
+				</div>
+
+			</div>
+
 			<div>
-				<div className="navbar container mx-auto">
+				<div className={`navbar container mx-auto transition-all duration-300`}>
 					<div className="navbar-start">
 						<div className="dropdown">
 							<div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -65,7 +115,11 @@ const Navbar = () => {
 								<li><NavLink to="/contact">Contact</NavLink></li>
 							</ul>
 						</div>
-						<Link to="/" className="text-xl text-blue-50 bg-base-500"><img className="lg:w-1/5 w-1/2  ml-3" src={logo}/></Link>
+						<Link to="/" className="text-xl text-blue-50 bg-base-500">
+							<img className={`ml-3 transition-all duration-300 ${scrolled ? 'w-24' : 'w-32'}`}
+								 src={logo}
+								 alt="Logo"
+						/></Link>
 					</div>
 					<div className="navbar-center hidden lg:flex">
 
@@ -79,51 +133,54 @@ const Navbar = () => {
 					<div className="navbar-end">
 						{
 							isLogin() ? (
-									<div className="flex gap-6 items-center">
-										<div className="text-end text-xs lg:text-lg">
-											<h1 className="lg:text-xl text-xs">
-                                                <small className="mr-5">{sessionStorage.getItem('role') === "admin" ? <Link to="/dashboard" className="btn btn-soft btn-info">Admin Dashboard</Link> : <Link to="/dashboard" className="btn btn-soft btn-info">Dashboard</Link>}</small>
-                                                Hi, <span
-                                                className="text-sky-600 font-semibold">{UserProfile?.lastName}</span>
-											</h1>
+								<div className="flex gap-6 items-center">
+									<div className="text-end text-xs lg:text-lg">
+										<h1 className="lg:text-xl text-xs">
+											<small className="mr-5">{sessionStorage.getItem('role') === "admin" ?
+												<Link to="/dashboard" className="btn btn-soft btn-info">Admin
+													Dashboard</Link> : <Link to="/dashboard"
+																			 className="btn btn-soft btn-info">Dashboard</Link>}</small>
+											Hi, <span
+											className="text-sky-600 font-semibold">{UserProfile?.lastName}</span>
+										</h1>
 
-										</div>
-										<div style={{cursor: 'pointer'}} className="dropdown dropdown-end">
-											<div  tabIndex={0} role="button">
-												<div className="avatar">
-													<div
-														className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
-														{
-															UserProfile.length === 0 ? <>{UserLogoutRequest}</> :
-																<img src={UserProfile['img']}/>
-														}
-													</div>
+									</div>
+									<div style={{cursor: 'pointer'}} className="dropdown dropdown-end">
+										<div tabIndex={0} role="button">
+											<div className="avatar">
+												<div
+													className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
+													{
+														UserProfile.length === 0 ? <>{UserLogoutRequest}</> : !UserProfile?.img
+															? null : <img src={UserProfile['img']}/>
+													}
 												</div>
 											</div>
-											<ul
-												tabIndex={0}
-												className="menu dropdown-content text-md bg-base-200 rounded-box gap-1 z-1 mt-4 w-52 p-2 shadow-sm">
-												<li>
-													<button onClick={handleLogout}
-													        className="btn btn-outline btn-error">Logout
-													</button>
-												</li>
-											</ul>
 										</div>
+										<ul
+											tabIndex={0}
+											className="menu dropdown-content text-md bg-base-200 rounded-box gap-1 z-1 mt-4 w-52 p-2 shadow-sm">
+											<li>
+												<button onClick={handleLogout}
+														className="btn btn-outline btn-error">Logout
+												</button>
+											</li>
+										</ul>
 									</div>
+								</div>
 							) : (
 								<div className="flex gap-3 items-center">
 									<Login/>
 								</div>
 
 							)
-				}
+						}
+					</div>
+				</div>
 			</div>
 		</div>
-</div>
-</div>
-)
-	;
+	)
+		;
 };
 
 export default Navbar;
