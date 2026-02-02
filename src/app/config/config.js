@@ -23,16 +23,17 @@ export const CSP_CONFIG = {
                 "https://res.cloudinary.com",
                 "https://assets9.lottiefiles.com",
                 "https://lottie.host",
-                "https://lottiefiles.com/",
+                "https://lottiefiles.com",
                 "https://images.pexels.com",
                 "data:"
             ],
 
             scriptSrc: [
                 "'self'",
+                "'unsafe-inline'",
+                "'unsafe-eval'", // 🔑 REQUIRED for Vite
                 "https://unpkg.com",
-                "https://cdnjs.cloudflare.com",
-                "'unsafe-inline'"
+                "https://cdnjs.cloudflare.com"
             ],
 
             styleSrc: [
@@ -51,22 +52,26 @@ export const CSP_CONFIG = {
                 "'self'",
                 "https://assets9.lottiefiles.com",
                 "https://unpkg.com",
-                "https://lottie.host"
+                "https://lottie.host",
+                "https://res.cloudinary.com",
+                "https://your-api-domain.com", // 🔑 ADD THIS
+                "https://portfolio-scafold-structure.vercel.app"
             ],
-
-            objectSrc: ["'none'"],
 
             mediaSrc: [
                 "'self'",
                 "https://assets9.lottiefiles.com",
                 "https://lottie.host"
             ],
+
+            objectSrc: ["'none'"],
             frameAncestors: ["'none'"],
 
             upgradeInsecureRequests: []
         }
     }
-}
+};
+
 
 
 
