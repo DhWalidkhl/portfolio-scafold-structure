@@ -50,7 +50,7 @@ const Navbar = () => {
 
 	return (
 		<div ref={navRef}
-			 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${scrolled ? 'bg-base-100 backdrop-blur-lg shadow-lg border-base-300 translate-y-0' : 'bg-transparent -translate-y-1'}`}>
+			 className={`fixed top-0 mb-10 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${scrolled ? 'bg-base-100 backdrop-blur-lg shadow-lg border-base-300 translate-y-0' : 'bg-transparent -translate-y-1'}`}>
 			<div
 				className={`px-6 flex justify-between overflow-hidden bg-cyan-800  transition-all duration-300 ease-in-out ${scrolled ? 'opacity-0 -translate-y-4 scale-95 max-h-0' : 'opacity-100 translate-y-0 scale-100 max-h-40'}`}>
                 <div className="w-full">
