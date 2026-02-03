@@ -30,8 +30,8 @@ const OtpPage = () => {
 
     return (
         <Layout>
-            <div className="container mx-auto pt-30 flex justify-center items-center">
-                <form onSubmit={handleOtpVerification} className="w-full px-96 space-y-6">
+            <div className="min-h-screen flex items-center justify-center px-4 mt-10">
+                <form onSubmit={handleOtpVerification} className="w-full max-w-md space-y-6 bg-base-100 p-6 sm:p-8 rounded-lg shadow-md">
                     <legend className="fieldset-legend">OTP from your E-mail</legend>
                     <input onChange={(e)=>LoginFormOnChange("otp", e.target.value)} type="text" placeholder="Enter Your OTP" className="input input-primary w-full" required/>
                     <button className="btn btn-dash btn-primary text-lg w-full">Sign Up</button>

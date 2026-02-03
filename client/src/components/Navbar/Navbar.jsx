@@ -55,8 +55,8 @@ const Navbar = () => {
 				className={`px-6 flex justify-between overflow-hidden bg-cyan-800  transition-all duration-300 ease-in-out ${scrolled ? 'opacity-0 -translate-y-4 scale-95 max-h-0' : 'opacity-100 translate-y-0 scale-100 max-h-40'}`}>
                 <div className="w-full">
                     <div className="container mx-auto px-4">
-                        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-2 text-sm lg:font-medium text-white">
-                            <div className="flex items-center gap-6">
+                        <div className="flex flex-row sm:flex-row items-center justify-between lg:gap-4 py-2 px-5 text-sm lg:font-medium text-white">
+                            <div className="flex items-center gap-4 lg:gap-6">
                                 <a
                                     href="tel:+8801700950650"
                                     className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:text-black transition-all"
@@ -67,7 +67,7 @@ const Navbar = () => {
 
                                 <a
                                     href="mailto:sm.walid69@yahoo.com"
-                                    className="flex items-center gap-2 opacity-90 hover:opacity-100 hover:text-black transition-all"
+                                    className="flex items-center lg:gap-2 opacity-90 hover:opacity-100 hover:text-black transition-all"
                                 >
                                     <span className="text-base"><MdEmail /></span>
                                     <span className="hidden sm:inline">sm.walid69@yahoo.com</span>
@@ -148,7 +148,7 @@ const Navbar = () => {
 								<li><NavLink to="/contact">Contact</NavLink></li>
 							</ul>
 						</div>
-						<Link to="/" className="text-xl text-blue-50 bg-base-500">
+						<Link to="/" className="text-xl w-16 lg:w-full text-blue-50 bg-base-500">
 							<img className={`ml-3 transition-all duration-300 ${scrolled ? 'w-24' : 'w-32'}`}
 								 src={logo}
 								 alt="Logo"
@@ -185,7 +185,7 @@ const Navbar = () => {
 													className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
 													{
 														UserProfile.length === 0 ? <>{UserLogoutRequest}</> : !UserProfile?.img
-															? null : <img src={UserProfile['img']}/>
+															? null : <img src={UserProfile['img']} alt="user image"/>
 													}
 												</div>
 											</div>

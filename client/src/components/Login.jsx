@@ -41,7 +41,7 @@ const Login = () => {
 					</form>
 					<div>
 						<div className="w-full max-w-md p-8 space-y-3 rounded-xl text-gray-900">
-							<h1 className="text-2xl font-bold text-center">Login</h1>
+							<h1 className="lg:text-2xl text-xl lg:font-bold text-center">Login</h1>
 							<form onSubmit={handleLogin} className="space-y-6">
 								<div className="space-y-1 text-sm">
 									<label htmlFor="email" className="block text-gray-900">Username</label>
