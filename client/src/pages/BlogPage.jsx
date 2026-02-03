@@ -44,21 +44,21 @@ const BlogPage = () => {
 			:
             ApprovedBlogList.map((blog) =>
 				(
-					<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
-						<figure className="lg:w-64">
+					<div key={blog?._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
+						<figure className="lg:w-96 lg:h-84">
 							<img
 								src={blog['img']}
 								alt="Album"/>
 						</figure>
 						<div className="card-body">
-							<h2 className="card-title">{blog['title']}</h2>
+							<h2 className="card-title">{blog?.title.slice(0, 20)}</h2>
 							<div
 								className="mt-2 text-sm text-gray-700 leading-snug"
-								dangerouslySetInnerHTML={{__html: blog.des.slice(0, 200)}}
+								dangerouslySetInnerHTML={{__html: blog?.des.slice(0, 50)}}
 							/>
 							<p></p>
 							<div className="card-actions justify-end">
-								<Link to={`/blogs/${blog._id}`} className="btn btn-outline btn-info">See Details</Link>
+								<Link to={`/blogs/${blog?._id}`} className="btn btn-outline btn-info">See Details</Link>
 							</div>
 						</div>
 					</div>

@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import blogStore from "../store/blogStore.js";
 
 const BlogListLayout = ({ children }) => {
+    const userRole = sessionStorage.getItem("role");
     const {ApprovedBlogList, PendingBlogList, PendingBlogListByUser, ApproveBlogListByUser} = blogStore();
 
     return (
@@ -17,7 +18,7 @@ const BlogListLayout = ({ children }) => {
                         Approved
                         <span className="bg-white text-blue-500 px-2 py-0.5 rounded text-sm font-semibold">
                             {
-                                ApprovedBlogList?.length || 0
+                                userRole === 'admin' ? (ApprovedBlogList.length) : (ApproveBlogListByUser.length)
                             }
                         </span>
                     </NavLink>
@@ -33,7 +34,7 @@ const BlogListLayout = ({ children }) => {
                         Pending
                         <span className="bg-white text-red-500 px-2 py-0.5 rounded text-sm font-semibold">
                             {
-                                PendingBlogList?.length || 0
+                                userRole === 'admin' ? (PendingBlogList.length) : (PendingBlogListByUser.length)
                             }
                         </span>
                     </NavLink>

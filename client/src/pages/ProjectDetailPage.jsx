@@ -28,7 +28,7 @@ const ProjectDetailPage = () => {
 
 	return (
 		<Layout>
-			<div className="mt-20 container mx-auto px-5">
+			<div className="mt-30 container mx-auto px-5">
 				<div className="space-y-3 mx-auto">
 					<div className="lg:flex lg:justify-between items-start gap-4 flex-wrap">
 						<h1 className="text-3xl font-bold">{SingleProject.title}</h1>
