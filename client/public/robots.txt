@@ -1,18 +1,23 @@
 # robots.txt for Delowar Hossain Walid | MERN Stack Portfolio
+# Optimized for SEO and security
 
 # Applies to all search engines
 User-agent: *
 
-# Disallow sensitive or non-public paths
+# Block sensitive or private routes
 Disallow: /api/
 Disallow: /admin/
 Disallow: /login/
 Disallow: /dashboard/
 
-# Allow images and assets (including Cloudinary)
+# Allow public assets
 Allow: /assets/
 Allow: /images/
-Allow: https://res.cloudinary.com/
+Allow: /favicon.ico
+Allow: /robots.txt
 
-# Sitemap for better indexing
+# Crawl delay (optional, prevents overloading server)
+# Crawl-delay: 1
+
+# Sitemap location for better indexing
 Sitemap: https://portfolio-scafold-structure.vercel.app/sitemap.xml
