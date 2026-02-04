@@ -63,12 +63,12 @@ const Projects = () => {
 										<figure>
 											<img
 												src={project.img}
-												alt="Shoes"/>
+												alt="Project Image"/>
 										</figure>
 										<div className="card-body">
-											<h2 className="card-title">
+											<h1 className="card-title">
 												{project.title}
-											</h2>
+											</h1>
 											<p>{project.des}</p>
 											<div className="card-actions justify-end">
 												<div className="card-actions justify-end">

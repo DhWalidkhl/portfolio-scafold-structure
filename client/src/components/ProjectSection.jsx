@@ -17,7 +17,7 @@ const ProjectSection = () => {
 
     return (
         <div className="container mx-auto px-6">
-            <h1 className="text-sky-700 text-center font-semibold text-5xl py-20">My Projects</h1>
+            <h2 className="text-sky-700 text-center font-semibold text-5xl py-20">My Projects</h2>
             {projects.length === 0 && (
                 <div className="grid grid-cols-3 gap-6">
                     {Array.from({length: 6}).map((_, i) => (
@@ -39,7 +39,7 @@ const ProjectSection = () => {
                             </figure>
 
                             <div className="card-body">
-                                <h2 className="card-title">{project.title}</h2>
+                                <h1 className="card-title">{project.title}</h1>
                                 <p>{project.des}</p>
 
                                 <div className="card-actions justify-end">

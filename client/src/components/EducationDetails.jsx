@@ -27,7 +27,7 @@ const EducationDetails = () => {
 								) : (
 									<div
 										className="text-center sm:text-left mb-14 before:block before:w-24 before:h-3 before:mb-5 before:rounded-md before:mx-auto sm:before:mx-0 before:bg-violet-400">
-										<h3 className="text-3xl font-semibold">Education</h3>
+										<h1 className="text-3xl font-semibold">Education</h1>
 										<span className="text-sm font-bold tracking-wider uppercase text-gray-400">of Delowar Hossain Walid</span>
 									</div>
 								)

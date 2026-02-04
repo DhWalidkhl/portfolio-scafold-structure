@@ -8,15 +8,15 @@ const SkillProficiencySection = () => {
 				<div className="space-y-3 mb-5">
 					<h1 className="text-2xl flex items-center text-sky-700 font-semibold">Frontend Skills <span className="ml-3"><LiaLongArrowAltRightSolid/></span></h1>
 					<div>
-						<h1>HTML + CSS</h1>
+						<h2>HTML + CSS</h2>
 						<progress className="progress progress-info w-full" value="100" max="100"></progress>
 					</div>
 					<div>
-						<h1>JavaScript</h1>
+						<h2>JavaScript</h2>
 						<progress className="progress progress-info w-full" value="80" max="100"></progress>
 					</div>
 					<div>
-						<h1>React</h1>
+						<h2>React</h2>
 						<progress className="progress progress-info w-full" value="90" max="100"></progress>
 					</div>
 				</div>
@@ -24,15 +24,15 @@ const SkillProficiencySection = () => {
 					<h1 className="text-2xl flex items-center text-sky-700 font-semibold">Backend Skills <span
 						className="ml-3"><LiaLongArrowAltRightSolid/></span></h1>
 					<div>
-						<h1>NodeJS</h1>
+						<h2>NodeJS</h2>
 						<progress className="progress progress-info w-full" value="60" max="100"></progress>
 					</div>
 					<div>
-						<h1>ExpressJS</h1>
+						<h2>ExpressJS</h2>
 						<progress className="progress progress-info w-full" value="90" max="100"></progress>
 					</div>
 					<div>
-						<h1>Mongoose</h1>
+						<h2>Mongoose</h2>
 						<progress className="progress progress-info w-full" value="70" max="100"></progress>
 					</div>
 				</div>

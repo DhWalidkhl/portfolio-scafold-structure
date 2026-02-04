@@ -16,7 +16,7 @@ const FaqSection = () => {
 	return (
 		<div className="flex gap-6 flex-col lg:flex-row justify-center items-center container mx-auto p-10">
 			<div>
-				<h1 className="text-sky-500 font-semibold text-2xl px-1 mb-10">Frequently Asked Question</h1>
+				<h1 className="text-sky-700 font-semibold text-2xl px-1 mb-10">Frequently Asked Question</h1>
                 {
                     FAQList.length === 0 ? (
                             <FAQSkeleton/>

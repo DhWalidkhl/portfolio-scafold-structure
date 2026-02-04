@@ -36,7 +36,7 @@ const BlogSection = () => {
 								<figure className="lg:w-96 lg:h-84">
 									<img
 										src={blog['img']}
-										alt="Album"/>
+										alt="Blog Image"/>
 								</figure>
 								<div className="card-body">
 									<h2 className="card-title">{blog?.title.slice(0, 20)}</h2>

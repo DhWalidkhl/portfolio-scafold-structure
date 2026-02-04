@@ -1,11 +1,10 @@
 import React from 'react';
 import Login from "./Login.jsx";
-import LottieFiles from "./LottieFiles.jsx";
 
 const ContactInfo = () => {
     return (
         <div>
-            <h2 className="text-sky-700 text-center font-semibold text-3xl lg:text-5xl mb-7 underline">Get in Touch</h2>
+            <h1 className="text-sky-700 text-center font-semibold text-3xl lg:text-5xl mb-7 underline">Get in Touch</h1>
             <div className="container mx-auto lg:text-left text-center">
                 <div className="lg:grid lg:grid-cols-2 gap-10 items-center px-20 justify-center">
                     <div className="space-y-4">
@@ -26,7 +25,7 @@ const ContactInfo = () => {
                             Email: <span className="font-bold  text-sky-700">sm.walid69@yahoo.com</span>
                         </p>
                         <div>
-                            <h1>Address : 169, Mondirer More, Rayermahal, Sonadanga, Khulna-9000</h1>
+                            <p>Address : 169, Mondirer More, Rayermahal, Sonadanga, Khulna-9000</p>
                         </div>
 
                     </div>

@@ -1,17 +1,5 @@
 import axios from "axios";
 
-
-
-export const blogList = async () =>{
-	let res = await axios.get(`/api/v1/BlogList`)
-	if(res.data.status === "success"){
-		return res.data
-	}else {
-		return []
-	}
-}
-
-
 export const educationList = async () =>{
 	let res = await axios.get(`/api/v1/EducationList`)
 	console.log(res.data.data)
