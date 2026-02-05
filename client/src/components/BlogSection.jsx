@@ -10,7 +10,6 @@ const BlogSection = () => {
 	useEffect(() => {
 		(async () => {
 			await ApprovedBlogListRequest()
-            console.log(ApprovedBlogList)
 		})()
 	}, []);
 

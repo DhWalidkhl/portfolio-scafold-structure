@@ -4,35 +4,35 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserStore from "./store/userStore.js";
 
 // Pages
-const HomePage = lazy(() => import("./pages/HomePage.jsx"));
-const BlogPage = lazy(() => import("./pages/BlogPage.jsx"));
-const BlogDetailPage = lazy(() => import("./pages/BlogDetailPage.jsx"));
-const EducationPage = lazy(() => import("./pages/EducationPage.jsx"));
-const ContactPage = lazy(() => import("./pages/ContactPage.jsx"));
+const HomePage = lazy(() => import("./pages/OpenPagess/HomePage.jsx"));
+const BlogPage = lazy(() => import("./pages/OpenPagess/BlogPage.jsx"));
+const BlogDetailPage = lazy(() => import("./pages/OpenPagess/BlogDetailPage.jsx"));
+const EducationPage = lazy(() => import("./pages/OpenPagess/EducationPage.jsx"));
+const ContactPage = lazy(() => import("./pages/OpenPagess/ContactPage.jsx"));
 const PortfolioLayout = lazy(() => import("./layout/PortfolioLayout.jsx"));
-const CourseDetailsPage = lazy(() => import("./pages/CourseDetailsPage.jsx"));
-const ProjectsPage = lazy(() => import("./pages/ProjectsPage.jsx"));
-const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage.jsx"));
+const CourseDetailsPage = lazy(() => import("./pages/OpenPagess/CourseDetailsPage.jsx"));
+const ProjectsPage = lazy(() => import("./pages/OpenPagess/ProjectsPage.jsx"));
+const ProjectDetailPage = lazy(() => import("./pages/OpenPagess/ProjectDetailPage.jsx"));
 const ErrorPage = lazy(() => import("./pages/ErrorPage.jsx"));
-const SignUpPage = lazy(() => import("./pages/SignUpPage.jsx"));
-const TermsAndConditionPage = lazy(() => import("./pages/TermsAndConditionPage.jsx"));
-const OtpPage = lazy(() => import("./pages/OtpPage.jsx"));
-const ForgetPass = lazy(() => import("./pages/ForgetPass.jsx"));
+const SignUpPage = lazy(() => import("./pages/OpenPagess/SignUpPage.jsx"));
+const TermsAndConditionPage = lazy(() => import("./pages/OpenPagess/TermsAndConditionPage.jsx"));
+const OtpPage = lazy(() => import("./pages/OpenPagess/OtpPage.jsx"));
+const ForgetPass = lazy(() => import("./pages/OpenPagess/ForgetPass.jsx"));
 
 // Dashboard pages
 const Dashboard = lazy(() => import("./pages/UserControllPages/Dashboard.jsx"));
-const UsersList = lazy(() => import("./pages/UsersList.jsx"));
+const UsersList = lazy(() => import("./pages/AdminPages/UsersList.jsx"));
 const ApproveBlogListPage = lazy(() => import("./pages/UserControllPages/ApproveBlogListPage.jsx"));
 const PendingBlogListPage = lazy(() => import("./pages/UserControllPages/PendingBlogListPage.jsx"));
 const EditBlogPage = lazy(() => import("./pages/UserControllPages/EditBlogPage.jsx"));
 const WriteBlogPage = lazy(() => import("./pages/UserControllPages/WriteBlogPage.jsx"));
 const TestimonialPage = lazy(() => import("./pages/UserControllPages/TestimonialPage.jsx"));
-const TnTCreatePage = lazy(() => import("./pages/UserControllPages/TnTCreatePage.jsx"));
-const TnTListPage = lazy(() => import("./pages/UserControllPages/TnTListPage.jsx"));
+const TnTCreatePage = lazy(() => import("./pages/AdminPages/TnTCreatePage.jsx"));
+const TnTListPage = lazy(() => import("./pages/AdminPages/TnTListPage.jsx"));
 const ContactMassegePage = lazy(() => import("./pages/UserControllPages/ContactMassegePage.jsx"));
-const FAQPage = lazy(() => import("./pages/UserControllPages/FAQPage.jsx"));
-const FAQDetailsPage = lazy(() => import("./pages/UserControllPages/FAQDetailsPage.jsx"));
-const UserDetails = lazy(() => import("./pages/UserDetails.jsx"));
+const FAQPage = lazy(() => import("./pages/AdminPages/FAQPage.jsx"));
+const FAQDetailsPage = lazy(() => import("./pages/AdminPages/FAQDetailsPage.jsx"));
+const UserDetails = lazy(() => import("./pages/UserControllPages/UserDetails.jsx"));
 const MsgDetailsPage = lazy(() => import("./pages/UserControllPages/MsgDetailsPage.jsx"));
 
 // Components

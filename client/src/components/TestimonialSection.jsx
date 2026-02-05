@@ -15,7 +15,6 @@ const TestimonialSection = () => {
 	useEffect(() => {
 		(async () => {
 			let res = await testimonialList();
-			console.log(res.data)
 			setTestimonials(res.data);
 		})();
 	}, []);

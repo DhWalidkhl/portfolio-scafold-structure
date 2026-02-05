@@ -16,7 +16,7 @@ const ProjectSection = () => {
     const projectForDisplay = projects.slice(0, 4);
 
     return (
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto">
             <h2 className="text-sky-700 text-center font-semibold text-5xl py-20">My Projects</h2>
             {projects.length === 0 && (
                 <div className="grid grid-cols-3 gap-6">
