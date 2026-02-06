@@ -28,6 +28,7 @@
     "react-loading-skeleton": "^3.5.0",
     "react-rating": "^2.0.5",
     "react-router-dom": "^7.5.3",
+    "react-toastify": "^11.0.5",
     "seraui": "^0.0.2",
     "sweetalert": "^2.1.2",
     "swiper": "^11.2.7",

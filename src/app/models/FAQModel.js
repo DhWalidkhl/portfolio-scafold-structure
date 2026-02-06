@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const DataSchema = new mongoose.Schema(
 	{
-		qstn: {type: String, unique: true, required: true},
+		qstn: {type: String, required: true},
 		ans: {type: String, required: true}
 	},
 	{

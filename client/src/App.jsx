@@ -1,6 +1,8 @@
 import "tailwindcss";
 import { Suspense, lazy, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import UserStore from "./store/userStore.js";
 
 // Pages
@@ -34,6 +36,7 @@ const FAQPage = lazy(() => import("./pages/AdminPages/FAQPage.jsx"));
 const FAQDetailsPage = lazy(() => import("./pages/AdminPages/FAQDetailsPage.jsx"));
 const UserDetails = lazy(() => import("./pages/UserControllPages/UserDetails.jsx"));
 const MsgDetailsPage = lazy(() => import("./pages/UserControllPages/MsgDetailsPage.jsx"));
+const CreateFAQPage = lazy(() => import("./pages/AdminPages/CreateFAQPage.jsx"));
 
 // Components
 const Login = lazy(() => import("./components/Login.jsx"));
@@ -55,6 +58,16 @@ function App() {
 
     return (
         <BrowserRouter>
+            <ToastContainer
+                position="top-right"
+                autoClose={1500}
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                pauseOnHover
+                draggable
+                theme="light"
+            />
             <Suspense  fallback={<PreLoadingSpinner /> } >
                 <Routes>
                     {/* Public routes */}
@@ -88,6 +101,7 @@ function App() {
                             <Route path="/dashboard/createTnT" element={<TnTCreatePage />} />
                             <Route path="/dashboard/contact-message-list" element={<ContactMassegePage />} />
                             <Route path="/dashboard/singleMsg/:msgID" element={<MsgDetailsPage />} />
+                            <Route path="/dashboard/create-faq" element={<CreateFAQPage />} />
                             <Route path="/dashboard/faq-list" element={<FAQPage />} />
                             <Route path="/dashboard/user-details" element={<UserDetails />} />
                             <Route path="/faqdetails/:FAQId" element={<FAQDetailsPage />} />

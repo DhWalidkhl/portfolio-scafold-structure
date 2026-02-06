@@ -38,11 +38,11 @@ export const CreateFAQService = async (req) => {
 export const UpdateFAQService = async (req) => {
 	try {
 		const FAQId = req.params.FAQId;
-		const {ans} = req.body;
-		if (!ans) {
-			return {status: 'fail', message: 'Answer (ans) is required to update.'};
+		const {qstn, ans} = req.body;
+		if (!qstn || !ans) {
+			return {status: 'fail', message: 'Data required to update.'};
 		}
-		const data = await FAQModel.updateOne({_id: FAQId}, {$set: {ans: ans}})
+		const data = await FAQModel.updateOne({_id: FAQId}, {$set: {ans: ans, qstn: qstn}});
 		return {status: 'success', data: data}
 	} catch (e) {
 		return {status: 'fail', message: "something went wrong"}
