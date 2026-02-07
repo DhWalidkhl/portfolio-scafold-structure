@@ -7,14 +7,7 @@ import { v2 as cloudinary } from "cloudinary";
 
 const ObjectID = mongoose.Types.ObjectId;
 
-export const BlogListServices = async (req) => {
-	try {
-		const data = await BlogModel.find().sort({createdAt: -1})
-		return {status: 'success', data: data}
-	} catch (e) {
-		return {status: 'fail', message: e.toString()}
-	}
-}
+
 
 export const ApprovedBlogListService = async (req) => {
     try {
@@ -336,6 +329,25 @@ export const DeleteBlogService = async (req) => {
 
 		return { status: 'success', data: "Blog Deleted Successfully" };
 
+	} catch (error) {
+		console.error("DeleteBlogService Error:", error);
+		return { status: 'fail', message: "Something went wrong" };
+	}
+};
+
+
+export const SeachByKeywordService = async (req) => {
+	try {
+		const SearchRegex = {$regex : req.params.Keyword, $options : "i"};
+		const SearchParams = [{title: SearchRegex}]
+		const MatchStage = {$match: {$or: SearchParams,	approved: true}};
+		const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
+		const UnwindUser = {$unwind: "$user"};
+		const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}
+		const data = await BlogModel.aggregate([
+			MatchStage, JoinWithUserStage, UnwindUser, ProjectionStage
+		])
+		return {status: 'success', data: data}
 	} catch (error) {
 		console.error("DeleteBlogService Error:", error);
 		return { status: 'fail', message: "Something went wrong" };

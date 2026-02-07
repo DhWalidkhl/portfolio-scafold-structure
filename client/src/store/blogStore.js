@@ -177,6 +177,17 @@ const BlogStore = create((set)=>({
 		}
 	},
 
+	SearchedBlogs: [],
+	SearchBlogRequest: async (Keyword) => {
+		const res = await axios.get(`/api/v1/SeachByKeyword/${Keyword}`);
+		if (res.data['status']=== 'success'){
+			set({SearchedBlogs : res.data?.data})
+		}else {
+			set({SearchedBlogs : []})
+
+		}
+	}
+
 
 
 

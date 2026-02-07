@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.svg"
 import { BsFillTelephoneForwardFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
-import { FaGithub, FaLinkedinIn, FaTwitter, FaFacebookSquare, FaYoutube } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaTwitter, FaFacebookSquare, FaYoutube, FaSearch  } from "react-icons/fa";
+import BlogStore from "../../store/blogStore.js";
 
 
 const Navbar = () => {
@@ -15,6 +16,8 @@ const Navbar = () => {
 	const navRef = useRef()
 	let {isLogin, UserLogoutRequest, UserProfile, ProfileDetailsByID} = UserStore()
 	const [scrolled, setScrolled] = useState(false);
+	const {SearchedBlogs, SearchBlogRequest} = BlogStore()
+	const {LoginFormData, LoginFormOnChange} = UserStore()
 
 
 
@@ -47,6 +50,13 @@ const Navbar = () => {
 		navigate('/')
 		window.location.reload()
 	}
+
+	const handleSearch = async (e) => {
+		e.preventDefault();
+		const keyword = LoginFormData.Keyword;
+		if (!keyword) return;
+		await SearchBlogRequest(keyword);
+	};
 
 	return (
 		<div ref={navRef}
@@ -129,6 +139,7 @@ const Navbar = () => {
                 </div>
             </div>
 
+
 			<div>
 				<div className={`navbar container mx-auto transition-all duration-300`}>
 					<div className="navbar-start">
@@ -152,7 +163,7 @@ const Navbar = () => {
 							<img className={`ml-3 transition-all duration-300 ${scrolled ? 'w-24' : 'w-32'}`}
 								 src={logo}
 								 alt="Logo"
-						/></Link>
+							/></Link>
 					</div>
 					<div className="navbar-center hidden lg:flex">
 
@@ -163,7 +174,22 @@ const Navbar = () => {
 							<li><NavLink to="/contact">Contact</NavLink></li>
 						</ul>
 					</div>
+
 					<div className="navbar-end">
+						<div className="hidden lg:block mr-5">
+							<form onSubmit={handleSearch} className="flex items-center">
+								<div className="relative">
+									<FaSearch className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" size={14}/>
+									<input
+										onChange={(e)=>LoginFormOnChange("Keyword", e.target.value)}
+										type="text"
+										placeholder="Search blogs..."
+										className="input input-sm w-24 lg:w-64 bg-transparent input-bordered pr-9 focus:outline-none"
+									/>
+								</div>
+							</form>
+						</div>
+
 						{
 							isLogin() ? (
 								<div className="flex gap-6 items-center">

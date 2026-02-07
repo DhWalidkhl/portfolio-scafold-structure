@@ -13,13 +13,14 @@ import {AdminMiddleware, AuthMiddleware} from "../src/app/middlewares/AuthMiddle
 import {fileUploadController} from "../src/app/controllers/FileUploadController.js";
 import upload from "../src/app/utilities/FileUploadMiddleware.js";
 import * as ProjectListController from "../src/app/controllers/ProjectListController.js";
-import {CountLike, PendingBlogList} from "../src/app/controllers/BlogListController.js";
+import {CountLike, PendingBlogList, SeachByKeyword} from "../src/app/controllers/BlogListController.js";
 import {FileUploadHandlerMiddlewar} from "../src/app/middlewares/FileUploadHandlerMiddlewar.js";
 import {CreateTnT, DeleteTnT, UpdateTnT} from "../src/app/controllers/TnTController.js";
 
 
 // Blog API's
 router.get('/ApprovedBlogList', BlogListController.ApprovedBlogList)
+router.get('/SeachByKeyword/:Keyword', BlogListController.SeachByKeyword)
 router.get('/PendingBlogList', AuthMiddleware, AdminMiddleware, BlogListController.PendingBlogList)
 router.get('/ApproveBlogListByUser',AuthMiddleware, BlogListController.ApproveBlogListByUser)
 router.get('/PendingBlogListByUser',AuthMiddleware, BlogListController.PendingBlogListByUser)

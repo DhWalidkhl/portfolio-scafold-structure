@@ -9,7 +9,7 @@ import OwnerImg from "../assets/owner_img_2.png";
 const HeroSection = () => {
 	return (
 		<div>
-			<div style={{backgroundImage: `url(${bgImg})`}} className="pt-30 lg:pt-10 md:pt-20 bg-cover bg-center">
+			<div style={{backgroundImage: `url(${bgImg})`}} className="pt-30 lg:pt-16 md:pt-20 bg-cover bg-center">
 				<div
 					className="flex container px-5 mx-auto flex-col lg:flex-row gap-16 items-center justify-center min-h-screen">
                     <img

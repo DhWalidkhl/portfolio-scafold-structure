@@ -27,6 +27,11 @@ export const BlogDetails = async (req, res) => {
 	return res.status(200).send(result)
 }
 
+export const SeachByKeyword = async (req, res) => {
+	const result = await BlogListServices.SeachByKeywordService(req)
+	return res.status(200).send(result)
+}
+
 export const CreateBlog = async (req, res) => {
 	const result = await BlogListServices.CreateBlogService(req)
 	return res.status(200).send(result)
