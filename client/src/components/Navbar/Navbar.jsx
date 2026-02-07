@@ -178,7 +178,7 @@ const Navbar = () => {
 					</div>
 
 					<div className="navbar-end">
-						<div className="hidden lg:block mr-5">
+						<div className="mr-5">
 							<form onSubmit={handleSearch} className="flex items-center">
 								<div className="relative">
 									<FaSearch className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" size={14}/>

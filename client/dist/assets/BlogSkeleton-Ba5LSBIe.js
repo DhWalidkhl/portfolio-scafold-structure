@@ -1,1 +1,0 @@
-import{j as s}from"./index-CFK8FIKE.js";import{S as e}from"./index-Cj77iMAu.js";/* empty css                 */const o=()=>s.jsxs("div",{className:"grid gap-4 grid-cols-2",children:[s.jsx(e,{height:180}),s.jsxs("div",{children:[s.jsx(e,{height:50}),s.jsx(e,{height:50}),s.jsx(e,{height:50}),s.jsx(e,{})]})]});export{o as B};
