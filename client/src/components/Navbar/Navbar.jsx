@@ -56,6 +56,8 @@ const Navbar = () => {
 		const keyword = LoginFormData.Keyword;
 		if (!keyword) return;
 		await SearchBlogRequest(keyword);
+		navigate(`/search-result?keyword=${encodeURIComponent(keyword)}`);
+		console.log(SearchedBlogs)
 	};
 
 	return (

@@ -16,59 +16,57 @@ const BlogPage = () => {
 	}, []);
 
 	return (
-
 		<Layout>
-
-<div className="pt-16">
-	<SectionHeading headingBig='read my blog' headingSmall='My Latest Blog'/>
-	<div className="container mx-auto">
-		{isLogin() ? (
-			<div className="flex gap-4 container px-10">
-				<Link to="/dashboard/blog-list" className="btn btn-dash">Your Blogs</Link>
-				<Link to="/dashboard/writeBlog" className="btn btn-outline btn-primary">Write a Blog</Link>
-			</div>
-		) : (<></>)}
-	</div>
-	<div className="mt-6 grid grid-cols-1 lg:grid-cols-3 pb-10 px-10 gap-6 container mx-auto">
-
-		{ApprovedBlogList.length === 0 ?
-			<>
-				<BlogSkeleton/>
-				<BlogSkeleton/>
-				<BlogSkeleton/>
-				<BlogSkeleton/>
-				<BlogSkeleton/>
-				<BlogSkeleton/>
-				<BlogSkeleton/>
-				<BlogSkeleton/>
-				<BlogSkeleton/>
-			</>
-			:
-            ApprovedBlogList.map((blog) =>
-				(
-					<div key={blog?._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
-						<figure className="lg:w-96 lg:h-84">
-							<img
-								src={blog['img']}
-								alt="Album"/>
-						</figure>
-						<div className="card-body">
-							<h2 className="card-title">{blog?.title.slice(0, 20)}</h2>
-							<div
-								className="mt-2 text-sm text-gray-700 leading-snug"
-								dangerouslySetInnerHTML={{__html: blog?.des.slice(0, 50)}}
-							/>
-							<p></p>
-							<div className="card-actions justify-end">
-								<Link to={`/blogs/${blog?._id}`} className="btn btn-outline btn-info">See Details</Link>
-							</div>
+			<div className="pt-16">
+				<SectionHeading headingBig='read my blog' headingSmall='My Latest Blog'/>
+				<div className="container mx-auto">
+					{isLogin() ? (
+						<div className="flex gap-4 container px-10">
+							<Link to="/dashboard/blog-list" className="btn btn-dash">Your Blogs</Link>
+							<Link to="/dashboard/writeBlog" className="btn btn-outline btn-primary">Write a Blog</Link>
 						</div>
-					</div>
-				)
-			)
-		}
-	</div>
-</div>
+					) : (<></>)}
+				</div>
+				<div className="mt-6 grid grid-cols-1 lg:grid-cols-3 pb-10 px-10 gap-6 container mx-auto">
+
+					{ApprovedBlogList.length === 0 ?
+						<>
+							<BlogSkeleton/>
+							<BlogSkeleton/>
+							<BlogSkeleton/>
+							<BlogSkeleton/>
+							<BlogSkeleton/>
+							<BlogSkeleton/>
+							<BlogSkeleton/>
+							<BlogSkeleton/>
+							<BlogSkeleton/>
+						</>
+						:
+						ApprovedBlogList.map((blog) =>
+							(
+								<div key={blog?._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
+									<figure className="lg:w-96 lg:h-84">
+										<img
+											src={blog['img']}
+											alt="Album"/>
+									</figure>
+									<div className="card-body">
+										<h2 className="card-title">{blog?.title.slice(0, 20)}</h2>
+										<div
+											className="mt-2 text-sm text-gray-700 leading-snug"
+											dangerouslySetInnerHTML={{__html: blog?.des.slice(0, 50)}}
+										/>
+										<p></p>
+										<div className="card-actions justify-end">
+											<Link to={`/blogs/${blog?._id}`} className="btn btn-outline btn-info">See Details</Link>
+										</div>
+									</div>
+								</div>
+							)
+						)
+					}
+				</div>
+			</div>
 
 		</Layout>
 	);

@@ -9,6 +9,7 @@ import UserStore from "./store/userStore.js";
 const HomePage = lazy(() => import("./pages/OpenPagess/HomePage.jsx"));
 const BlogPage = lazy(() => import("./pages/OpenPagess/BlogPage.jsx"));
 const BlogDetailPage = lazy(() => import("./pages/OpenPagess/BlogDetailPage.jsx"));
+const SearchResultPage = lazy(()=>import("./pages/OpenPagess/SearchResult.jsx"));
 const EducationPage = lazy(() => import("./pages/OpenPagess/EducationPage.jsx"));
 const ContactPage = lazy(() => import("./pages/OpenPagess/ContactPage.jsx"));
 const PortfolioLayout = lazy(() => import("./layout/PortfolioLayout.jsx"));
@@ -76,6 +77,7 @@ function App() {
                     <Route path="/otp" element={<OtpPage />} />
                     <Route path="/forget-pass" element={<ForgetPass />} />
                     <Route path="/blogs" element={<BlogPage />} />
+                    <Route path="/search-result" element={<SearchResultPage />} />
                     <Route path="/blogs/:BlogID" element={<BlogDetailPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/terms" element={<TermsAndConditionPage />} />
