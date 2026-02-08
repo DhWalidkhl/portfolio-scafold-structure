@@ -6,7 +6,7 @@ import SectionHeading from "../components/SectionHeading.jsx";
 const PortfolioLayout = ({children}) => {
 	return (
 		<Layout>
-			<div className="pt-20">
+			<div className="pt-25">
 				<div>
 					<SectionHeading headingBig="portfolio" headingSmall="Know me"></SectionHeading>
 				</div>

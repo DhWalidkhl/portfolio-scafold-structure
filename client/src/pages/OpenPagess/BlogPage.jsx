@@ -17,7 +17,7 @@ const BlogPage = () => {
 
 	return (
 		<Layout>
-			<div className="pt-16">
+			<div className="pt-25">
 				<SectionHeading headingBig='read my blog' headingSmall='My Latest Blog'/>
 				<div className="container mx-auto">
 					{isLogin() ? (

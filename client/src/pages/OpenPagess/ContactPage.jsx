@@ -10,7 +10,7 @@ const ContactPage = () => {
 	let {isLogin} = UserStore()
 	return (
 		<Layout>
-<div className="pt-16">
+<div className="pt-25">
 	<SectionHeading headingBig="contact" headingSmall="Get in Touch"/>
 	{
 		isLogin() ? (<ContactForm></ContactForm>) : (
