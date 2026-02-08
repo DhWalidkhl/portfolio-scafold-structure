@@ -36,26 +36,26 @@ const HeroSection = () => {
 						<div className="flex justify-center lg:justify-start gap-8 py-4">
 							<div className="flex flex-col items-center gap-1">
 								<SiMongodb className="text-4xl lg:text-5xl text-[#13AA52]" />
-								<span className="text-xs font-medium text-slate-600 dark:text-slate-400">MongoDB</span>
+								<span className="text-xs font-medium text-slate-600 dark:text-slate-100">MongoDB</span>
 							</div>
 							<div className="flex flex-col items-center gap-1">
-								<SiExpress className="text-4xl lg:text-5xl text-slate-700 dark:text-slate-400" />
-								<span className="text-xs font-medium text-slate-600 dark:text-slate-400">Express</span>
+								<SiExpress className="text-4xl lg:text-5xl text-slate-700 dark:text-slate-100" />
+								<span className="text-xs font-medium text-slate-600 dark:text-slate-100">Express</span>
 							</div>
 							<div className="flex flex-col items-center gap-1">
 								<SiReact className="text-4xl lg:text-5xl text-[#61DAFB]" />
-								<span className="text-xs font-medium text-slate-600 dark:text-slate-400">React</span>
+								<span className="text-xs font-medium text-slate-600 dark:text-slate-100">React</span>
 							</div>
 							<div className="flex flex-col items-center gap-1">
 								<FaNodeJs className="text-4xl lg:text-5xl text-[#339933]" />
-								<span className="text-xs font-medium text-slate-600 dark:text-slate-400">Node.js</span>
+								<span className="text-xs font-medium text-slate-600 dark:text-slate-100">Node.js</span>
 							</div>
 						</div>
 						<div className="space-y-2 max-w-lg mx-auto lg:mx-0">
-							<p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
+							<p className="text-slate-600 dark:text-slate-200 leading-relaxed text-sm sm:text-base">
 								Building dynamic web experiences with MongoDB, Express, React, and Node — from concept to code.
 							</p>
-							<p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm sm:text-base">
+							<p className="text-slate-600 dark:text-slate-200 leading-relaxed text-sm sm:text-base">
 								Share your ideas; I'll build them with care and expertise.
 							</p>
 						</div>

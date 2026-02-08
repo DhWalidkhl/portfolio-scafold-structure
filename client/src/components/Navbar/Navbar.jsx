@@ -65,7 +65,7 @@ const Navbar = () => {
 	return (
 		<div
 			ref={navRef}
-			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${scrolled ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-slate-700' : 'bg-transparent'}`}
+			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${scrolled ? 'bg-white/95 dark:bg-slate-900/95 backdrop-blur-md shadow-sm border-slate-200 dark:border-slate-700' : 'bg-transparent'}`}
 		>
 			{/* Top bar – contact & social */}
 			<div
@@ -112,7 +112,7 @@ const Navbar = () => {
 				</div>
 			</div>
 
-			<div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm lg:bg-transparent">
+			<div className=" dark:bg-slate-900/80  lg:bg-transparent">
 				<div className="navbar container mx-auto transition-all duration-300">
 					<div className="navbar-start">
 						<div className="dropdown">
@@ -130,7 +130,7 @@ const Navbar = () => {
 						</div>
 						<Link to="/" className="flex items-center">
 							<img
-								className={`ml-3 transition-all duration-300 ${scrolled ? 'h-9' : 'h-11'}`}
+								className={`ml-3 transition-all w-13 lg:w-full duration-300 ${scrolled ? 'h-9' : 'h-11'}`}
 								src={logo}
 								alt="Logo"
 							/>

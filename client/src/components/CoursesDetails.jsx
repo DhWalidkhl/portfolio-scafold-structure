@@ -28,7 +28,7 @@ const CoursesDetails = () => {
 								<ul className="timeline timeline-vertical pt-10">
 									{
 										courses.map((course) => (
-											<ul className="p-4 lg:p-8 bg-gray-50 rounded-2xl mb-5 hover:bg-gray-900 hover:text-white transition-colors duration-500 ease-in-out">
+											<ul className="p-4 lg:p-8 bg-gray-50 rounded-2xl mb-5 dark:bg-gray-700 dark:hover:bg-gray-500 dark:text-white hover:bg-gray-900 hover:text-white transition-colors duration-500 ease-in-out">
 												<li>
 													<article>
 														<div rel="noopener noreferrer"

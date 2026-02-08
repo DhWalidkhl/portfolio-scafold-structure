@@ -56,14 +56,17 @@ const Projects = () => {
 
 						)
 						:
-						<div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+						<div className=" grid grid-cols-1 lg:grid-cols-3 gap-4">
 							{
 								projects.map((project) => (
-									<div key={project._id} className="card bg-base-100 shadow-sm">
+									<div key={project._id} className="card dark:bg-gray-700 bg-base-100 shadow-sm">
 										<figure>
 											<img
 												src={project.img}
-												alt="Project Image"/>
+												alt="Project Image"
+                                                className="w-full"
+                                            />
+
 										</figure>
 										<div className="card-body">
 											<h1 className="card-title">
