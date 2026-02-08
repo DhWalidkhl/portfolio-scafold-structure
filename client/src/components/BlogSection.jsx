@@ -17,59 +17,42 @@ const BlogSection = () => {
 
 
 	return (
-		<div className="py-20">
-			<h1 className="text-sky-700 text-center font-semibold text-4xl">Blog and News</h1>
-			<div className="mt-10 grid grid-cols-1 lg:grid-cols-2 px-10 gap-6 container mx-auto">
-
+		<div className="py-16 lg:py-20 container mx-auto px-4 max-w-6xl">
+			<h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-slate-100 text-center mb-10">Blog and News</h2>
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 				{blogs.length === 0 ? (
-						<>
-							<BlogSkeleton></BlogSkeleton>
-							<BlogSkeleton></BlogSkeleton>
-							<BlogSkeleton></BlogSkeleton>
-							<BlogSkeleton></BlogSkeleton>
-						</>
-					) :
-					blogs.map((blog) =>
-						(
-							<div key={blog._id.toLocaleString()} className="card lg:card-side bg-base-100 shadow-sm">
-								<figure className="lg:w-96 lg:h-84">
-									<img
-										src={blog['img']}
-										alt="Blog Image"/>
-								</figure>
-								<div className="card-body">
-									<h2 className="card-title">{blog?.title.slice(0, 20)}</h2>
-									<div
-										className="mt-2 text-sm text-gray-700 leading-snug"
-										dangerouslySetInnerHTML={{__html: blog.des.slice(0, 60)}}
-									/>
-									<p></p>
-									<div className="card-actions justify-end">
-										<Link to={`/blogs/${blog._id}`} className="btn btn-outline btn-info">See
-											Details</Link>
-									</div>
+					<>
+						<BlogSkeleton />
+						<BlogSkeleton />
+						<BlogSkeleton />
+						<BlogSkeleton />
+					</>
+				) : (
+					blogs.map((blog) => (
+						<article key={blog._id} className="card lg:card-side bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+							<figure className="lg:w-80 shrink-0">
+								<img src={blog.img} alt="" className="w-full h-48 lg:h-full object-cover" />
+							</figure>
+							<div className="card-body p-5">
+								<h3 className="card-title text-slate-900 dark:text-slate-100 text-lg font-semibold">{blog?.title?.slice(0, 40)}{blog?.title?.length > 40 ? '…' : ''}</h3>
+								<div className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-snug" dangerouslySetInnerHTML={{ __html: blog.des?.slice(0, 80) ?? '' }} />
+								<div className="card-actions justify-end mt-3">
+									<Link to={`/blogs/${blog._id}`} className="btn btn-sm bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white border-0 rounded-lg">
+										See Details
+									</Link>
 								</div>
 							</div>
-						)
-					)
-				}
+						</article>
+					))
+				)}
 			</div>
-			{
-                ApprovedBlogList.length > 4 ? (
-					blogs.length === 0 ? (
-						<div className="text-center">
-							<Skeleton width={300}/>
-						</div>
-					) : (
-						<Link
-							className="flex items-center justify-center mt-10 btn btn-outline btn-info w-1/2 lg:w-1/7 mx-auto"
-							to="/blogs"
-						>
-							See All Blogs <span><LiaLongArrowAltRightSolid/></span>
-						</Link>
-					)
-				) : <></>
-			}
+			{ApprovedBlogList.length > 4 && blogs.length > 0 && (
+				<div className="flex justify-center mt-10">
+					<Link to="/blogs" className="btn btn-outline border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg gap-2">
+						See All Blogs <LiaLongArrowAltRightSolid className="text-lg" />
+					</Link>
+				</div>
+			)}
 		</div>
 	);
 };

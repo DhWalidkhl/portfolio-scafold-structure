@@ -20,50 +20,43 @@ const TestimonialSection = () => {
 	}, []);
 
 	return (
-		<div className="py-10 container mx-auto px-10 text-center">
+		<div className="py-16 lg:py-20 container mx-auto px-4 max-w-4xl text-center">
+			<h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-10">What people say</h2>
 			<Swiper
 				spaceBetween={30}
-				centeredSlides={true}
-				slidesPerView={'auto'}
-				grabCursor={true}
-				autoplay={{
-					delay: 2500,
-					disableOnInteraction: false,
-				}}
-				pagination={{
-					clickable: true,
-				}}
+				centeredSlides
+				slidesPerView="auto"
+				grabCursor
+				autoplay={{ delay: 2500, disableOnInteraction: false }}
+				pagination={{ clickable: true }}
 				navigation={false}
 				modules={[Autoplay, Pagination, Navigation]}
 				className="mySwiper"
 			>
 				{testimonials === null ? (
-					<TestimonialSkeleton/>
+					<TestimonialSkeleton />
 				) : (
 					testimonials.map((testimonial) => (
-						<SwiperSlide
-							key={testimonial._id}
-							className="flex justify-center items-center py-10"
-						>
-
-							<div className="space-y-2">
+						<SwiperSlide key={testimonial._id} className="flex justify-center items-center py-8">
+							<div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl px-8 py-10 max-w-lg mx-auto space-y-4">
 								<img
-									className="h-50 w-50 object-cover rounded-full mx-auto"
+									className="h-20 w-20 object-cover rounded-full mx-auto border-2 border-slate-200 dark:border-slate-600"
 									src={testimonial?.user?.img}
-									alt="author image"
+									alt=""
 								/>
-								<h1 className="text-3xl font-semibold">{testimonial?.user?.firstName} {testimonial?.user?.lastName}</h1>
-								<h2 className="text-xl">{testimonial.des}</h2>
-								<div>
+								<h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+									{testimonial?.user?.firstName} {testimonial?.user?.lastName}
+								</h3>
+								<p className="text-slate-600 dark:text-slate-400 leading-relaxed">{testimonial.des}</p>
+								<div className="flex justify-center">
 									<Rating
 										readonly
 										initialRating={parseFloat(testimonial.rating)}
-										fullSymbol={<FaStar color="#FFD700" size={30}/>}
-										emptySymbol={<FaStar color="#E0E0E0" size={30}/>}
+										fullSymbol={<FaStar color="#2563eb" size={24} />}
+										emptySymbol={<FaStar color="#e2e8f0" size={24} />}
 									/>
 								</div>
 							</div>
-
 						</SwiperSlide>
 					))
 				)}

@@ -26,13 +26,9 @@ const HomePage = () => {
             <BlogSection></BlogSection>
 			<TestimonialSection></TestimonialSection>
 
-			<div className="my-10 lg:px-30 px-10">
-				<div className="bg-sky-50 rounded-2xl py-12">
-					{
-						isLogin() ? (<ContactForm></ContactForm>) : (
-							<ContactInfo></ContactInfo>
-						)
-					}
+			<div className="my-12 lg:my-16 px-4 lg:px-8 max-w-6xl mx-auto">
+				<div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl py-12 lg:py-14">
+					{isLogin() ? <ContactForm /> : <ContactInfo />}
 				</div>
 			</div>
 

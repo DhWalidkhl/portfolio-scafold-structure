@@ -11,10 +11,10 @@ const PortfolioLayout = ({children}) => {
 					<SectionHeading headingBig="portfolio" headingSmall="Know me"></SectionHeading>
 				</div>
 				<div className="px-10 pb-10 text-center">
-					<ul className="menu lg:gap-20 menu-horizontal text-lg lg:text-xl bg-base-200 rounded-box">
-						<li><NavLink to="/portfolio/projects">Projects</NavLink></li>
-						<li><NavLink to="/portfolio/education">Education</NavLink></li>
-						<li><NavLink to="/portfolio/courses">Courses</NavLink></li>
+					<ul className="menu lg:gap-20 menu-horizontal text-lg lg:text-xl bg-slate-100 dark:bg-slate-800 rounded-box text-slate-800 dark:text-slate-200">
+						<li><NavLink to="/portfolio/projects" className="dark:hover:bg-slate-700 dark:focus:bg-slate-700">Projects</NavLink></li>
+						<li><NavLink to="/portfolio/education" className="dark:hover:bg-slate-700 dark:focus:bg-slate-700">Education</NavLink></li>
+						<li><NavLink to="/portfolio/courses" className="dark:hover:bg-slate-700 dark:focus:bg-slate-700">Courses</NavLink></li>
 					</ul>
 				</div>
 

@@ -11,7 +11,7 @@ const AdminDashboardLayout = ({children}) => {
 			{
 				UserProfile === null ? (
 					<div className="flex flex-col gap-10 items-center justify-center h-screen">
-						<h1 className="text-4xl font-bold">Please Login to Access the Page</h1>
+						<h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100">Please Login to Access the Page</h1>
 						<Login></Login>
 					</div>
 				) : (
@@ -26,11 +26,11 @@ const AdminDashboardLayout = ({children}) => {
 								{children}
 							</div>
 						</div>
-						<div className="drawer-side bg-base-200 min-h-full w-80 p-4 text-base-content">
+						<div className="drawer-side bg-slate-100 dark:bg-slate-800 min-h-full w-80 p-4 text-slate-900 dark:text-slate-100">
 							{
 								UserProfile === null ? ("") : (<div>
 									<div className="max-w-sm mx-auto">
-										<div className="card">
+										<div className="card bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600">
 											<figure className="px-10 pt-10">
 												<img
 													src={UserProfile.img}
@@ -39,16 +39,16 @@ const AdminDashboardLayout = ({children}) => {
 												/>
 											</figure>
 											<div className="card-body items-center text-center">
-												<h2 className="card-title text-lg">
+												<h2 className="card-title text-lg text-slate-900 dark:text-slate-100">
 													{UserProfile.firstName} {UserProfile.lastName}
 												</h2>
-												<p className="text-sm text-gray-500">{UserProfile.email}</p>
-												<p className="text-sm">📱 {UserProfile.mobile}</p>
+												<p className="text-sm text-gray-500 dark:text-slate-400">{UserProfile.email}</p>
+												<p className="text-sm text-slate-700 dark:text-slate-300">📱 {UserProfile.mobile}</p>
 												<p className={`badge ${UserProfile.verified === "yes" ? "badge-success" : "badge-error"}`}>
 													{UserProfile.verified === "yes" ? "Verified" : "Not Verified"}
 												</p>
 												<div className="mt-2 w-full">
-													<div className="flex justify-between text-sm text-gray-400">
+													<div className="flex justify-between text-sm text-gray-400 dark:text-slate-500">
 														<span>Role:</span>
 														<span className="capitalize">{UserProfile.role}</span>
 													</div>

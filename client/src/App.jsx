@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserStore from "./store/userStore.js";
+import ThemeStore from "./store/themeStore.js";
 
 // Pages
 const HomePage = lazy(() => import("./pages/OpenPagess/HomePage.jsx"));
@@ -46,6 +47,7 @@ const PreLoadingSpinner = lazy(() => import("./components/PreLoaderSpinner/PreLo
 
 function App() {
     const { isLogin } = UserStore();
+    const { isDarkMode } = ThemeStore();
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -67,7 +69,7 @@ function App() {
                 closeOnClick
                 pauseOnHover
                 draggable
-                theme="light"
+                theme={isDarkMode ? "dark" : "light"}
             />
             <Suspense  fallback={<PreLoadingSpinner /> } >
                 <Routes>

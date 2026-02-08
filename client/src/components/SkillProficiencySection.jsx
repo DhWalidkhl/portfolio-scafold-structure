@@ -3,41 +3,46 @@ import { LiaLongArrowAltRightSolid } from "react-icons/lia";
 
 const SkillProficiencySection = () => {
 	return (
-		<div className="px-10 py-16 container mx-auto">
-			<div className="lg:grid lg:grid-cols-2 gap-10 py-10">
-				<div className="space-y-3 mb-5">
-					<h1 className="text-2xl flex items-center text-sky-700 font-semibold">Frontend Skills <span className="ml-3"><LiaLongArrowAltRightSolid/></span></h1>
-					<div>
-						<h2>HTML + CSS</h2>
-						<progress className="progress progress-info w-full" value="100" max="100"></progress>
-					</div>
-					<div>
-						<h2>JavaScript</h2>
-						<progress className="progress progress-info w-full" value="80" max="100"></progress>
-					</div>
-					<div>
-						<h2>React</h2>
-						<progress className="progress progress-info w-full" value="90" max="100"></progress>
-					</div>
-				</div>
-				<div className="space-y-3">
-					<h1 className="text-2xl flex items-center text-sky-700 font-semibold">Backend Skills <span
-						className="ml-3"><LiaLongArrowAltRightSolid/></span></h1>
-					<div>
-						<h2>NodeJS</h2>
-						<progress className="progress progress-info w-full" value="60" max="100"></progress>
-					</div>
-					<div>
-						<h2>ExpressJS</h2>
-						<progress className="progress progress-info w-full" value="90" max="100"></progress>
-					</div>
-					<div>
-						<h2>Mongoose</h2>
-						<progress className="progress progress-info w-full" value="70" max="100"></progress>
+		<div className="container mx-auto px-4 py-16 lg:py-20 max-w-6xl">
+			<div className="lg:grid lg:grid-cols-2 gap-12 lg:gap-16 py-6">
+				<div className="space-y-5">
+					<h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+						Frontend Skills <LiaLongArrowAltRightSolid className="text-slate-500 dark:text-slate-400" />
+					</h2>
+					<div className="space-y-4">
+						<div>
+							<div className="flex justify-between text-sm mb-1"><span className="font-medium text-slate-700 dark:text-slate-300">HTML + CSS</span><span className="text-slate-500 dark:text-slate-400">100%</span></div>
+							<progress className="progress progress-primary w-full h-2 rounded-full" value="100" max="100" />
+						</div>
+						<div>
+							<div className="flex justify-between text-sm mb-1"><span className="font-medium text-slate-700 dark:text-slate-300">JavaScript</span><span className="text-slate-500 dark:text-slate-400">80%</span></div>
+							<progress className="progress progress-primary w-full h-2 rounded-full" value="80" max="100" />
+						</div>
+						<div>
+							<div className="flex justify-between text-sm mb-1"><span className="font-medium text-slate-700 dark:text-slate-300">React</span><span className="text-slate-500 dark:text-slate-400">90%</span></div>
+							<progress className="progress progress-primary w-full h-2 rounded-full" value="90" max="100" />
+						</div>
 					</div>
 				</div>
-
-
+				<div className="space-y-5">
+					<h2 className="text-xl font-semibold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+						Backend Skills <LiaLongArrowAltRightSolid className="text-slate-500 dark:text-slate-400" />
+					</h2>
+					<div className="space-y-4">
+						<div>
+							<div className="flex justify-between text-sm mb-1"><span className="font-medium text-slate-700 dark:text-slate-300">Node.js</span><span className="text-slate-500 dark:text-slate-400">60%</span></div>
+							<progress className="progress progress-primary w-full h-2 rounded-full" value="60" max="100" />
+						</div>
+						<div>
+							<div className="flex justify-between text-sm mb-1"><span className="font-medium text-slate-700 dark:text-slate-300">Express</span><span className="text-slate-500 dark:text-slate-400">90%</span></div>
+							<progress className="progress progress-primary w-full h-2 rounded-full" value="90" max="100" />
+						</div>
+						<div>
+							<div className="flex justify-between text-sm mb-1"><span className="font-medium text-slate-700 dark:text-slate-300">Mongoose</span><span className="text-slate-500 dark:text-slate-400">70%</span></div>
+							<progress className="progress progress-primary w-full h-2 rounded-full" value="70" max="100" />
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

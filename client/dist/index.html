@@ -30,10 +30,25 @@
       <meta name="description" content="Hi, I'm Delowar Hossain Walid, a MERN Stack Developer creating fast, accessible, and scalable web applications that solve real-world problems." />
 
 
-    <script type="module" crossorigin src="/assets/index-Br0qC1Hb.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-HqnQkWpn.css">
+    <script type="module" crossorigin src="/assets/index-DynLtj-U.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-eMnNeWQ4.css">
   </head>
   <body>
+    <script>
+      (function() {
+        var stored = localStorage.getItem("theme-storage");
+        var isDark = false;
+        if (stored) {
+          try {
+            var parsed = JSON.parse(stored);
+            isDark = !!(parsed && parsed.state && parsed.state.isDarkMode);
+          } catch (e) {}
+        } else {
+          isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        }
+        document.documentElement.classList.toggle("dark", isDark);
+      })();
+    </script>
     <div id="root"></div>
   </body>
 </html>

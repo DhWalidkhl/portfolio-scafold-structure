@@ -41,25 +41,25 @@ const WhatIdoSection = () => {
 	}, []);
 
 	return (
-		<div className="grid pt-20 pb-10 container mx-auto px-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 place-items-center py-6">
-			{profession.map((p, i) => (
-				<div
-					className="border flex flex-col justify-center items-center border-sky-200 py-6 px-3 w-96 space-y-5 text-center rounded-3xl shadow"
-					key={i}
-				>
-					<div className="text-7xl text-sky-600 text-center">{p.logo}</div>
-					<div>
-						<h1 className="text-2xl font-bold uppercase">{p.title}</h1>
-						<p className="py-1">({p.des})</p>
-						<h4
-							className="text-2xl counter"
+		<div className="container mx-auto px-4 py-16 lg:py-20 max-w-6xl">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+				{profession.map((p, i) => (
+					<div
+						className="flex flex-col justify-center items-center border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-2xl py-8 px-6 text-center shadow-sm hover:shadow-md hover:border-slate-300 dark:hover:border-slate-600 transition-all duration-200"
+						key={i}
+					>
+						<div className="text-slate-600 dark:text-slate-400 mb-4 text-5xl">{p.logo}</div>
+						<h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 uppercase tracking-tight">{p.title}</h3>
+						<p className="text-slate-600 dark:text-slate-400 text-sm mt-1">{p.des}</p>
+						<p
+							className="text-xl font-semibold text-blue-600 dark:text-blue-400 mt-3 counter"
 							ref={(el) => (countersRef.current[i] = el)}
 						>
 							{p.project}+ Projects
-						</h4>
+						</p>
 					</div>
-				</div>
-			))}
+				))}
+			</div>
 		</div>
 	);
 };

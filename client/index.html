@@ -32,6 +32,21 @@
 
   </head>
   <body>
+    <script>
+      (function() {
+        var stored = localStorage.getItem("theme-storage");
+        var isDark = false;
+        if (stored) {
+          try {
+            var parsed = JSON.parse(stored);
+            isDark = !!(parsed && parsed.state && parsed.state.isDarkMode);
+          } catch (e) {}
+        } else {
+          isDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        }
+        document.documentElement.classList.toggle("dark", isDark);
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

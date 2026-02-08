@@ -1,5 +1,1 @@
-body{
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
+/* App-level overrides – body/typography handled in index.css */

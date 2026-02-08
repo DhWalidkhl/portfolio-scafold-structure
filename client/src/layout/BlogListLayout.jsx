@@ -11,12 +11,12 @@ const BlogListLayout = ({ children }) => {
         <AdminDashboardLayout>
             <div>
                 <div className="flex gap-3 mx-auto container">
-                    <NavLink to="/dashboard/approveblog-list" className={({ isActive }) => `p-2 rounded flex items-center gap-2 ${isActive ? 'text-white font-bold bg-blue-400' : 'text-gray-600'
+                    <NavLink to="/dashboard/approveblog-list" className={({ isActive }) => `p-2 rounded flex items-center gap-2 ${isActive ? 'text-white font-bold bg-blue-400 dark:bg-blue-500' : 'text-gray-600 dark:text-slate-400'
                             }`
                         }
                     >
                         Approved
-                        <span className="bg-white text-blue-500 px-2 py-0.5 rounded text-sm font-semibold">
+                        <span className="bg-white dark:bg-slate-800 text-blue-500 px-2 py-0.5 rounded text-sm font-semibold">
                             {
                                 userRole === 'admin' ? (ApprovedBlogList.length) : (ApproveBlogListByUser.length)
                             }
@@ -26,13 +26,13 @@ const BlogListLayout = ({ children }) => {
                     <NavLink to="/dashboard/pendingblog-list" className={({ isActive }) =>
                             `p-2 rounded flex items-center gap-2 ${
                                 isActive
-                                    ? 'text-white font-bold bg-red-400'
-                                    : 'text-gray-600'
+                                    ? 'text-white font-bold bg-red-400 dark:bg-red-500'
+                                    : 'text-gray-600 dark:text-slate-400'
                             }`
                         }
                     >
                         Pending
-                        <span className="bg-white text-red-500 px-2 py-0.5 rounded text-sm font-semibold">
+                        <span className="bg-white dark:bg-slate-800 text-red-500 px-2 py-0.5 rounded text-sm font-semibold">
                             {
                                 userRole === 'admin' ? (PendingBlogList.length) : (PendingBlogListByUser.length)
                             }
