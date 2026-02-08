@@ -3,9 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import BlogStore from "../../store/blogStore.js";
 import Layout from "../../layout/Layout.jsx";
 import UserStore from "../../store/userStore.js";
+import BlogSkeleton from "../../skeleton/BlogSkeleton.jsx";
 
 const SearchedBlogs = () => {
-    const { SearchedBlogs, SearchBlogRequest } = BlogStore();
+    const { SearchedBlogs, SearchBlogRequest, loading } = BlogStore();
     const location = useLocation();
     let {isLogin} = UserStore()
     const params = new URLSearchParams(location.search);
@@ -32,7 +33,13 @@ const SearchedBlogs = () => {
                     Search Results for "{keyword}"
                 </h1>
 
-                {SearchedBlogs.length > 0 ? (
+                {loading ? (
+                    <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 pb-10 px-10 gap-6 container mx-auto">
+                        <BlogSkeleton/>
+                        <BlogSkeleton/>
+                        <BlogSkeleton/>
+                    </div>
+                ) : SearchedBlogs?.length > 0 ? (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {SearchedBlogs.map((blog) => (
                             <div key={blog._id} className="card lg:card-side bg-base-100 shadow-sm">
@@ -70,6 +77,7 @@ const SearchedBlogs = () => {
                 ) : (
                     <p className="text-gray-500">No results found</p>
                 )}
+
             </div>
         </Layout>
     );

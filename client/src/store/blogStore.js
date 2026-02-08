@@ -178,18 +178,22 @@ const BlogStore = create((set)=>({
 	},
 
 	SearchedBlogs: [],
-	SearchBlogRequest: async (Keyword) => {
-		const res = await axios.get(`/api/v1/SeachByKeyword/${Keyword}`);
-		if (res.data['status']=== 'success'){
-			set({SearchedBlogs : res.data?.data})
-		}else {
-			set({SearchedBlogs : []})
-
+	loading: false,
+	SearchBlogRequest: async (keyword) => {
+		try {
+			set({ loading: true });
+			const res = await axios.get(`/api/v1/SeachByKeyword`,{ params: { keyword: keyword } });
+			if (res.data['status']=== 'success'){
+				set({SearchedBlogs : res.data?.data})
+			}else {
+				set({SearchedBlogs : []})
+			}
+		}catch (e) {
+			console.log(e);
+			set({ SearchedBlogs: [] });
+		} finally {
+			set({ loading: false });
 		}
 	}
-
-
-
-
 }))
 export default BlogStore

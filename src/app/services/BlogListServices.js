@@ -338,9 +338,12 @@ export const DeleteBlogService = async (req) => {
 
 export const SeachByKeywordService = async (req) => {
 	try {
-		const SearchRegex = {$regex : req.params.Keyword, $options : "i"};
-		const SearchParams = [{title: SearchRegex}]
-		const MatchStage = {$match: {$or: SearchParams,	approved: true}};
+		if (!req.query.keyword) {
+			return { status: "fail", message: "Keyword is required" };
+		}
+		const SearchRegex = {$regex : req.query.keyword, $options : "i"};
+		const SearchQuery = [{title: SearchRegex}, {des: SearchRegex}];
+		const MatchStage = {$match: {$or: SearchQuery,	approved: true}};
 		const JoinWithUserStage = {$lookup: {from: "users", localField: "userID", foreignField: "_id", as: "user"}}
 		const UnwindUser = {$unwind: "$user"};
 		const ProjectionStage = { $project: {'user._id':0, 'user.password':0, 'user.otp':0, 'user.role':0, 'user.createdAt':0, 'user.updatedAt':0}}

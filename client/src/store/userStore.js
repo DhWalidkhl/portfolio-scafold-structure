@@ -91,7 +91,7 @@ const UserStore = create((set)=>({
 			return res?.data?.data
 
 		}catch (e){
-			console.log(e)
+			console.log(e.toString())
 		}
 	},
 
