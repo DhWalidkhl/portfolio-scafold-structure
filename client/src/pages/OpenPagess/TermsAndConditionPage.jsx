@@ -13,7 +13,7 @@ const TermsAndConditionPage = () => {
 	return (
 		<Layout>
             {
-                TnTList.length === 0 ? <TnTSkeleton/> : (<div className="container mx-auto px-20">
+                TnTList.length === 0 ? <TnTSkeleton/> : (<div className="container mx-auto p-20">
                     <h1 className="font-bold mt-20 mb-5 lg:text-4xl text-2xl">Terms and Conditions</h1>
                     <hr className="border-t border-gray-400"/>
 

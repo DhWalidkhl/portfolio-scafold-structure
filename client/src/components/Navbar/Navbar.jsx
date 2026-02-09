@@ -121,10 +121,11 @@ const Navbar = () => {
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
 								</svg>
 							</div>
-							<ul tabIndex={0} className="menu menu-sm dropdown-content bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 z-[100] mt-3 w-52 p-2 shadow-lg">
+							<ul tabIndex={0}
+								className="menu menu-sm dropdown-content bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 z-[100] mt-3 w-52 p-2 shadow-lg">
 								<li><NavLink to="/" className="dark:text-slate-300">Home</NavLink></li>
-								<li><NavLink to="/blogs" className="dark:text-slate-300">Blogs</NavLink></li>
 								<li><NavLink to="/portfolio/projects" className="dark:text-slate-300">Know me</NavLink></li>
+								<li><NavLink to="/blogs" className="dark:text-slate-300">Blogs</NavLink></li>
 								<li><NavLink to="/contact" className="dark:text-slate-300">Contact</NavLink></li>
 							</ul>
 						</div>
@@ -139,8 +140,8 @@ const Navbar = () => {
 					<div className="navbar-center hidden lg:flex">
 						<ul className="menu menu-horizontal px-1 gap-1">
 							<li><NavLink to="/" className="dark:text-slate-300">Home</NavLink></li>
-							<li><NavLink to="/blogs" className="dark:text-slate-300">Blogs</NavLink></li>
 							<li><NavLink to="/portfolio/projects" className="dark:text-slate-300">Know me</NavLink></li>
+							<li><NavLink to="/blogs" className="dark:text-slate-300">Blogs</NavLink></li>
 							<li><NavLink to="/contact" className="dark:text-slate-300">Contact</NavLink></li>
 						</ul>
 					</div>
