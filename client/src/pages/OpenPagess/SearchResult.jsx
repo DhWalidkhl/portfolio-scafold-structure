@@ -42,33 +42,24 @@ const SearchedBlogs = () => {
                 ) : SearchedBlogs?.length > 0 ? (
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {SearchedBlogs.map((blog) => (
-                            <div key={blog._id} className="card lg:card-side bg-base-100 shadow-sm">
-                                {blog?.img && (
-                                    <figure className="lg:w-96 lg:h-84">
-                                        <img
-                                            src={blog.img}
-                                            alt={blog.title}
-                                            className="object-cover w-full h-full"
-                                        />
-                                    </figure>
-                                )}
-
+                            <div key={blog?._id.toLocaleString()}
+                                 className="card lg:card-side bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <figure className="lg:w-96 lg:h-84">
+                                    <img
+                                        src={blog['img']}
+                                        alt="Album"/>
+                                </figure>
                                 <div className="card-body">
-                                    <h2 className="card-title">
-                                        {blog?.title?.slice(0, 50)}
-                                    </h2>
-
-                                    <p className="mt-2 text-sm text-gray-700 leading-snug">
-                                        {blog?.des?.slice(0, 120)}...
-                                    </p>
-
-                                    <div className="card-actions justify-end mt-3">
-                                        <Link
-                                            to={`/blogs/${blog._id}`}
-                                            className="btn btn-outline btn-info btn-sm"
-                                        >
-                                            See Details
-                                        </Link>
+                                    <h2 className="card-title text-slate-900 dark:text-slate-100">{blog?.title.slice(0, 20)}</h2>
+                                    <div
+                                        className="mt-2 text-sm text-gray-700 dark:text-slate-400 leading-snug"
+                                        dangerouslySetInnerHTML={{__html: blog?.des.slice(0, 50)}}
+                                    />
+                                    <p></p>
+                                    <div className="card-actions justify-end">
+                                        <Link to={`/blogs/${blog?._id}`}
+                                              className="btn btn-outline btn-info dark:border-slate-600 dark:text-slate-300">See
+                                            Details</Link>
                                     </div>
                                 </div>
                             </div>

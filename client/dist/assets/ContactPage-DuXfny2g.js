@@ -1,0 +1,1 @@
+import{U as e,j as t}from"./index-SqQM83lo.js";import{L as r}from"./Layout-Cbey84Vt.js";import{C as o,a}from"./ContactInfo-DCpz2E65.js";import"./Login-QQqLPZiN.js";const x=()=>{let{isLogin:s}=e();return t.jsx(r,{children:t.jsx("div",{className:"min-h-screen justify-center flex items-center",children:s()?t.jsx(o,{}):t.jsx(a,{})})})};export{x as default};

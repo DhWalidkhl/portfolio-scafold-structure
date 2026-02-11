@@ -10,11 +10,10 @@ const ContactPage = () => {
 	let {isLogin} = UserStore()
 	return (
 		<Layout>
-<div className="pt-25">
-	<SectionHeading headingBig="contact" headingSmall="Get in Touch"/>
+<div className="min-h-screen justify-center flex items-center">
 	{
-		isLogin() ? (<ContactForm></ContactForm>) : (
-			<ContactInfo></ContactInfo>
+		isLogin() ? (<ContactForm/>) : (
+			<ContactInfo/>
 		)
 	}
 
