@@ -11,12 +11,13 @@ import BlogSection from "../../components/BlogSection.jsx";
 import HeroSection from "../../components/HeroSection.jsx";
 import FAQSection from "../../components/FAQSection.jsx";
 import ProjectSection from "../../components/ProjectSection.jsx";
+import PageTitle from "../../components/PageTitle.jsx";
 
 const HomePage = () => {
 	let {isLogin} = UserStore()
 	return (
 		<Layout>
-
+			<PageTitle title={"Walid | Web Developer"}/>
 			<HeroSection></HeroSection>
 			<WhatIdoSection></WhatIdoSection>
 			<SkillProficiencySection></SkillProficiencySection>

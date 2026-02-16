@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserStore from "./store/userStore.js";
 import ThemeStore from "./store/themeStore.js";
+import { HelmetProvider } from "react-helmet-async";
 
 // Pages
 const HomePage = lazy(() => import("./pages/OpenPagess/HomePage.jsx"));
@@ -60,7 +61,8 @@ function App() {
     }
 
     return (
-        <BrowserRouter>
+        <HelmetProvider>
+            <BrowserRouter>
             <ToastContainer
                 position="top-right"
                 autoClose={1500}
@@ -131,6 +133,7 @@ function App() {
                 </Routes>
             </Suspense>
         </BrowserRouter>
+        </HelmetProvider>
     );
 }
 

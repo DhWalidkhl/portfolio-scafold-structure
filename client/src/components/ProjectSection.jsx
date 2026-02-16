@@ -62,7 +62,7 @@ const ProjectSection = () => {
                                     />
                                     <div
                                         className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
-                                        <Link to={project.liveLink} target={"_blank"} data-tip="Link"
+                                        <Link to={project.liveLink} target={"_blank"} data-tip="Explore Live"
                                               className="p-2 bg-white tooltip rounded-full hover:bg-indigo-50 text-indigo-600">
                                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor">

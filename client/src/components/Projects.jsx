@@ -69,7 +69,7 @@ const Projects = () => {
 											/>
 											<div
 												className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center space-x-4">
-												<Link to={project.liveLink} target={"_blank"} data-tip="Link"
+												<Link to={project.liveLink} target={"_blank"} data-tip="Explore Live"
 													  className="p-2 bg-white tooltip rounded-full hover:bg-indigo-50 text-indigo-600">
 													<svg className="w-6 h-6" fill="none" viewBox="0 0 24 24"
 														 stroke="currentColor">
@@ -112,31 +112,6 @@ const Projects = () => {
 										</div>
 									</div>
 
-
-
-
-									// <div key={project._id} className="card dark:bg-gray-700 bg-base-100 shadow-sm">
-									// 	<figure>
-									// 		<img
-									// 			src={project.img}
-									// 			alt="Project Image"
-									//             className="w-full"
-									//         />
-									//
-									// 	</figure>
-									// 	<div className="card-body">
-									// 		<h1 className="card-title">
-									// 			{project.title}
-									// 		</h1>
-									// 		<p>{project.des}</p>
-									// 		<div className="card-actions justify-end">
-									// 			<div className="card-actions justify-end">
-									// 				<Link to={`/portfolio/projects/${project._id}`}
-									// 				      className="btn btn-outline btn-info">See Details</Link>
-									// 			</div>
-									// 		</div>
-									// 	</div>
-									// </div>
 								))
 							}
 						</div>

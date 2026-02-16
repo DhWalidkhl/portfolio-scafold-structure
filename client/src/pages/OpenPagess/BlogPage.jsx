@@ -5,6 +5,7 @@ import SectionHeading from "../../components/SectionHeading.jsx";
 import UserStore from "../../store/userStore.js";
 import {Link} from "react-router-dom";
 import BlogStore from "../../store/blogStore.js";
+import PageTitle from "../../components/PageTitle.jsx";
 
 const BlogPage = () => {
 	let {isLogin} = UserStore()
@@ -17,6 +18,7 @@ const BlogPage = () => {
 
 	return (
 		<Layout>
+			<PageTitle title={"Walid | Blogs"}/>
 			<div className="pt-25">
 				<SectionHeading headingBig='read my blog' headingSmall='My Latest Blog'/>
 				<div className="container mx-auto">
